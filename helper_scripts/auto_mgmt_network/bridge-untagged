@@ -1,6 +1,8 @@
 #Created by Topology-Converter v4.6.5
 #    Template Revision: v4.6.5
 
+auto eth0
+iface eth0 inet dhcp
 
 auto bridge-untagged
 iface bridge-untagged
