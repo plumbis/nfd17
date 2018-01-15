@@ -127,6 +127,7 @@ graph dc1 {
  "leaf126" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
  "leaf127" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
  "leaf128" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "netq-ts" [function="host" os="cumulus/ts" memory="1024" ]
 
  "chassis01-lc1-1" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
  "chassis01-lc1-2" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]

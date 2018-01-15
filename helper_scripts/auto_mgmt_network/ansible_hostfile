@@ -247,3 +247,6 @@ chassis04
 [network:children]
 leafs
 spines
+
+[host]
+netq-ts ansible_host=192.168.200.56 ansible_user=cumulus
