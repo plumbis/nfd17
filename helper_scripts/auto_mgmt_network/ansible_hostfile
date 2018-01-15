@@ -247,6 +247,3 @@ chassis04
 [network:children]
 leafs
 spines
-
-
-
