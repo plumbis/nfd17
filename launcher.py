@@ -9,7 +9,7 @@ fabriccard_list = ["fc1-1", "fc2-1", "fc3-1", "fc4-1"]
 output = []
 current_leaf = 1
 
-output.append("vagrant up oob-mgmt-server oob-mgmt-switch")
+output.append("vagrant up oob-mgmt-server oob-mgmt-switch1 oob-mgmt-switch2 oob-mgmt-switch3 oob-mgmt-switch4")
 output.append("vagrant up netq-ts")
 working_leaf_list = []
 
