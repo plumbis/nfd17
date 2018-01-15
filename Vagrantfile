@@ -100,8 +100,7 @@ Vagrant.configure("2") do |config|
 
     device.vm.hostname = "oob-mgmt-server"
 
-    device.vm.box = "CumulusCommunity/vx_oob_server"
-    device.vm.box_version = "1.0.4"
+    device.vm.box = "yk0/ubuntu-xenial"
 
     device.vm.provider :libvirt do |v|
       v.memory = 1024
@@ -19009,7 +19008,6 @@ end
 
     # Run the Config specified in the Node Attributes
     device.vm.provision :shell , privileged: false, :inline => 'echo "$(whoami)" > /tmp/normal_user'
-    device.vm.provision :shell , path: "./helper_scripts/extra_server_config.sh"
 
 
     # Install Rules for the interface re-map
