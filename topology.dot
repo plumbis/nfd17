@@ -1,4 +1,133 @@
 graph dc1 {
+ "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf03" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf04" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf05" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf06" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf07" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf08" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf09" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf10" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf11" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf12" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf13" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf14" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf15" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf16" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf17" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf18" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf19" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf20" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf21" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf22" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf23" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf24" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf25" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf26" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf27" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf28" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf29" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf30" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf31" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf32" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf33" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf34" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf35" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf36" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf37" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf38" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf39" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf40" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf41" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf42" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf43" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf44" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf45" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf46" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf47" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf48" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf49" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf50" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf51" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf52" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf53" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf54" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf55" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf56" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf57" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf58" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf59" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf60" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf61" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf62" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf63" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf64" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf65" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf66" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf67" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf68" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf69" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf70" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf71" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf72" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf73" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf74" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf75" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf76" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf77" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf78" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf79" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf80" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf81" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf82" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf83" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf84" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf85" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf86" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf87" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf88" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf89" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf90" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf91" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf92" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf93" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf94" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf95" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf96" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf97" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf98" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf99" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf100" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf101" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf102" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf103" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf104" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf105" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf106" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf107" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf108" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf109" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf110" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf111" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf112" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf113" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf114" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf115" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf116" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf117" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf118" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf119" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf120" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf121" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf122" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf123" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf124" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf125" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf126" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf127" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+ "leaf128" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+
  "chassis01-lc1-1" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
  "chassis01-lc1-2" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
  "chassis01-lc2-1" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
@@ -51,6 +180,520 @@ graph dc1 {
  "chassis04-fc3-1" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
  "chassis04-fc4-1" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh"]
 
+
+
+ "chassis01-lc1-1":"swp1" -- "leaf01":"swp1"
+ "chassis01-lc1-1":"swp2" -- "leaf02":"swp1"
+ "chassis01-lc1-1":"swp3" -- "leaf03":"swp1"
+ "chassis01-lc1-1":"swp4" -- "leaf04":"swp1"
+ "chassis01-lc1-1":"swp5" -- "leaf05":"swp1"
+ "chassis01-lc1-1":"swp6" -- "leaf06":"swp1"
+ "chassis01-lc1-1":"swp7" -- "leaf07":"swp1"
+ "chassis01-lc1-1":"swp8" -- "leaf08":"swp1"
+ "chassis01-lc1-1":"swp9" -- "leaf09":"swp1"
+ "chassis01-lc1-1":"swp10" -- "leaf10":"swp1"
+ "chassis01-lc1-1":"swp11" -- "leaf11":"swp1"
+ "chassis01-lc1-1":"swp12" -- "leaf12":"swp1"
+ "chassis01-lc1-1":"swp13" -- "leaf13":"swp1"
+ "chassis01-lc1-1":"swp14" -- "leaf14":"swp1"
+ "chassis01-lc1-1":"swp15" -- "leaf15":"swp1"
+ "chassis01-lc1-1":"swp16" -- "leaf16":"swp1"
+ "chassis01-lc1-2":"swp1" -- "leaf17":"swp1"
+ "chassis01-lc1-2":"swp2" -- "leaf18":"swp1"
+ "chassis01-lc1-2":"swp3" -- "leaf19":"swp1"
+ "chassis01-lc1-2":"swp4" -- "leaf20":"swp1"
+ "chassis01-lc1-2":"swp5" -- "leaf21":"swp1"
+ "chassis01-lc1-2":"swp6" -- "leaf22":"swp1"
+ "chassis01-lc1-2":"swp7" -- "leaf23":"swp1"
+ "chassis01-lc1-2":"swp8" -- "leaf24":"swp1"
+ "chassis01-lc1-2":"swp9" -- "leaf25":"swp1"
+ "chassis01-lc1-2":"swp10" -- "leaf26":"swp1"
+ "chassis01-lc1-2":"swp11" -- "leaf27":"swp1"
+ "chassis01-lc1-2":"swp12" -- "leaf28":"swp1"
+ "chassis01-lc1-2":"swp13" -- "leaf29":"swp1"
+ "chassis01-lc1-2":"swp14" -- "leaf30":"swp1"
+ "chassis01-lc1-2":"swp15" -- "leaf31":"swp1"
+ "chassis01-lc1-2":"swp16" -- "leaf32":"swp1"
+ "chassis01-lc2-1":"swp1" -- "leaf33":"swp1"
+ "chassis01-lc2-1":"swp2" -- "leaf34":"swp1"
+ "chassis01-lc2-1":"swp3" -- "leaf35":"swp1"
+ "chassis01-lc2-1":"swp4" -- "leaf36":"swp1"
+ "chassis01-lc2-1":"swp5" -- "leaf37":"swp1"
+ "chassis01-lc2-1":"swp6" -- "leaf38":"swp1"
+ "chassis01-lc2-1":"swp7" -- "leaf39":"swp1"
+ "chassis01-lc2-1":"swp8" -- "leaf40":"swp1"
+ "chassis01-lc2-1":"swp9" -- "leaf41":"swp1"
+ "chassis01-lc2-1":"swp10" -- "leaf42":"swp1"
+ "chassis01-lc2-1":"swp11" -- "leaf43":"swp1"
+ "chassis01-lc2-1":"swp12" -- "leaf44":"swp1"
+ "chassis01-lc2-1":"swp13" -- "leaf45":"swp1"
+ "chassis01-lc2-1":"swp14" -- "leaf46":"swp1"
+ "chassis01-lc2-1":"swp15" -- "leaf47":"swp1"
+ "chassis01-lc2-1":"swp16" -- "leaf48":"swp1"
+ "chassis01-lc2-2":"swp1" -- "leaf49":"swp1"
+ "chassis01-lc2-2":"swp2" -- "leaf50":"swp1"
+ "chassis01-lc2-2":"swp3" -- "leaf51":"swp1"
+ "chassis01-lc2-2":"swp4" -- "leaf52":"swp1"
+ "chassis01-lc2-2":"swp5" -- "leaf53":"swp1"
+ "chassis01-lc2-2":"swp6" -- "leaf54":"swp1"
+ "chassis01-lc2-2":"swp7" -- "leaf55":"swp1"
+ "chassis01-lc2-2":"swp8" -- "leaf56":"swp1"
+ "chassis01-lc2-2":"swp9" -- "leaf57":"swp1"
+ "chassis01-lc2-2":"swp10" -- "leaf58":"swp1"
+ "chassis01-lc2-2":"swp11" -- "leaf59":"swp1"
+ "chassis01-lc2-2":"swp12" -- "leaf60":"swp1"
+ "chassis01-lc2-2":"swp13" -- "leaf61":"swp1"
+ "chassis01-lc2-2":"swp14" -- "leaf62":"swp1"
+ "chassis01-lc2-2":"swp15" -- "leaf63":"swp1"
+ "chassis01-lc2-2":"swp16" -- "leaf64":"swp1"
+ "chassis01-lc3-1":"swp1" -- "leaf65":"swp1"
+ "chassis01-lc3-1":"swp2" -- "leaf66":"swp1"
+ "chassis01-lc3-1":"swp3" -- "leaf67":"swp1"
+ "chassis01-lc3-1":"swp4" -- "leaf68":"swp1"
+ "chassis01-lc3-1":"swp5" -- "leaf69":"swp1"
+ "chassis01-lc3-1":"swp6" -- "leaf70":"swp1"
+ "chassis01-lc3-1":"swp7" -- "leaf71":"swp1"
+ "chassis01-lc3-1":"swp8" -- "leaf72":"swp1"
+ "chassis01-lc3-1":"swp9" -- "leaf73":"swp1"
+ "chassis01-lc3-1":"swp10" -- "leaf74":"swp1"
+ "chassis01-lc3-1":"swp11" -- "leaf75":"swp1"
+ "chassis01-lc3-1":"swp12" -- "leaf76":"swp1"
+ "chassis01-lc3-1":"swp13" -- "leaf77":"swp1"
+ "chassis01-lc3-1":"swp14" -- "leaf78":"swp1"
+ "chassis01-lc3-1":"swp15" -- "leaf79":"swp1"
+ "chassis01-lc3-1":"swp16" -- "leaf80":"swp1"
+ "chassis01-lc3-2":"swp1" -- "leaf81":"swp1"
+ "chassis01-lc3-2":"swp2" -- "leaf82":"swp1"
+ "chassis01-lc3-2":"swp3" -- "leaf83":"swp1"
+ "chassis01-lc3-2":"swp4" -- "leaf84":"swp1"
+ "chassis01-lc3-2":"swp5" -- "leaf85":"swp1"
+ "chassis01-lc3-2":"swp6" -- "leaf86":"swp1"
+ "chassis01-lc3-2":"swp7" -- "leaf87":"swp1"
+ "chassis01-lc3-2":"swp8" -- "leaf88":"swp1"
+ "chassis01-lc3-2":"swp9" -- "leaf89":"swp1"
+ "chassis01-lc3-2":"swp10" -- "leaf90":"swp1"
+ "chassis01-lc3-2":"swp11" -- "leaf91":"swp1"
+ "chassis01-lc3-2":"swp12" -- "leaf92":"swp1"
+ "chassis01-lc3-2":"swp13" -- "leaf93":"swp1"
+ "chassis01-lc3-2":"swp14" -- "leaf94":"swp1"
+ "chassis01-lc3-2":"swp15" -- "leaf95":"swp1"
+ "chassis01-lc3-2":"swp16" -- "leaf96":"swp1"
+ "chassis01-lc4-1":"swp1" -- "leaf97":"swp1"
+ "chassis01-lc4-1":"swp2" -- "leaf98":"swp1"
+ "chassis01-lc4-1":"swp3" -- "leaf99":"swp1"
+ "chassis01-lc4-1":"swp4" -- "leaf100":"swp1"
+ "chassis01-lc4-1":"swp5" -- "leaf101":"swp1"
+ "chassis01-lc4-1":"swp6" -- "leaf102":"swp1"
+ "chassis01-lc4-1":"swp7" -- "leaf103":"swp1"
+ "chassis01-lc4-1":"swp8" -- "leaf104":"swp1"
+ "chassis01-lc4-1":"swp9" -- "leaf105":"swp1"
+ "chassis01-lc4-1":"swp10" -- "leaf106":"swp1"
+ "chassis01-lc4-1":"swp11" -- "leaf107":"swp1"
+ "chassis01-lc4-1":"swp12" -- "leaf108":"swp1"
+ "chassis01-lc4-1":"swp13" -- "leaf109":"swp1"
+ "chassis01-lc4-1":"swp14" -- "leaf110":"swp1"
+ "chassis01-lc4-1":"swp15" -- "leaf111":"swp1"
+ "chassis01-lc4-1":"swp16" -- "leaf112":"swp1"
+ "chassis01-lc4-2":"swp1" -- "leaf113":"swp1"
+ "chassis01-lc4-2":"swp2" -- "leaf114":"swp1"
+ "chassis01-lc4-2":"swp3" -- "leaf115":"swp1"
+ "chassis01-lc4-2":"swp4" -- "leaf116":"swp1"
+ "chassis01-lc4-2":"swp5" -- "leaf117":"swp1"
+ "chassis01-lc4-2":"swp6" -- "leaf118":"swp1"
+ "chassis01-lc4-2":"swp7" -- "leaf119":"swp1"
+ "chassis01-lc4-2":"swp8" -- "leaf120":"swp1"
+ "chassis01-lc4-2":"swp9" -- "leaf121":"swp1"
+ "chassis01-lc4-2":"swp10" -- "leaf122":"swp1"
+ "chassis01-lc4-2":"swp11" -- "leaf123":"swp1"
+ "chassis01-lc4-2":"swp12" -- "leaf124":"swp1"
+ "chassis01-lc4-2":"swp13" -- "leaf125":"swp1"
+ "chassis01-lc4-2":"swp14" -- "leaf126":"swp1"
+ "chassis01-lc4-2":"swp15" -- "leaf127":"swp1"
+ "chassis01-lc4-2":"swp16" -- "leaf128":"swp1"
+ "chassis02-lc1-1":"swp1" -- "leaf01":"swp2"
+ "chassis02-lc1-1":"swp2" -- "leaf02":"swp2"
+ "chassis02-lc1-1":"swp3" -- "leaf03":"swp2"
+ "chassis02-lc1-1":"swp4" -- "leaf04":"swp2"
+ "chassis02-lc1-1":"swp5" -- "leaf05":"swp2"
+ "chassis02-lc1-1":"swp6" -- "leaf06":"swp2"
+ "chassis02-lc1-1":"swp7" -- "leaf07":"swp2"
+ "chassis02-lc1-1":"swp8" -- "leaf08":"swp2"
+ "chassis02-lc1-1":"swp9" -- "leaf09":"swp2"
+ "chassis02-lc1-1":"swp10" -- "leaf10":"swp2"
+ "chassis02-lc1-1":"swp11" -- "leaf11":"swp2"
+ "chassis02-lc1-1":"swp12" -- "leaf12":"swp2"
+ "chassis02-lc1-1":"swp13" -- "leaf13":"swp2"
+ "chassis02-lc1-1":"swp14" -- "leaf14":"swp2"
+ "chassis02-lc1-1":"swp15" -- "leaf15":"swp2"
+ "chassis02-lc1-1":"swp16" -- "leaf16":"swp2"
+ "chassis02-lc1-2":"swp1" -- "leaf17":"swp2"
+ "chassis02-lc1-2":"swp2" -- "leaf18":"swp2"
+ "chassis02-lc1-2":"swp3" -- "leaf19":"swp2"
+ "chassis02-lc1-2":"swp4" -- "leaf20":"swp2"
+ "chassis02-lc1-2":"swp5" -- "leaf21":"swp2"
+ "chassis02-lc1-2":"swp6" -- "leaf22":"swp2"
+ "chassis02-lc1-2":"swp7" -- "leaf23":"swp2"
+ "chassis02-lc1-2":"swp8" -- "leaf24":"swp2"
+ "chassis02-lc1-2":"swp9" -- "leaf25":"swp2"
+ "chassis02-lc1-2":"swp10" -- "leaf26":"swp2"
+ "chassis02-lc1-2":"swp11" -- "leaf27":"swp2"
+ "chassis02-lc1-2":"swp12" -- "leaf28":"swp2"
+ "chassis02-lc1-2":"swp13" -- "leaf29":"swp2"
+ "chassis02-lc1-2":"swp14" -- "leaf30":"swp2"
+ "chassis02-lc1-2":"swp15" -- "leaf31":"swp2"
+ "chassis02-lc1-2":"swp16" -- "leaf32":"swp2"
+ "chassis02-lc2-1":"swp1" -- "leaf33":"swp2"
+ "chassis02-lc2-1":"swp2" -- "leaf34":"swp2"
+ "chassis02-lc2-1":"swp3" -- "leaf35":"swp2"
+ "chassis02-lc2-1":"swp4" -- "leaf36":"swp2"
+ "chassis02-lc2-1":"swp5" -- "leaf37":"swp2"
+ "chassis02-lc2-1":"swp6" -- "leaf38":"swp2"
+ "chassis02-lc2-1":"swp7" -- "leaf39":"swp2"
+ "chassis02-lc2-1":"swp8" -- "leaf40":"swp2"
+ "chassis02-lc2-1":"swp9" -- "leaf41":"swp2"
+ "chassis02-lc2-1":"swp10" -- "leaf42":"swp2"
+ "chassis02-lc2-1":"swp11" -- "leaf43":"swp2"
+ "chassis02-lc2-1":"swp12" -- "leaf44":"swp2"
+ "chassis02-lc2-1":"swp13" -- "leaf45":"swp2"
+ "chassis02-lc2-1":"swp14" -- "leaf46":"swp2"
+ "chassis02-lc2-1":"swp15" -- "leaf47":"swp2"
+ "chassis02-lc2-1":"swp16" -- "leaf48":"swp2"
+ "chassis02-lc2-2":"swp1" -- "leaf49":"swp2"
+ "chassis02-lc2-2":"swp2" -- "leaf50":"swp2"
+ "chassis02-lc2-2":"swp3" -- "leaf51":"swp2"
+ "chassis02-lc2-2":"swp4" -- "leaf52":"swp2"
+ "chassis02-lc2-2":"swp5" -- "leaf53":"swp2"
+ "chassis02-lc2-2":"swp6" -- "leaf54":"swp2"
+ "chassis02-lc2-2":"swp7" -- "leaf55":"swp2"
+ "chassis02-lc2-2":"swp8" -- "leaf56":"swp2"
+ "chassis02-lc2-2":"swp9" -- "leaf57":"swp2"
+ "chassis02-lc2-2":"swp10" -- "leaf58":"swp2"
+ "chassis02-lc2-2":"swp11" -- "leaf59":"swp2"
+ "chassis02-lc2-2":"swp12" -- "leaf60":"swp2"
+ "chassis02-lc2-2":"swp13" -- "leaf61":"swp2"
+ "chassis02-lc2-2":"swp14" -- "leaf62":"swp2"
+ "chassis02-lc2-2":"swp15" -- "leaf63":"swp2"
+ "chassis02-lc2-2":"swp16" -- "leaf64":"swp2"
+ "chassis02-lc3-1":"swp1" -- "leaf65":"swp2"
+ "chassis02-lc3-1":"swp2" -- "leaf66":"swp2"
+ "chassis02-lc3-1":"swp3" -- "leaf67":"swp2"
+ "chassis02-lc3-1":"swp4" -- "leaf68":"swp2"
+ "chassis02-lc3-1":"swp5" -- "leaf69":"swp2"
+ "chassis02-lc3-1":"swp6" -- "leaf70":"swp2"
+ "chassis02-lc3-1":"swp7" -- "leaf71":"swp2"
+ "chassis02-lc3-1":"swp8" -- "leaf72":"swp2"
+ "chassis02-lc3-1":"swp9" -- "leaf73":"swp2"
+ "chassis02-lc3-1":"swp10" -- "leaf74":"swp2"
+ "chassis02-lc3-1":"swp11" -- "leaf75":"swp2"
+ "chassis02-lc3-1":"swp12" -- "leaf76":"swp2"
+ "chassis02-lc3-1":"swp13" -- "leaf77":"swp2"
+ "chassis02-lc3-1":"swp14" -- "leaf78":"swp2"
+ "chassis02-lc3-1":"swp15" -- "leaf79":"swp2"
+ "chassis02-lc3-1":"swp16" -- "leaf80":"swp2"
+ "chassis02-lc3-2":"swp1" -- "leaf81":"swp2"
+ "chassis02-lc3-2":"swp2" -- "leaf82":"swp2"
+ "chassis02-lc3-2":"swp3" -- "leaf83":"swp2"
+ "chassis02-lc3-2":"swp4" -- "leaf84":"swp2"
+ "chassis02-lc3-2":"swp5" -- "leaf85":"swp2"
+ "chassis02-lc3-2":"swp6" -- "leaf86":"swp2"
+ "chassis02-lc3-2":"swp7" -- "leaf87":"swp2"
+ "chassis02-lc3-2":"swp8" -- "leaf88":"swp2"
+ "chassis02-lc3-2":"swp9" -- "leaf89":"swp2"
+ "chassis02-lc3-2":"swp10" -- "leaf90":"swp2"
+ "chassis02-lc3-2":"swp11" -- "leaf91":"swp2"
+ "chassis02-lc3-2":"swp12" -- "leaf92":"swp2"
+ "chassis02-lc3-2":"swp13" -- "leaf93":"swp2"
+ "chassis02-lc3-2":"swp14" -- "leaf94":"swp2"
+ "chassis02-lc3-2":"swp15" -- "leaf95":"swp2"
+ "chassis02-lc3-2":"swp16" -- "leaf96":"swp2"
+ "chassis02-lc4-1":"swp1" -- "leaf97":"swp2"
+ "chassis02-lc4-1":"swp2" -- "leaf98":"swp2"
+ "chassis02-lc4-1":"swp3" -- "leaf99":"swp2"
+ "chassis02-lc4-1":"swp4" -- "leaf100":"swp2"
+ "chassis02-lc4-1":"swp5" -- "leaf101":"swp2"
+ "chassis02-lc4-1":"swp6" -- "leaf102":"swp2"
+ "chassis02-lc4-1":"swp7" -- "leaf103":"swp2"
+ "chassis02-lc4-1":"swp8" -- "leaf104":"swp2"
+ "chassis02-lc4-1":"swp9" -- "leaf105":"swp2"
+ "chassis02-lc4-1":"swp10" -- "leaf106":"swp2"
+ "chassis02-lc4-1":"swp11" -- "leaf107":"swp2"
+ "chassis02-lc4-1":"swp12" -- "leaf108":"swp2"
+ "chassis02-lc4-1":"swp13" -- "leaf109":"swp2"
+ "chassis02-lc4-1":"swp14" -- "leaf110":"swp2"
+ "chassis02-lc4-1":"swp15" -- "leaf111":"swp2"
+ "chassis02-lc4-1":"swp16" -- "leaf112":"swp2"
+ "chassis02-lc4-2":"swp1" -- "leaf113":"swp2"
+ "chassis02-lc4-2":"swp2" -- "leaf114":"swp2"
+ "chassis02-lc4-2":"swp3" -- "leaf115":"swp2"
+ "chassis02-lc4-2":"swp4" -- "leaf116":"swp2"
+ "chassis02-lc4-2":"swp5" -- "leaf117":"swp2"
+ "chassis02-lc4-2":"swp6" -- "leaf118":"swp2"
+ "chassis02-lc4-2":"swp7" -- "leaf119":"swp2"
+ "chassis02-lc4-2":"swp8" -- "leaf120":"swp2"
+ "chassis02-lc4-2":"swp9" -- "leaf121":"swp2"
+ "chassis02-lc4-2":"swp10" -- "leaf122":"swp2"
+ "chassis02-lc4-2":"swp11" -- "leaf123":"swp2"
+ "chassis02-lc4-2":"swp12" -- "leaf124":"swp2"
+ "chassis02-lc4-2":"swp13" -- "leaf125":"swp2"
+ "chassis02-lc4-2":"swp14" -- "leaf126":"swp2"
+ "chassis02-lc4-2":"swp15" -- "leaf127":"swp2"
+ "chassis02-lc4-2":"swp16" -- "leaf128":"swp2"
+ "chassis03-lc1-1":"swp1" -- "leaf01":"swp3"
+ "chassis03-lc1-1":"swp2" -- "leaf02":"swp3"
+ "chassis03-lc1-1":"swp3" -- "leaf03":"swp3"
+ "chassis03-lc1-1":"swp4" -- "leaf04":"swp3"
+ "chassis03-lc1-1":"swp5" -- "leaf05":"swp3"
+ "chassis03-lc1-1":"swp6" -- "leaf06":"swp3"
+ "chassis03-lc1-1":"swp7" -- "leaf07":"swp3"
+ "chassis03-lc1-1":"swp8" -- "leaf08":"swp3"
+ "chassis03-lc1-1":"swp9" -- "leaf09":"swp3"
+ "chassis03-lc1-1":"swp10" -- "leaf10":"swp3"
+ "chassis03-lc1-1":"swp11" -- "leaf11":"swp3"
+ "chassis03-lc1-1":"swp12" -- "leaf12":"swp3"
+ "chassis03-lc1-1":"swp13" -- "leaf13":"swp3"
+ "chassis03-lc1-1":"swp14" -- "leaf14":"swp3"
+ "chassis03-lc1-1":"swp15" -- "leaf15":"swp3"
+ "chassis03-lc1-1":"swp16" -- "leaf16":"swp3"
+ "chassis03-lc1-2":"swp1" -- "leaf17":"swp3"
+ "chassis03-lc1-2":"swp2" -- "leaf18":"swp3"
+ "chassis03-lc1-2":"swp3" -- "leaf19":"swp3"
+ "chassis03-lc1-2":"swp4" -- "leaf20":"swp3"
+ "chassis03-lc1-2":"swp5" -- "leaf21":"swp3"
+ "chassis03-lc1-2":"swp6" -- "leaf22":"swp3"
+ "chassis03-lc1-2":"swp7" -- "leaf23":"swp3"
+ "chassis03-lc1-2":"swp8" -- "leaf24":"swp3"
+ "chassis03-lc1-2":"swp9" -- "leaf25":"swp3"
+ "chassis03-lc1-2":"swp10" -- "leaf26":"swp3"
+ "chassis03-lc1-2":"swp11" -- "leaf27":"swp3"
+ "chassis03-lc1-2":"swp12" -- "leaf28":"swp3"
+ "chassis03-lc1-2":"swp13" -- "leaf29":"swp3"
+ "chassis03-lc1-2":"swp14" -- "leaf30":"swp3"
+ "chassis03-lc1-2":"swp15" -- "leaf31":"swp3"
+ "chassis03-lc1-2":"swp16" -- "leaf32":"swp3"
+ "chassis03-lc2-1":"swp1" -- "leaf33":"swp3"
+ "chassis03-lc2-1":"swp2" -- "leaf34":"swp3"
+ "chassis03-lc2-1":"swp3" -- "leaf35":"swp3"
+ "chassis03-lc2-1":"swp4" -- "leaf36":"swp3"
+ "chassis03-lc2-1":"swp5" -- "leaf37":"swp3"
+ "chassis03-lc2-1":"swp6" -- "leaf38":"swp3"
+ "chassis03-lc2-1":"swp7" -- "leaf39":"swp3"
+ "chassis03-lc2-1":"swp8" -- "leaf40":"swp3"
+ "chassis03-lc2-1":"swp9" -- "leaf41":"swp3"
+ "chassis03-lc2-1":"swp10" -- "leaf42":"swp3"
+ "chassis03-lc2-1":"swp11" -- "leaf43":"swp3"
+ "chassis03-lc2-1":"swp12" -- "leaf44":"swp3"
+ "chassis03-lc2-1":"swp13" -- "leaf45":"swp3"
+ "chassis03-lc2-1":"swp14" -- "leaf46":"swp3"
+ "chassis03-lc2-1":"swp15" -- "leaf47":"swp3"
+ "chassis03-lc2-1":"swp16" -- "leaf48":"swp3"
+ "chassis03-lc2-2":"swp1" -- "leaf49":"swp3"
+ "chassis03-lc2-2":"swp2" -- "leaf50":"swp3"
+ "chassis03-lc2-2":"swp3" -- "leaf51":"swp3"
+ "chassis03-lc2-2":"swp4" -- "leaf52":"swp3"
+ "chassis03-lc2-2":"swp5" -- "leaf53":"swp3"
+ "chassis03-lc2-2":"swp6" -- "leaf54":"swp3"
+ "chassis03-lc2-2":"swp7" -- "leaf55":"swp3"
+ "chassis03-lc2-2":"swp8" -- "leaf56":"swp3"
+ "chassis03-lc2-2":"swp9" -- "leaf57":"swp3"
+ "chassis03-lc2-2":"swp10" -- "leaf58":"swp3"
+ "chassis03-lc2-2":"swp11" -- "leaf59":"swp3"
+ "chassis03-lc2-2":"swp12" -- "leaf60":"swp3"
+ "chassis03-lc2-2":"swp13" -- "leaf61":"swp3"
+ "chassis03-lc2-2":"swp14" -- "leaf62":"swp3"
+ "chassis03-lc2-2":"swp15" -- "leaf63":"swp3"
+ "chassis03-lc2-2":"swp16" -- "leaf64":"swp3"
+ "chassis03-lc3-1":"swp1" -- "leaf65":"swp3"
+ "chassis03-lc3-1":"swp2" -- "leaf66":"swp3"
+ "chassis03-lc3-1":"swp3" -- "leaf67":"swp3"
+ "chassis03-lc3-1":"swp4" -- "leaf68":"swp3"
+ "chassis03-lc3-1":"swp5" -- "leaf69":"swp3"
+ "chassis03-lc3-1":"swp6" -- "leaf70":"swp3"
+ "chassis03-lc3-1":"swp7" -- "leaf71":"swp3"
+ "chassis03-lc3-1":"swp8" -- "leaf72":"swp3"
+ "chassis03-lc3-1":"swp9" -- "leaf73":"swp3"
+ "chassis03-lc3-1":"swp10" -- "leaf74":"swp3"
+ "chassis03-lc3-1":"swp11" -- "leaf75":"swp3"
+ "chassis03-lc3-1":"swp12" -- "leaf76":"swp3"
+ "chassis03-lc3-1":"swp13" -- "leaf77":"swp3"
+ "chassis03-lc3-1":"swp14" -- "leaf78":"swp3"
+ "chassis03-lc3-1":"swp15" -- "leaf79":"swp3"
+ "chassis03-lc3-1":"swp16" -- "leaf80":"swp3"
+ "chassis03-lc3-2":"swp1" -- "leaf81":"swp3"
+ "chassis03-lc3-2":"swp2" -- "leaf82":"swp3"
+ "chassis03-lc3-2":"swp3" -- "leaf83":"swp3"
+ "chassis03-lc3-2":"swp4" -- "leaf84":"swp3"
+ "chassis03-lc3-2":"swp5" -- "leaf85":"swp3"
+ "chassis03-lc3-2":"swp6" -- "leaf86":"swp3"
+ "chassis03-lc3-2":"swp7" -- "leaf87":"swp3"
+ "chassis03-lc3-2":"swp8" -- "leaf88":"swp3"
+ "chassis03-lc3-2":"swp9" -- "leaf89":"swp3"
+ "chassis03-lc3-2":"swp10" -- "leaf90":"swp3"
+ "chassis03-lc3-2":"swp11" -- "leaf91":"swp3"
+ "chassis03-lc3-2":"swp12" -- "leaf92":"swp3"
+ "chassis03-lc3-2":"swp13" -- "leaf93":"swp3"
+ "chassis03-lc3-2":"swp14" -- "leaf94":"swp3"
+ "chassis03-lc3-2":"swp15" -- "leaf95":"swp3"
+ "chassis03-lc3-2":"swp16" -- "leaf96":"swp3"
+ "chassis03-lc4-1":"swp1" -- "leaf97":"swp3"
+ "chassis03-lc4-1":"swp2" -- "leaf98":"swp3"
+ "chassis03-lc4-1":"swp3" -- "leaf99":"swp3"
+ "chassis03-lc4-1":"swp4" -- "leaf100":"swp3"
+ "chassis03-lc4-1":"swp5" -- "leaf101":"swp3"
+ "chassis03-lc4-1":"swp6" -- "leaf102":"swp3"
+ "chassis03-lc4-1":"swp7" -- "leaf103":"swp3"
+ "chassis03-lc4-1":"swp8" -- "leaf104":"swp3"
+ "chassis03-lc4-1":"swp9" -- "leaf105":"swp3"
+ "chassis03-lc4-1":"swp10" -- "leaf106":"swp3"
+ "chassis03-lc4-1":"swp11" -- "leaf107":"swp3"
+ "chassis03-lc4-1":"swp12" -- "leaf108":"swp3"
+ "chassis03-lc4-1":"swp13" -- "leaf109":"swp3"
+ "chassis03-lc4-1":"swp14" -- "leaf110":"swp3"
+ "chassis03-lc4-1":"swp15" -- "leaf111":"swp3"
+ "chassis03-lc4-1":"swp16" -- "leaf112":"swp3"
+ "chassis03-lc4-2":"swp1" -- "leaf113":"swp3"
+ "chassis03-lc4-2":"swp2" -- "leaf114":"swp3"
+ "chassis03-lc4-2":"swp3" -- "leaf115":"swp3"
+ "chassis03-lc4-2":"swp4" -- "leaf116":"swp3"
+ "chassis03-lc4-2":"swp5" -- "leaf117":"swp3"
+ "chassis03-lc4-2":"swp6" -- "leaf118":"swp3"
+ "chassis03-lc4-2":"swp7" -- "leaf119":"swp3"
+ "chassis03-lc4-2":"swp8" -- "leaf120":"swp3"
+ "chassis03-lc4-2":"swp9" -- "leaf121":"swp3"
+ "chassis03-lc4-2":"swp10" -- "leaf122":"swp3"
+ "chassis03-lc4-2":"swp11" -- "leaf123":"swp3"
+ "chassis03-lc4-2":"swp12" -- "leaf124":"swp3"
+ "chassis03-lc4-2":"swp13" -- "leaf125":"swp3"
+ "chassis03-lc4-2":"swp14" -- "leaf126":"swp3"
+ "chassis03-lc4-2":"swp15" -- "leaf127":"swp3"
+ "chassis03-lc4-2":"swp16" -- "leaf128":"swp3"
+ "chassis04-lc1-1":"swp1" -- "leaf01":"swp4"
+ "chassis04-lc1-1":"swp2" -- "leaf02":"swp4"
+ "chassis04-lc1-1":"swp3" -- "leaf03":"swp4"
+ "chassis04-lc1-1":"swp4" -- "leaf04":"swp4"
+ "chassis04-lc1-1":"swp5" -- "leaf05":"swp4"
+ "chassis04-lc1-1":"swp6" -- "leaf06":"swp4"
+ "chassis04-lc1-1":"swp7" -- "leaf07":"swp4"
+ "chassis04-lc1-1":"swp8" -- "leaf08":"swp4"
+ "chassis04-lc1-1":"swp9" -- "leaf09":"swp4"
+ "chassis04-lc1-1":"swp10" -- "leaf10":"swp4"
+ "chassis04-lc1-1":"swp11" -- "leaf11":"swp4"
+ "chassis04-lc1-1":"swp12" -- "leaf12":"swp4"
+ "chassis04-lc1-1":"swp13" -- "leaf13":"swp4"
+ "chassis04-lc1-1":"swp14" -- "leaf14":"swp4"
+ "chassis04-lc1-1":"swp15" -- "leaf15":"swp4"
+ "chassis04-lc1-1":"swp16" -- "leaf16":"swp4"
+ "chassis04-lc1-2":"swp1" -- "leaf17":"swp4"
+ "chassis04-lc1-2":"swp2" -- "leaf18":"swp4"
+ "chassis04-lc1-2":"swp3" -- "leaf19":"swp4"
+ "chassis04-lc1-2":"swp4" -- "leaf20":"swp4"
+ "chassis04-lc1-2":"swp5" -- "leaf21":"swp4"
+ "chassis04-lc1-2":"swp6" -- "leaf22":"swp4"
+ "chassis04-lc1-2":"swp7" -- "leaf23":"swp4"
+ "chassis04-lc1-2":"swp8" -- "leaf24":"swp4"
+ "chassis04-lc1-2":"swp9" -- "leaf25":"swp4"
+ "chassis04-lc1-2":"swp10" -- "leaf26":"swp4"
+ "chassis04-lc1-2":"swp11" -- "leaf27":"swp4"
+ "chassis04-lc1-2":"swp12" -- "leaf28":"swp4"
+ "chassis04-lc1-2":"swp13" -- "leaf29":"swp4"
+ "chassis04-lc1-2":"swp14" -- "leaf30":"swp4"
+ "chassis04-lc1-2":"swp15" -- "leaf31":"swp4"
+ "chassis04-lc1-2":"swp16" -- "leaf32":"swp4"
+ "chassis04-lc2-1":"swp1" -- "leaf33":"swp4"
+ "chassis04-lc2-1":"swp2" -- "leaf34":"swp4"
+ "chassis04-lc2-1":"swp3" -- "leaf35":"swp4"
+ "chassis04-lc2-1":"swp4" -- "leaf36":"swp4"
+ "chassis04-lc2-1":"swp5" -- "leaf37":"swp4"
+ "chassis04-lc2-1":"swp6" -- "leaf38":"swp4"
+ "chassis04-lc2-1":"swp7" -- "leaf39":"swp4"
+ "chassis04-lc2-1":"swp8" -- "leaf40":"swp4"
+ "chassis04-lc2-1":"swp9" -- "leaf41":"swp4"
+ "chassis04-lc2-1":"swp10" -- "leaf42":"swp4"
+ "chassis04-lc2-1":"swp11" -- "leaf43":"swp4"
+ "chassis04-lc2-1":"swp12" -- "leaf44":"swp4"
+ "chassis04-lc2-1":"swp13" -- "leaf45":"swp4"
+ "chassis04-lc2-1":"swp14" -- "leaf46":"swp4"
+ "chassis04-lc2-1":"swp15" -- "leaf47":"swp4"
+ "chassis04-lc2-1":"swp16" -- "leaf48":"swp4"
+ "chassis04-lc2-2":"swp1" -- "leaf49":"swp4"
+ "chassis04-lc2-2":"swp2" -- "leaf50":"swp4"
+ "chassis04-lc2-2":"swp3" -- "leaf51":"swp4"
+ "chassis04-lc2-2":"swp4" -- "leaf52":"swp4"
+ "chassis04-lc2-2":"swp5" -- "leaf53":"swp4"
+ "chassis04-lc2-2":"swp6" -- "leaf54":"swp4"
+ "chassis04-lc2-2":"swp7" -- "leaf55":"swp4"
+ "chassis04-lc2-2":"swp8" -- "leaf56":"swp4"
+ "chassis04-lc2-2":"swp9" -- "leaf57":"swp4"
+ "chassis04-lc2-2":"swp10" -- "leaf58":"swp4"
+ "chassis04-lc2-2":"swp11" -- "leaf59":"swp4"
+ "chassis04-lc2-2":"swp12" -- "leaf60":"swp4"
+ "chassis04-lc2-2":"swp13" -- "leaf61":"swp4"
+ "chassis04-lc2-2":"swp14" -- "leaf62":"swp4"
+ "chassis04-lc2-2":"swp15" -- "leaf63":"swp4"
+ "chassis04-lc2-2":"swp16" -- "leaf64":"swp4"
+ "chassis04-lc3-1":"swp1" -- "leaf65":"swp4"
+ "chassis04-lc3-1":"swp2" -- "leaf66":"swp4"
+ "chassis04-lc3-1":"swp3" -- "leaf67":"swp4"
+ "chassis04-lc3-1":"swp4" -- "leaf68":"swp4"
+ "chassis04-lc3-1":"swp5" -- "leaf69":"swp4"
+ "chassis04-lc3-1":"swp6" -- "leaf70":"swp4"
+ "chassis04-lc3-1":"swp7" -- "leaf71":"swp4"
+ "chassis04-lc3-1":"swp8" -- "leaf72":"swp4"
+ "chassis04-lc3-1":"swp9" -- "leaf73":"swp4"
+ "chassis04-lc3-1":"swp10" -- "leaf74":"swp4"
+ "chassis04-lc3-1":"swp11" -- "leaf75":"swp4"
+ "chassis04-lc3-1":"swp12" -- "leaf76":"swp4"
+ "chassis04-lc3-1":"swp13" -- "leaf77":"swp4"
+ "chassis04-lc3-1":"swp14" -- "leaf78":"swp4"
+ "chassis04-lc3-1":"swp15" -- "leaf79":"swp4"
+ "chassis04-lc3-1":"swp16" -- "leaf80":"swp4"
+ "chassis04-lc3-2":"swp1" -- "leaf81":"swp4"
+ "chassis04-lc3-2":"swp2" -- "leaf82":"swp4"
+ "chassis04-lc3-2":"swp3" -- "leaf83":"swp4"
+ "chassis04-lc3-2":"swp4" -- "leaf84":"swp4"
+ "chassis04-lc3-2":"swp5" -- "leaf85":"swp4"
+ "chassis04-lc3-2":"swp6" -- "leaf86":"swp4"
+ "chassis04-lc3-2":"swp7" -- "leaf87":"swp4"
+ "chassis04-lc3-2":"swp8" -- "leaf88":"swp4"
+ "chassis04-lc3-2":"swp9" -- "leaf89":"swp4"
+ "chassis04-lc3-2":"swp10" -- "leaf90":"swp4"
+ "chassis04-lc3-2":"swp11" -- "leaf91":"swp4"
+ "chassis04-lc3-2":"swp12" -- "leaf92":"swp4"
+ "chassis04-lc3-2":"swp13" -- "leaf93":"swp4"
+ "chassis04-lc3-2":"swp14" -- "leaf94":"swp4"
+ "chassis04-lc3-2":"swp15" -- "leaf95":"swp4"
+ "chassis04-lc3-2":"swp16" -- "leaf96":"swp4"
+ "chassis04-lc4-1":"swp1" -- "leaf97":"swp4"
+ "chassis04-lc4-1":"swp2" -- "leaf98":"swp4"
+ "chassis04-lc4-1":"swp3" -- "leaf99":"swp4"
+ "chassis04-lc4-1":"swp4" -- "leaf100":"swp4"
+ "chassis04-lc4-1":"swp5" -- "leaf101":"swp4"
+ "chassis04-lc4-1":"swp6" -- "leaf102":"swp4"
+ "chassis04-lc4-1":"swp7" -- "leaf103":"swp4"
+ "chassis04-lc4-1":"swp8" -- "leaf104":"swp4"
+ "chassis04-lc4-1":"swp9" -- "leaf105":"swp4"
+ "chassis04-lc4-1":"swp10" -- "leaf106":"swp4"
+ "chassis04-lc4-1":"swp11" -- "leaf107":"swp4"
+ "chassis04-lc4-1":"swp12" -- "leaf108":"swp4"
+ "chassis04-lc4-1":"swp13" -- "leaf109":"swp4"
+ "chassis04-lc4-1":"swp14" -- "leaf110":"swp4"
+ "chassis04-lc4-1":"swp15" -- "leaf111":"swp4"
+ "chassis04-lc4-1":"swp16" -- "leaf112":"swp4"
+ "chassis04-lc4-2":"swp1" -- "leaf113":"swp4"
+ "chassis04-lc4-2":"swp2" -- "leaf114":"swp4"
+ "chassis04-lc4-2":"swp3" -- "leaf115":"swp4"
+ "chassis04-lc4-2":"swp4" -- "leaf116":"swp4"
+ "chassis04-lc4-2":"swp5" -- "leaf117":"swp4"
+ "chassis04-lc4-2":"swp6" -- "leaf118":"swp4"
+ "chassis04-lc4-2":"swp7" -- "leaf119":"swp4"
+ "chassis04-lc4-2":"swp8" -- "leaf120":"swp4"
+ "chassis04-lc4-2":"swp9" -- "leaf121":"swp4"
+ "chassis04-lc4-2":"swp10" -- "leaf122":"swp4"
+ "chassis04-lc4-2":"swp11" -- "leaf123":"swp4"
+ "chassis04-lc4-2":"swp12" -- "leaf124":"swp4"
+ "chassis04-lc4-2":"swp13" -- "leaf125":"swp4"
+ "chassis04-lc4-2":"swp14" -- "leaf126":"swp4"
+ "chassis04-lc4-2":"swp15" -- "leaf127":"swp4"
+ "chassis04-lc4-2":"swp16" -- "leaf128":"swp4"
  "chassis01-lc1-1":"fp0" -- "chassis01-fc1-1":"fp0"
  "chassis01-lc1-1":"fp1" -- "chassis01-fc1-1":"fp1"
  "chassis01-lc1-1":"fp2" -- "chassis01-fc1-1":"fp2"

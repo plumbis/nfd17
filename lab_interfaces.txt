@@ -1,0 +1,159 @@
+root@cumulus:/home/cumulus# cat /etc/network/interfaces
+
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    address 9.9.9.1/32
+
+
+# The primary network interface
+auto eth0
+iface eth0
+    address 10.219.130.92/23
+    gateway 10.219.130.1
+
+
+auto swp5
+iface swp5
+    link-speed 10000
+
+
+auto swp25
+iface swp25
+    link-speed 10000
+
+
+auto swp26
+iface swp26
+    link-speed 10000
+
+auto swp49
+iface swp49
+    address 172.168.12.1/30
+    mtu 9216
+
+auto bridge
+iface bridge
+    bridge-ports swp25 vni100 vni200 vni120
+    bridge-vids 100 200
+    bridge-vlan-aware yes
+
+auto vlan100
+iface vlan100
+    address 172.16.1.1/24
+    vlan-id 100
+    vlan-raw-device bridge
+    vrf blue
+
+
+auto vlan200
+iface vlan200
+   address 172.16.2.1/24
+   vlan-id 200
+   vlan-raw-device bridge
+   vrf blue
+
+auto vlan120
+iface vlan120
+   vlan-id 120
+   vlan-raw-device bridge
+   vrf blue
+
+auto vni100
+iface vni100
+    bridge-access 100
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 100
+    vxlan-local-tunnelip 9.9.9.1
+
+auto vni200
+iface vni200
+    bridge-access 200
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 200
+    vxlan-local-tunnelip 9.9.9.1
+
+auto vni120
+iface vni120
+   vxlan-id 120
+   vxlan-local-tunnelip 9.9.9.1
+   bridge-learning off
+   bridge-access 120
+
+auto blue
+iface blue
+   vrf-table auto
+
+
+root@cumulus:/home/cumulus#
+
+root@cumulus:/home/cumulus#
+
+root@cumulus:/home/cumulus#
+
+root@cumulus:/home/cumulus#
+
+root@cumulus:/home/cumulus#
+
+root@cumulus:/home/cumulus# cat /etc/frr/frr.conf
+
+frr version 3.2+cl3u1
+
+frr defaults datacenter
+
+hostname cumulus
+
+username cumulus nopassword
+
+!
+
+service integrated-vtysh-config
+
+!
+
+log syslog informational
+
+!
+
+vrf blue
+
+vni 120
+
+!
+
+router bgp 100
+
+coalesce-time 1100
+
+neighbor 172.168.12.2 remote-as external
+
+!
+
+address-family ipv4 unicast
+
+  network 9.9.9.1/32
+
+exit-address-family
+
+!
+
+address-family l2vpn evpn
+
+  neighbor 172.168.12.2 activate
+
+  advertise-all-vni
+
+exit-address-family
+
+!
+
+line vty
+
+!
