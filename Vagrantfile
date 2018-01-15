@@ -61,7 +61,7 @@ if grep -q -i 'cumulus' /etc/lsb-release &> /dev/null; then
         echo "  INFO: Detected Cumulus Linux v$DISTRIB_RELEASE Release"
         if [[ $DISTRIB_RELEASE =~ ^3.[1-9].* ]]; then
             echo "### Fixing ONIE DHCP to avoid Vagrant Interface ###"
-            echo "     Note: Installing from ONIE will undo these changes."
+            echo "     Note: Installing from ONIE will undo these changes." 
             mkdir /tmp/foo
             mount LABEL=ONIE-BOOT /tmp/foo
             sed -i 's/eth0/eth1/g' /tmp/foo/grub/grub.cfg
@@ -97,9 +97,9 @@ Vagrant.configure("2") do |config|
 
   ##### DEFINE VM for oob-mgmt-server #####
   config.vm.define "oob-mgmt-server" do |device|
-
-    device.vm.hostname = "oob-mgmt-server"
-
+    
+    device.vm.hostname = "oob-mgmt-server" 
+    
     device.vm.box = "yk0/ubuntu-xenial"
 
     device.vm.provider :libvirt do |v|
@@ -154,7 +154,7 @@ device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:bf --> eth1"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:bf", NAME="eth1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -170,9 +170,9 @@ end
 
   ##### DEFINE VM for oob-mgmt-switch1 #####
   config.vm.define "oob-mgmt-switch1" do |device|
-
-    device.vm.hostname = "oob-mgmt-switch1"
-
+    
+    device.vm.hostname = "oob-mgmt-switch1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -517,12 +517,12 @@ end
             auto_config: false
       # link for swp34 --> leaf32:eth0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:31",
+            :mac => "44:38:39:00:01:33",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8153',
+            :libvirt__tunnel_local_port => '8154',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10153',
+            :libvirt__tunnel_port => '10154',
             :libvirt__iface_name => 'swp34',
             auto_config: false
       # link for swp35 --> leaf33:eth0
@@ -567,12 +567,12 @@ end
             auto_config: false
       # link for swp39 --> leaf37:eth0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:51",
+            :mac => "44:38:39:00:01:53",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8169',
+            :libvirt__tunnel_local_port => '8170',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10169',
+            :libvirt__tunnel_port => '10170',
             :libvirt__iface_name => 'swp39',
             auto_config: false
       # link for swp40 --> leaf38:eth0
@@ -844,8 +844,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:6d --> swp33"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:6d", NAME="swp33", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:31 --> swp34"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:31", NAME="swp34", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:33 --> swp34"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:33", NAME="swp34", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:7d --> swp35"
@@ -864,8 +864,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:03 --> swp38"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:03", NAME="swp38", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:51 --> swp39"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:51", NAME="swp39", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:53 --> swp39"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:53", NAME="swp39", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:3b --> swp40"
@@ -911,7 +911,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:bb --> swp50"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:bb", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -927,9 +927,9 @@ end
 
   ##### DEFINE VM for oob-mgmt-switch4 #####
   config.vm.define "oob-mgmt-switch4" do |device|
-
-    device.vm.hostname = "oob-mgmt-switch4"
-
+    
+    device.vm.hostname = "oob-mgmt-switch4" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -1264,12 +1264,12 @@ end
             auto_config: false
       # link for swp34 --> chassis03-lc4-2:eth0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:69",
+            :mac => "44:38:39:00:01:6b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8181',
+            :libvirt__tunnel_local_port => '8182',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10181',
+            :libvirt__tunnel_port => '10182',
             :libvirt__iface_name => 'swp34',
             auto_config: false
       # link for swp35 --> chassis03-fc1-1:eth0
@@ -1443,7 +1443,7 @@ end
     device.vm.provision :shell, privileged: false, inline: "sudo mv ~/topology.dot /etc/ptm.d/topology.dot"
 
 # Transfer Bridge File
-      device.vm.provision "file", source: "./helper_scripts/auto_mgmt_network/bridge-untagged4", destination: "~/bridge-untagged"
+      device.vm.provision "file", source: "./helper_scripts/auto_mgmt_network/bridge-untagged", destination: "~/bridge-untagged"
 
     # Run the Config specified in the Node Attributes
     device.vm.provision :shell , privileged: false, :inline => 'echo "$(whoami)" > /tmp/normal_user'
@@ -1587,8 +1587,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:51 --> swp33"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:51", NAME="swp33", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:69 --> swp34"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:69", NAME="swp34", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6b --> swp34"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6b", NAME="swp34", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:dd --> swp35"
@@ -1654,7 +1654,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:7f --> swp50"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:7f", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -1670,9 +1670,9 @@ end
 
   ##### DEFINE VM for oob-mgmt-switch3 #####
   config.vm.define "oob-mgmt-switch3" do |device|
-
-    device.vm.hostname = "oob-mgmt-switch3"
-
+    
+    device.vm.hostname = "oob-mgmt-switch3" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -1797,12 +1797,12 @@ end
             auto_config: false
       # link for swp12 --> leaf106:eth0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:4d",
+            :mac => "44:38:39:00:01:4f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8167',
+            :libvirt__tunnel_local_port => '8168',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10167',
+            :libvirt__tunnel_port => '10168',
             :libvirt__iface_name => 'swp12',
             auto_config: false
       # link for swp13 --> leaf107:eth0
@@ -2025,14 +2025,14 @@ end
             :libvirt__tunnel_port => '10057',
             :libvirt__iface_name => 'swp34',
             auto_config: false
-      # link for swp35 --> netq-ts:eth1
+      # link for swp35 --> netq-ts:eth0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:9f",
+            :mac => "44:38:39:00:01:27",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8208',
+            :libvirt__tunnel_local_port => '8148',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10208',
+            :libvirt__tunnel_port => '10148',
             :libvirt__iface_name => 'swp35',
             auto_config: false
 
@@ -2046,7 +2046,7 @@ end
     device.vm.provision :shell, privileged: false, inline: "sudo mv ~/topology.dot /etc/ptm.d/topology.dot"
 
 # Transfer Bridge File
-      device.vm.provision "file", source: "./helper_scripts/auto_mgmt_network/bridge-untagged3", destination: "~/bridge-untagged"
+      device.vm.provision "file", source: "./helper_scripts/auto_mgmt_network/bridge-untagged", destination: "~/bridge-untagged"
 
     # Run the Config specified in the Node Attributes
     device.vm.provision :shell , privileged: false, :inline => 'echo "$(whoami)" > /tmp/normal_user'
@@ -2106,8 +2106,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:c5 --> swp11"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:c5", NAME="swp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4d --> swp12"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4d", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4f --> swp12"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4f", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:11 --> swp13"
@@ -2198,10 +2198,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:71 --> swp34"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:71", NAME="swp34", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9f --> swp35"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9f", NAME="swp35", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:27 --> swp35"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:27", NAME="swp35", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -2217,9 +2217,9 @@ end
 
   ##### DEFINE VM for oob-mgmt-switch2 #####
   config.vm.define "oob-mgmt-switch2" do |device|
-
-    device.vm.hostname = "oob-mgmt-switch2"
-
+    
+    device.vm.hostname = "oob-mgmt-switch2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -2743,7 +2743,7 @@ end
     device.vm.provision :shell, privileged: false, inline: "sudo mv ~/topology.dot /etc/ptm.d/topology.dot"
 
 # Transfer Bridge File
-      device.vm.provision "file", source: "./helper_scripts/auto_mgmt_network/bridge-untagged2", destination: "~/bridge-untagged"
+      device.vm.provision "file", source: "./helper_scripts/auto_mgmt_network/bridge-untagged", destination: "~/bridge-untagged"
 
     # Run the Config specified in the Node Attributes
     device.vm.provision :shell , privileged: false, :inline => 'echo "$(whoami)" > /tmp/normal_user'
@@ -2958,7 +2958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:2b --> swp50"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:2b", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -2974,9 +2974,9 @@ end
 
   ##### DEFINE VM for leaf38 #####
   config.vm.define "leaf38" do |device|
-
-    device.vm.hostname = "leaf38"
-
+    
+    device.vm.hostname = "leaf38" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3083,7 +3083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:0c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:0c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3099,9 +3099,9 @@ end
 
   ##### DEFINE VM for leaf37 #####
   config.vm.define "leaf37" do |device|
-
-    device.vm.hostname = "leaf37"
-
+    
+    device.vm.hostname = "leaf37" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3116,12 +3116,12 @@ end
     # NETWORK INTERFACES
       # link for eth0 --> oob-mgmt-switch1:swp39
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:52",
+            :mac => "44:38:39:00:01:54",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10169',
+            :libvirt__tunnel_local_port => '10170',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8169',
+            :libvirt__tunnel_port => '8170',
             :libvirt__iface_name => 'eth0',
             auto_config: false
       # link for swp1 --> chassis01-lc2-1:swp5
@@ -3189,8 +3189,8 @@ rm -rfv /etc/udev/rules.d/70-persistent-net.rules &> /dev/null
 delete_udev_directory
 
 device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:52 --> eth0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:52", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:54 --> eth0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:54", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:06 --> swp1"
@@ -3208,7 +3208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:c4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:c4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3224,9 +3224,9 @@ end
 
   ##### DEFINE VM for leaf36 #####
   config.vm.define "leaf36" do |device|
-
-    device.vm.hostname = "leaf36"
-
+    
+    device.vm.hostname = "leaf36" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3281,12 +3281,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc2-1:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:98",
+            :mac => "44:38:39:00:01:9a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10204',
+            :libvirt__tunnel_local_port => '10205',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8204',
+            :libvirt__tunnel_port => '8205',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -3330,10 +3330,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:48 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:48", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:98 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:98", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9a --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3349,9 +3349,9 @@ end
 
   ##### DEFINE VM for leaf35 #####
   config.vm.define "leaf35" do |device|
-
-    device.vm.hostname = "leaf35"
-
+    
+    device.vm.hostname = "leaf35" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3458,7 +3458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:0a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:0a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3474,9 +3474,9 @@ end
 
   ##### DEFINE VM for leaf34 #####
   config.vm.define "leaf34" do |device|
-
-    device.vm.hostname = "leaf34"
-
+    
+    device.vm.hostname = "leaf34" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3583,7 +3583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:80 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:80", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3599,9 +3599,9 @@ end
 
   ##### DEFINE VM for leaf33 #####
   config.vm.define "leaf33" do |device|
-
-    device.vm.hostname = "leaf33"
-
+    
+    device.vm.hostname = "leaf33" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3708,7 +3708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:b6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:b6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3724,9 +3724,9 @@ end
 
   ##### DEFINE VM for leaf32 #####
   config.vm.define "leaf32" do |device|
-
-    device.vm.hostname = "leaf32"
-
+    
+    device.vm.hostname = "leaf32" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3741,22 +3741,22 @@ end
     # NETWORK INTERFACES
       # link for eth0 --> oob-mgmt-switch1:swp34
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:32",
+            :mac => "44:38:39:00:01:34",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10153',
+            :libvirt__tunnel_local_port => '10154',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8153',
+            :libvirt__tunnel_port => '8154',
             :libvirt__iface_name => 'eth0',
             auto_config: false
       # link for swp1 --> chassis01-lc1-2:swp16
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:3e",
+            :mac => "44:38:39:00:01:40",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10159',
+            :libvirt__tunnel_local_port => '10160',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8159',
+            :libvirt__tunnel_port => '8160',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc1-2:swp16
@@ -3814,12 +3814,12 @@ rm -rfv /etc/udev/rules.d/70-persistent-net.rules &> /dev/null
 delete_udev_directory
 
 device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:32 --> eth0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:32", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:34 --> eth0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:34", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3e --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3e", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:40 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:40", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:ee --> swp2"
@@ -3833,7 +3833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:60 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:60", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3849,9 +3849,9 @@ end
 
   ##### DEFINE VM for leaf31 #####
   config.vm.define "leaf31" do |device|
-
-    device.vm.hostname = "leaf31"
-
+    
+    device.vm.hostname = "leaf31" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -3958,7 +3958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:5e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:5e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -3974,9 +3974,9 @@ end
 
   ##### DEFINE VM for leaf30 #####
   config.vm.define "leaf30" do |device|
-
-    device.vm.hostname = "leaf30"
-
+    
+    device.vm.hostname = "leaf30" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4083,7 +4083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:9e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:9e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4099,9 +4099,9 @@ end
 
   ##### DEFINE VM for leaf39 #####
   config.vm.define "leaf39" do |device|
-
-    device.vm.hostname = "leaf39"
-
+    
+    device.vm.hostname = "leaf39" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4208,7 +4208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:d2 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:d2", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4224,9 +4224,9 @@ end
 
   ##### DEFINE VM for leaf48 #####
   config.vm.define "leaf48" do |device|
-
-    device.vm.hostname = "leaf48"
-
+    
+    device.vm.hostname = "leaf48" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4251,12 +4251,12 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc2-1:swp16
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:68",
+            :mac => "44:38:39:00:01:6a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10180',
+            :libvirt__tunnel_local_port => '10181',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8180',
+            :libvirt__tunnel_port => '8181',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc2-1:swp16
@@ -4318,8 +4318,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:bc --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:bc", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:68 --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:68", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6a --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6a", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:a4 --> swp2"
@@ -4333,7 +4333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:3a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:3a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4349,9 +4349,9 @@ end
 
   ##### DEFINE VM for leaf49 #####
   config.vm.define "leaf49" do |device|
-
-    device.vm.hostname = "leaf49"
-
+    
+    device.vm.hostname = "leaf49" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4406,12 +4406,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc2-2:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:64",
+            :mac => "44:38:39:00:01:66",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10178',
+            :libvirt__tunnel_local_port => '10179',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8178',
+            :libvirt__tunnel_port => '8179',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -4455,10 +4455,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:82 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:82", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:64 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:64", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:66 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:66", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4474,9 +4474,9 @@ end
 
   ##### DEFINE VM for leaf42 #####
   config.vm.define "leaf42" do |device|
-
-    device.vm.hostname = "leaf42"
-
+    
+    device.vm.hostname = "leaf42" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4583,7 +4583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:70 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:70", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4599,9 +4599,9 @@ end
 
   ##### DEFINE VM for leaf43 #####
   config.vm.define "leaf43" do |device|
-
-    device.vm.hostname = "leaf43"
-
+    
+    device.vm.hostname = "leaf43" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4708,7 +4708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:cc --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:cc", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4724,9 +4724,9 @@ end
 
   ##### DEFINE VM for leaf40 #####
   config.vm.define "leaf40" do |device|
-
-    device.vm.hostname = "leaf40"
-
+    
+    device.vm.hostname = "leaf40" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4833,7 +4833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:7c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:7c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4849,9 +4849,9 @@ end
 
   ##### DEFINE VM for leaf41 #####
   config.vm.define "leaf41" do |device|
-
-    device.vm.hostname = "leaf41"
-
+    
+    device.vm.hostname = "leaf41" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -4958,7 +4958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:5c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:5c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -4974,9 +4974,9 @@ end
 
   ##### DEFINE VM for leaf46 #####
   config.vm.define "leaf46" do |device|
-
-    device.vm.hostname = "leaf46"
-
+    
+    device.vm.hostname = "leaf46" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5083,7 +5083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:9c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:9c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5099,9 +5099,9 @@ end
 
   ##### DEFINE VM for leaf47 #####
   config.vm.define "leaf47" do |device|
-
-    device.vm.hostname = "leaf47"
-
+    
+    device.vm.hostname = "leaf47" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5208,7 +5208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:ca --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:ca", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5224,9 +5224,9 @@ end
 
   ##### DEFINE VM for leaf44 #####
   config.vm.define "leaf44" do |device|
-
-    device.vm.hostname = "leaf44"
-
+    
+    device.vm.hostname = "leaf44" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5271,12 +5271,12 @@ end
             auto_config: false
       # link for swp3 --> chassis03-lc2-1:swp12
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:8e",
+            :mac => "44:38:39:00:01:90",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10199',
+            :libvirt__tunnel_local_port => '10200',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8199',
+            :libvirt__tunnel_port => '8200',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> chassis04-lc2-1:swp12
@@ -5326,14 +5326,14 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:62 --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:62", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8e --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8e", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:90 --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:90", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:e4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:e4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5349,9 +5349,9 @@ end
 
   ##### DEFINE VM for leaf45 #####
   config.vm.define "leaf45" do |device|
-
-    device.vm.hostname = "leaf45"
-
+    
+    device.vm.hostname = "leaf45" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5458,7 +5458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:04 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:04", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5474,9 +5474,9 @@ end
 
   ##### DEFINE VM for leaf87 #####
   config.vm.define "leaf87" do |device|
-
-    device.vm.hostname = "leaf87"
-
+    
+    device.vm.hostname = "leaf87" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5583,7 +5583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:60 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:60", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5599,9 +5599,9 @@ end
 
   ##### DEFINE VM for leaf67 #####
   config.vm.define "leaf67" do |device|
-
-    device.vm.hostname = "leaf67"
-
+    
+    device.vm.hostname = "leaf67" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5708,7 +5708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:36 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:36", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5724,9 +5724,9 @@ end
 
   ##### DEFINE VM for leaf59 #####
   config.vm.define "leaf59" do |device|
-
-    device.vm.hostname = "leaf59"
-
+    
+    device.vm.hostname = "leaf59" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5833,7 +5833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:e6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:e6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5849,9 +5849,9 @@ end
 
   ##### DEFINE VM for leaf58 #####
   config.vm.define "leaf58" do |device|
-
-    device.vm.hostname = "leaf58"
-
+    
+    device.vm.hostname = "leaf58" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -5958,7 +5958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:00 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:00", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -5974,9 +5974,9 @@ end
 
   ##### DEFINE VM for leaf51 #####
   config.vm.define "leaf51" do |device|
-
-    device.vm.hostname = "leaf51"
-
+    
+    device.vm.hostname = "leaf51" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6083,7 +6083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:30 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:30", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6099,9 +6099,9 @@ end
 
   ##### DEFINE VM for leaf50 #####
   config.vm.define "leaf50" do |device|
-
-    device.vm.hostname = "leaf50"
-
+    
+    device.vm.hostname = "leaf50" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6208,7 +6208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:0c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:0c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6224,9 +6224,9 @@ end
 
   ##### DEFINE VM for leaf53 #####
   config.vm.define "leaf53" do |device|
-
-    device.vm.hostname = "leaf53"
-
+    
+    device.vm.hostname = "leaf53" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6333,7 +6333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:76 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:76", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6349,9 +6349,9 @@ end
 
   ##### DEFINE VM for leaf52 #####
   config.vm.define "leaf52" do |device|
-
-    device.vm.hostname = "leaf52"
-
+    
+    device.vm.hostname = "leaf52" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6458,7 +6458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:a8 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:a8", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6474,9 +6474,9 @@ end
 
   ##### DEFINE VM for leaf54 #####
   config.vm.define "leaf54" do |device|
-
-    device.vm.hostname = "leaf54"
-
+    
+    device.vm.hostname = "leaf54" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6583,7 +6583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:de --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:de", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6599,9 +6599,9 @@ end
 
   ##### DEFINE VM for leaf57 #####
   config.vm.define "leaf57" do |device|
-
-    device.vm.hostname = "leaf57"
-
+    
+    device.vm.hostname = "leaf57" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6708,7 +6708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:80 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:80", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6724,9 +6724,9 @@ end
 
   ##### DEFINE VM for leaf75 #####
   config.vm.define "leaf75" do |device|
-
-    device.vm.hostname = "leaf75"
-
+    
+    device.vm.hostname = "leaf75" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6833,7 +6833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:6a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:6a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6849,9 +6849,9 @@ end
 
   ##### DEFINE VM for leaf74 #####
   config.vm.define "leaf74" do |device|
-
-    device.vm.hostname = "leaf74"
-
+    
+    device.vm.hostname = "leaf74" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -6876,12 +6876,12 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc3-1:swp10
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:94",
+            :mac => "44:38:39:00:01:96",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10202',
+            :libvirt__tunnel_local_port => '10203',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8202',
+            :libvirt__tunnel_port => '8203',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc3-1:swp10
@@ -6943,8 +6943,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:72 --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:72", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:94 --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:94", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:96 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:96", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:00 --> swp2"
@@ -6958,7 +6958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:90 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:90", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -6974,9 +6974,9 @@ end
 
   ##### DEFINE VM for leaf79 #####
   config.vm.define "leaf79" do |device|
-
-    device.vm.hostname = "leaf79"
-
+    
+    device.vm.hostname = "leaf79" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7083,7 +7083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:d8 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:d8", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7099,9 +7099,9 @@ end
 
   ##### DEFINE VM for leaf78 #####
   config.vm.define "leaf78" do |device|
-
-    device.vm.hostname = "leaf78"
-
+    
+    device.vm.hostname = "leaf78" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7208,7 +7208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:92 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:92", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7224,9 +7224,9 @@ end
 
   ##### DEFINE VM for leaf124 #####
   config.vm.define "leaf124" do |device|
-
-    device.vm.hostname = "leaf124"
-
+    
+    device.vm.hostname = "leaf124" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7333,7 +7333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:a4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:a4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7349,9 +7349,9 @@ end
 
   ##### DEFINE VM for leaf125 #####
   config.vm.define "leaf125" do |device|
-
-    device.vm.hostname = "leaf125"
-
+    
+    device.vm.hostname = "leaf125" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7458,7 +7458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:26 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:26", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7474,9 +7474,9 @@ end
 
   ##### DEFINE VM for leaf126 #####
   config.vm.define "leaf126" do |device|
-
-    device.vm.hostname = "leaf126"
-
+    
+    device.vm.hostname = "leaf126" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7583,7 +7583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:8e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:8e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7599,9 +7599,9 @@ end
 
   ##### DEFINE VM for leaf127 #####
   config.vm.define "leaf127" do |device|
-
-    device.vm.hostname = "leaf127"
-
+    
+    device.vm.hostname = "leaf127" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7708,7 +7708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:1c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:1c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7724,9 +7724,9 @@ end
 
   ##### DEFINE VM for leaf120 #####
   config.vm.define "leaf120" do |device|
-
-    device.vm.hostname = "leaf120"
-
+    
+    device.vm.hostname = "leaf120" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7781,12 +7781,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc4-2:swp8
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:72",
+            :mac => "44:38:39:00:01:74",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10185',
+            :libvirt__tunnel_local_port => '10186',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8185',
+            :libvirt__tunnel_port => '8186',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -7830,10 +7830,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:20 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:20", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:72 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:72", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:74 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:74", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7849,9 +7849,9 @@ end
 
   ##### DEFINE VM for leaf121 #####
   config.vm.define "leaf121" do |device|
-
-    device.vm.hostname = "leaf121"
-
+    
+    device.vm.hostname = "leaf121" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -7958,7 +7958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:26 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:26", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -7974,9 +7974,9 @@ end
 
   ##### DEFINE VM for leaf122 #####
   config.vm.define "leaf122" do |device|
-
-    device.vm.hostname = "leaf122"
-
+    
+    device.vm.hostname = "leaf122" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8031,12 +8031,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc4-2:swp10
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:92",
+            :mac => "44:38:39:00:01:94",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10201',
+            :libvirt__tunnel_local_port => '10202',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8201',
+            :libvirt__tunnel_port => '8202',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -8080,10 +8080,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:ac --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:ac", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:92 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:92", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:94 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:94", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8099,9 +8099,9 @@ end
 
   ##### DEFINE VM for leaf123 #####
   config.vm.define "leaf123" do |device|
-
-    device.vm.hostname = "leaf123"
-
+    
+    device.vm.hostname = "leaf123" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8208,7 +8208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:3e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:3e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8224,9 +8224,9 @@ end
 
   ##### DEFINE VM for leaf128 #####
   config.vm.define "leaf128" do |device|
-
-    device.vm.hostname = "leaf128"
-
+    
+    device.vm.hostname = "leaf128" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8333,7 +8333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:4e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:4e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8349,9 +8349,9 @@ end
 
   ##### DEFINE VM for leaf111 #####
   config.vm.define "leaf111" do |device|
-
-    device.vm.hostname = "leaf111"
-
+    
+    device.vm.hostname = "leaf111" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8458,7 +8458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:96 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:96", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8474,9 +8474,9 @@ end
 
   ##### DEFINE VM for leaf65 #####
   config.vm.define "leaf65" do |device|
-
-    device.vm.hostname = "leaf65"
-
+    
+    device.vm.hostname = "leaf65" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8583,7 +8583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:16 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:16", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8599,9 +8599,9 @@ end
 
   ##### DEFINE VM for leaf66 #####
   config.vm.define "leaf66" do |device|
-
-    device.vm.hostname = "leaf66"
-
+    
+    device.vm.hostname = "leaf66" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8708,7 +8708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:44 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:44", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8724,9 +8724,9 @@ end
 
   ##### DEFINE VM for leaf64 #####
   config.vm.define "leaf64" do |device|
-
-    device.vm.hostname = "leaf64"
-
+    
+    device.vm.hostname = "leaf64" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8833,7 +8833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:86 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:86", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8849,9 +8849,9 @@ end
 
   ##### DEFINE VM for leaf110 #####
   config.vm.define "leaf110" do |device|
-
-    device.vm.hostname = "leaf110"
-
+    
+    device.vm.hostname = "leaf110" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -8958,7 +8958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:60 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:60", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -8974,9 +8974,9 @@ end
 
   ##### DEFINE VM for leaf113 #####
   config.vm.define "leaf113" do |device|
-
-    device.vm.hostname = "leaf113"
-
+    
+    device.vm.hostname = "leaf113" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9083,7 +9083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:b8 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:b8", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9099,9 +9099,9 @@ end
 
   ##### DEFINE VM for leaf112 #####
   config.vm.define "leaf112" do |device|
-
-    device.vm.hostname = "leaf112"
-
+    
+    device.vm.hostname = "leaf112" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9208,7 +9208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:3c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:3c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9224,9 +9224,9 @@ end
 
   ##### DEFINE VM for leaf60 #####
   config.vm.define "leaf60" do |device|
-
-    device.vm.hostname = "leaf60"
-
+    
+    device.vm.hostname = "leaf60" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9281,12 +9281,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc2-2:swp12
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:48",
+            :mac => "44:38:39:00:01:4a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10164',
+            :libvirt__tunnel_local_port => '10165',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8164',
+            :libvirt__tunnel_port => '8165',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -9330,10 +9330,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:64 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:64", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:48 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:48", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4a --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9349,9 +9349,9 @@ end
 
   ##### DEFINE VM for leaf61 #####
   config.vm.define "leaf61" do |device|
-
-    device.vm.hostname = "leaf61"
-
+    
+    device.vm.hostname = "leaf61" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9406,12 +9406,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc2-2:swp13
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:84",
+            :mac => "44:38:39:00:01:86",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10194',
+            :libvirt__tunnel_local_port => '10195',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8194',
+            :libvirt__tunnel_port => '8195',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -9455,10 +9455,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:7c --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:7c", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:84 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:84", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:86 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:86", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9474,9 +9474,9 @@ end
 
   ##### DEFINE VM for leaf62 #####
   config.vm.define "leaf62" do |device|
-
-    device.vm.hostname = "leaf62"
-
+    
+    device.vm.hostname = "leaf62" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9583,7 +9583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:78 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:78", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9599,9 +9599,9 @@ end
 
   ##### DEFINE VM for leaf116 #####
   config.vm.define "leaf116" do |device|
-
-    device.vm.hostname = "leaf116"
-
+    
+    device.vm.hostname = "leaf116" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9708,7 +9708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:2a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:2a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9724,9 +9724,9 @@ end
 
   ##### DEFINE VM for leaf119 #####
   config.vm.define "leaf119" do |device|
-
-    device.vm.hostname = "leaf119"
-
+    
+    device.vm.hostname = "leaf119" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9833,7 +9833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:1c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:1c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9849,9 +9849,9 @@ end
 
   ##### DEFINE VM for leaf118 #####
   config.vm.define "leaf118" do |device|
-
-    device.vm.hostname = "leaf118"
-
+    
+    device.vm.hostname = "leaf118" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -9876,32 +9876,32 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc4-2:swp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:4c",
+            :mac => "44:38:39:00:01:4e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10166',
+            :libvirt__tunnel_local_port => '10167',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8166',
+            :libvirt__tunnel_port => '8167',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc4-2:swp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:2a",
+            :mac => "44:38:39:00:01:2c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10149',
+            :libvirt__tunnel_local_port => '10150',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8149',
+            :libvirt__tunnel_port => '8150',
             :libvirt__iface_name => 'swp2',
             auto_config: false
       # link for swp3 --> chassis03-lc4-2:swp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:56",
+            :mac => "44:38:39:00:01:58",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10171',
+            :libvirt__tunnel_local_port => '10172',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8171',
+            :libvirt__tunnel_port => '8172',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> chassis04-lc4-2:swp6
@@ -9943,22 +9943,22 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:58 --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:58", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4c --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4c", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4e --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4e", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2a --> swp2"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2a", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2c --> swp2"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2c", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:56 --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:56", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:58 --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:58", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:9e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:9e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -9974,9 +9974,9 @@ end
 
   ##### DEFINE VM for leaf68 #####
   config.vm.define "leaf68" do |device|
-
-    device.vm.hostname = "leaf68"
-
+    
+    device.vm.hostname = "leaf68" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10083,7 +10083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:9c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:9c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10099,9 +10099,9 @@ end
 
   ##### DEFINE VM for leaf69 #####
   config.vm.define "leaf69" do |device|
-
-    device.vm.hostname = "leaf69"
-
+    
+    device.vm.hostname = "leaf69" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10208,7 +10208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:34 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:34", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10224,9 +10224,9 @@ end
 
   ##### DEFINE VM for leaf114 #####
   config.vm.define "leaf114" do |device|
-
-    device.vm.hostname = "leaf114"
-
+    
+    device.vm.hostname = "leaf114" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10333,7 +10333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:3e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:3e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10349,9 +10349,9 @@ end
 
   ##### DEFINE VM for leaf06 #####
   config.vm.define "leaf06" do |device|
-
-    device.vm.hostname = "leaf06"
-
+    
+    device.vm.hostname = "leaf06" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10376,12 +10376,12 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc1-1:swp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:42",
+            :mac => "44:38:39:00:01:44",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10161',
+            :libvirt__tunnel_local_port => '10162',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8161',
+            :libvirt__tunnel_port => '8162',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc1-1:swp6
@@ -10443,8 +10443,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:d8 --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:d8", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:42 --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:42", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:44 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:44", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:4a --> swp2"
@@ -10458,7 +10458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:02 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:02", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10474,9 +10474,9 @@ end
 
   ##### DEFINE VM for leaf07 #####
   config.vm.define "leaf07" do |device|
-
-    device.vm.hostname = "leaf07"
-
+    
+    device.vm.hostname = "leaf07" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10583,7 +10583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:58 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:58", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10599,9 +10599,9 @@ end
 
   ##### DEFINE VM for leaf04 #####
   config.vm.define "leaf04" do |device|
-
-    device.vm.hostname = "leaf04"
-
+    
+    device.vm.hostname = "leaf04" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10646,12 +10646,12 @@ end
             auto_config: false
       # link for swp3 --> chassis03-lc1-1:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:80",
+            :mac => "44:38:39:00:01:82",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10192',
+            :libvirt__tunnel_local_port => '10193',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8192',
+            :libvirt__tunnel_port => '8193',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> chassis04-lc1-1:swp4
@@ -10701,14 +10701,14 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:12 --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:12", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:80 --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:80", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:82 --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:82", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:da --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:da", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10724,9 +10724,9 @@ end
 
   ##### DEFINE VM for leaf05 #####
   config.vm.define "leaf05" do |device|
-
-    device.vm.hostname = "leaf05"
-
+    
+    device.vm.hostname = "leaf05" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10751,12 +10751,12 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc1-1:swp5
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:28",
+            :mac => "44:38:39:00:01:2a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10148',
+            :libvirt__tunnel_local_port => '10149',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8148',
+            :libvirt__tunnel_port => '8149',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc1-1:swp5
@@ -10818,8 +10818,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:d0 --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:d0", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:28 --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:28", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2a --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2a", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:22 --> swp2"
@@ -10833,7 +10833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:ce --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:ce", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10849,9 +10849,9 @@ end
 
   ##### DEFINE VM for leaf02 #####
   config.vm.define "leaf02" do |device|
-
-    device.vm.hostname = "leaf02"
-
+    
+    device.vm.hostname = "leaf02" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -10958,7 +10958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:ca --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:ca", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -10974,9 +10974,9 @@ end
 
   ##### DEFINE VM for leaf03 #####
   config.vm.define "leaf03" do |device|
-
-    device.vm.hostname = "leaf03"
-
+    
+    device.vm.hostname = "leaf03" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11083,7 +11083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:38 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:38", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11099,9 +11099,9 @@ end
 
   ##### DEFINE VM for leaf01 #####
   config.vm.define "leaf01" do |device|
-
-    device.vm.hostname = "leaf01"
-
+    
+    device.vm.hostname = "leaf01" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11208,7 +11208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:88 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:88", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11224,9 +11224,9 @@ end
 
   ##### DEFINE VM for leaf55 #####
   config.vm.define "leaf55" do |device|
-
-    device.vm.hostname = "leaf55"
-
+    
+    device.vm.hostname = "leaf55" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11333,7 +11333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:ce --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:ce", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11349,9 +11349,9 @@ end
 
   ##### DEFINE VM for leaf63 #####
   config.vm.define "leaf63" do |device|
-
-    device.vm.hostname = "leaf63"
-
+    
+    device.vm.hostname = "leaf63" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11458,7 +11458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:54 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:54", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11474,9 +11474,9 @@ end
 
   ##### DEFINE VM for leaf08 #####
   config.vm.define "leaf08" do |device|
-
-    device.vm.hostname = "leaf08"
-
+    
+    device.vm.hostname = "leaf08" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11583,7 +11583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:d2 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:d2", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11599,9 +11599,9 @@ end
 
   ##### DEFINE VM for leaf09 #####
   config.vm.define "leaf09" do |device|
-
-    device.vm.hostname = "leaf09"
-
+    
+    device.vm.hostname = "leaf09" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11708,7 +11708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:34 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:34", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11724,9 +11724,9 @@ end
 
   ##### DEFINE VM for leaf56 #####
   config.vm.define "leaf56" do |device|
-
-    device.vm.hostname = "leaf56"
-
+    
+    device.vm.hostname = "leaf56" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11833,7 +11833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:18 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:18", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11849,9 +11849,9 @@ end
 
   ##### DEFINE VM for leaf115 #####
   config.vm.define "leaf115" do |device|
-
-    device.vm.hostname = "leaf115"
-
+    
+    device.vm.hostname = "leaf115" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -11958,7 +11958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:34 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:34", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -11974,9 +11974,9 @@ end
 
   ##### DEFINE VM for leaf73 #####
   config.vm.define "leaf73" do |device|
-
-    device.vm.hostname = "leaf73"
-
+    
+    device.vm.hostname = "leaf73" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12083,7 +12083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:46 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:46", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12099,9 +12099,9 @@ end
 
   ##### DEFINE VM for leaf72 #####
   config.vm.define "leaf72" do |device|
-
-    device.vm.hostname = "leaf72"
-
+    
+    device.vm.hostname = "leaf72" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12208,7 +12208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:0e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:0e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12224,9 +12224,9 @@ end
 
   ##### DEFINE VM for leaf71 #####
   config.vm.define "leaf71" do |device|
-
-    device.vm.hostname = "leaf71"
-
+    
+    device.vm.hostname = "leaf71" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12333,7 +12333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:f6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:f6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12349,9 +12349,9 @@ end
 
   ##### DEFINE VM for leaf70 #####
   config.vm.define "leaf70" do |device|
-
-    device.vm.hostname = "leaf70"
-
+    
+    device.vm.hostname = "leaf70" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12386,12 +12386,12 @@ end
             auto_config: false
       # link for swp2 --> chassis02-lc3-1:swp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:54",
+            :mac => "44:38:39:00:01:56",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10170',
+            :libvirt__tunnel_local_port => '10171',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8170',
+            :libvirt__tunnel_port => '8171',
             :libvirt__iface_name => 'swp2',
             auto_config: false
       # link for swp3 --> chassis03-lc3-1:swp6
@@ -12447,8 +12447,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:06 --> swp1"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:06", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:54 --> swp2"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:54", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:56 --> swp2"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:56", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:1e --> swp3"
@@ -12458,7 +12458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:b0 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:b0", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12474,9 +12474,9 @@ end
 
   ##### DEFINE VM for leaf77 #####
   config.vm.define "leaf77" do |device|
-
-    device.vm.hostname = "leaf77"
-
+    
+    device.vm.hostname = "leaf77" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12583,7 +12583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:92 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:92", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12599,9 +12599,9 @@ end
 
   ##### DEFINE VM for leaf76 #####
   config.vm.define "leaf76" do |device|
-
-    device.vm.hostname = "leaf76"
-
+    
+    device.vm.hostname = "leaf76" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12708,7 +12708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:ee --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:ee", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12724,9 +12724,9 @@ end
 
   ##### DEFINE VM for leaf108 #####
   config.vm.define "leaf108" do |device|
-
-    device.vm.hostname = "leaf108"
-
+    
+    device.vm.hostname = "leaf108" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12833,7 +12833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:b2 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:b2", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12849,9 +12849,9 @@ end
 
   ##### DEFINE VM for leaf109 #####
   config.vm.define "leaf109" do |device|
-
-    device.vm.hostname = "leaf109"
-
+    
+    device.vm.hostname = "leaf109" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12958,7 +12958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:c4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:c4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -12974,9 +12974,9 @@ end
 
   ##### DEFINE VM for leaf106 #####
   config.vm.define "leaf106" do |device|
-
-    device.vm.hostname = "leaf106"
-
+    
+    device.vm.hostname = "leaf106" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -12991,12 +12991,12 @@ end
     # NETWORK INTERFACES
       # link for eth0 --> oob-mgmt-switch3:swp12
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:4e",
+            :mac => "44:38:39:00:01:50",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10167',
+            :libvirt__tunnel_local_port => '10168',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8167',
+            :libvirt__tunnel_port => '8168',
             :libvirt__iface_name => 'eth0',
             auto_config: false
       # link for swp1 --> chassis01-lc4-1:swp10
@@ -13064,8 +13064,8 @@ rm -rfv /etc/udev/rules.d/70-persistent-net.rules &> /dev/null
 delete_udev_directory
 
 device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4e --> eth0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4e", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:50 --> eth0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:50", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:a8 --> swp1"
@@ -13083,7 +13083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:de --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:de", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13099,9 +13099,9 @@ end
 
   ##### DEFINE VM for leaf107 #####
   config.vm.define "leaf107" do |device|
-
-    device.vm.hostname = "leaf107"
-
+    
+    device.vm.hostname = "leaf107" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13208,7 +13208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:96 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:96", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13224,9 +13224,9 @@ end
 
   ##### DEFINE VM for leaf104 #####
   config.vm.define "leaf104" do |device|
-
-    device.vm.hostname = "leaf104"
-
+    
+    device.vm.hostname = "leaf104" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13281,12 +13281,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc4-1:swp8
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:82",
+            :mac => "44:38:39:00:01:84",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10193',
+            :libvirt__tunnel_local_port => '10194',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8193',
+            :libvirt__tunnel_port => '8194',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -13330,10 +13330,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:72 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:72", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:82 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:82", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:84 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:84", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13349,9 +13349,9 @@ end
 
   ##### DEFINE VM for leaf105 #####
   config.vm.define "leaf105" do |device|
-
-    device.vm.hostname = "leaf105"
-
+    
+    device.vm.hostname = "leaf105" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13376,12 +13376,12 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc4-1:swp9
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:5e",
+            :mac => "44:38:39:00:01:60",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10175',
+            :libvirt__tunnel_local_port => '10176',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8175',
+            :libvirt__tunnel_port => '8176',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc4-1:swp9
@@ -13443,8 +13443,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:c6 --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:c6", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5e --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5e", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:60 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:60", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:9a --> swp2"
@@ -13458,7 +13458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:2e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:2e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13474,9 +13474,9 @@ end
 
   ##### DEFINE VM for leaf102 #####
   config.vm.define "leaf102" do |device|
-
-    device.vm.hostname = "leaf102"
-
+    
+    device.vm.hostname = "leaf102" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13583,7 +13583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:4c --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:4c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13599,9 +13599,9 @@ end
 
   ##### DEFINE VM for leaf103 #####
   config.vm.define "leaf103" do |device|
-
-    device.vm.hostname = "leaf103"
-
+    
+    device.vm.hostname = "leaf103" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13708,7 +13708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:66 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:66", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13724,9 +13724,9 @@ end
 
   ##### DEFINE VM for leaf100 #####
   config.vm.define "leaf100" do |device|
-
-    device.vm.hostname = "leaf100"
-
+    
+    device.vm.hostname = "leaf100" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13833,7 +13833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:60 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:60", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13849,9 +13849,9 @@ end
 
   ##### DEFINE VM for leaf101 #####
   config.vm.define "leaf101" do |device|
-
-    device.vm.hostname = "leaf101"
-
+    
+    device.vm.hostname = "leaf101" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -13958,7 +13958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:84 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:84", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -13974,9 +13974,9 @@ end
 
   ##### DEFINE VM for leaf15 #####
   config.vm.define "leaf15" do |device|
-
-    device.vm.hostname = "leaf15"
-
+    
+    device.vm.hostname = "leaf15" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14031,12 +14031,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc1-1:swp15
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:38",
+            :mac => "44:38:39:00:01:3a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10156',
+            :libvirt__tunnel_local_port => '10157',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8156',
+            :libvirt__tunnel_port => '8157',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -14080,10 +14080,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:1c --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:1c", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:38 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:38", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3a --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14099,9 +14099,9 @@ end
 
   ##### DEFINE VM for leaf14 #####
   config.vm.define "leaf14" do |device|
-
-    device.vm.hostname = "leaf14"
-
+    
+    device.vm.hostname = "leaf14" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14208,7 +14208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:d4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:d4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14224,9 +14224,9 @@ end
 
   ##### DEFINE VM for leaf17 #####
   config.vm.define "leaf17" do |device|
-
-    device.vm.hostname = "leaf17"
-
+    
+    device.vm.hostname = "leaf17" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14281,12 +14281,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc1-2:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:36",
+            :mac => "44:38:39:00:01:38",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10155',
+            :libvirt__tunnel_local_port => '10156',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8155',
+            :libvirt__tunnel_port => '8156',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -14330,10 +14330,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:fc --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:fc", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:36 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:36", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:38 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:38", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14349,9 +14349,9 @@ end
 
   ##### DEFINE VM for leaf16 #####
   config.vm.define "leaf16" do |device|
-
-    device.vm.hostname = "leaf16"
-
+    
+    device.vm.hostname = "leaf16" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14458,7 +14458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:e6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:e6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14474,9 +14474,9 @@ end
 
   ##### DEFINE VM for leaf11 #####
   config.vm.define "leaf11" do |device|
-
-    device.vm.hostname = "leaf11"
-
+    
+    device.vm.hostname = "leaf11" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14583,7 +14583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:fa --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:fa", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14599,9 +14599,9 @@ end
 
   ##### DEFINE VM for leaf10 #####
   config.vm.define "leaf10" do |device|
-
-    device.vm.hostname = "leaf10"
-
+    
+    device.vm.hostname = "leaf10" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14626,12 +14626,12 @@ end
             auto_config: false
       # link for swp1 --> chassis01-lc1-1:swp10
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:7e",
+            :mac => "44:38:39:00:01:80",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10191',
+            :libvirt__tunnel_local_port => '10192',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8191',
+            :libvirt__tunnel_port => '8192',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> chassis02-lc1-1:swp10
@@ -14693,8 +14693,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:ec --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:ec", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7e --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7e", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:80 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:80", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:84 --> swp2"
@@ -14708,7 +14708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:0a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:0a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14724,9 +14724,9 @@ end
 
   ##### DEFINE VM for leaf13 #####
   config.vm.define "leaf13" do |device|
-
-    device.vm.hostname = "leaf13"
-
+    
+    device.vm.hostname = "leaf13" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14771,12 +14771,12 @@ end
             auto_config: false
       # link for swp3 --> chassis03-lc1-1:swp13
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:62",
+            :mac => "44:38:39:00:01:64",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10177',
+            :libvirt__tunnel_local_port => '10178',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8177',
+            :libvirt__tunnel_port => '8178',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> chassis04-lc1-1:swp13
@@ -14826,14 +14826,14 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:2c --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:2c", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:62 --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:62", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:64 --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:64", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:5e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:5e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14849,9 +14849,9 @@ end
 
   ##### DEFINE VM for leaf12 #####
   config.vm.define "leaf12" do |device|
-
-    device.vm.hostname = "leaf12"
-
+    
+    device.vm.hostname = "leaf12" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -14958,7 +14958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:0a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:0a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -14974,9 +14974,9 @@ end
 
   ##### DEFINE VM for leaf19 #####
   config.vm.define "leaf19" do |device|
-
-    device.vm.hostname = "leaf19"
-
+    
+    device.vm.hostname = "leaf19" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15083,7 +15083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:ea --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:ea", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15099,9 +15099,9 @@ end
 
   ##### DEFINE VM for leaf18 #####
   config.vm.define "leaf18" do |device|
-
-    device.vm.hostname = "leaf18"
-
+    
+    device.vm.hostname = "leaf18" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15208,7 +15208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:d4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:d4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15224,9 +15224,9 @@ end
 
   ##### DEFINE VM for leaf117 #####
   config.vm.define "leaf117" do |device|
-
-    device.vm.hostname = "leaf117"
-
+    
+    device.vm.hostname = "leaf117" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15333,7 +15333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:fc --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:fc", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15349,9 +15349,9 @@ end
 
   ##### DEFINE VM for leaf88 #####
   config.vm.define "leaf88" do |device|
-
-    device.vm.hostname = "leaf88"
-
+    
+    device.vm.hostname = "leaf88" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15458,7 +15458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:f6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:f6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15474,9 +15474,9 @@ end
 
   ##### DEFINE VM for leaf89 #####
   config.vm.define "leaf89" do |device|
-
-    device.vm.hostname = "leaf89"
-
+    
+    device.vm.hostname = "leaf89" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15583,7 +15583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:d4 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:d4", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15599,9 +15599,9 @@ end
 
   ##### DEFINE VM for leaf86 #####
   config.vm.define "leaf86" do |device|
-
-    device.vm.hostname = "leaf86"
-
+    
+    device.vm.hostname = "leaf86" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15708,7 +15708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:94 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:94", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15724,9 +15724,9 @@ end
 
   ##### DEFINE VM for leaf84 #####
   config.vm.define "leaf84" do |device|
-
-    device.vm.hostname = "leaf84"
-
+    
+    device.vm.hostname = "leaf84" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15833,7 +15833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:62 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:62", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15849,9 +15849,9 @@ end
 
   ##### DEFINE VM for leaf85 #####
   config.vm.define "leaf85" do |device|
-
-    device.vm.hostname = "leaf85"
-
+    
+    device.vm.hostname = "leaf85" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -15886,12 +15886,12 @@ end
             auto_config: false
       # link for swp2 --> chassis02-lc3-2:swp5
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:6c",
+            :mac => "44:38:39:00:01:6e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10182',
+            :libvirt__tunnel_local_port => '10183',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8182',
+            :libvirt__tunnel_port => '8183',
             :libvirt__iface_name => 'swp2',
             auto_config: false
       # link for swp3 --> chassis03-lc3-2:swp5
@@ -15947,8 +15947,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:14 --> swp1"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:14", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6c --> swp2"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6c", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6e --> swp2"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6e", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:60 --> swp3"
@@ -15958,7 +15958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:78 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:78", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -15974,9 +15974,9 @@ end
 
   ##### DEFINE VM for leaf82 #####
   config.vm.define "leaf82" do |device|
-
-    device.vm.hostname = "leaf82"
-
+    
+    device.vm.hostname = "leaf82" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16083,7 +16083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:84 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:84", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16099,9 +16099,9 @@ end
 
   ##### DEFINE VM for leaf83 #####
   config.vm.define "leaf83" do |device|
-
-    device.vm.hostname = "leaf83"
-
+    
+    device.vm.hostname = "leaf83" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16146,12 +16146,12 @@ end
             auto_config: false
       # link for swp3 --> chassis03-lc3-2:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:4a",
+            :mac => "44:38:39:00:01:4c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10165',
+            :libvirt__tunnel_local_port => '10166',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8165',
+            :libvirt__tunnel_port => '8166',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> chassis04-lc3-2:swp3
@@ -16201,14 +16201,14 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:3e --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:3e", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4a --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4a", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4c --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4c", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:c0 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:c0", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16224,9 +16224,9 @@ end
 
   ##### DEFINE VM for leaf80 #####
   config.vm.define "leaf80" do |device|
-
-    device.vm.hostname = "leaf80"
-
+    
+    device.vm.hostname = "leaf80" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16333,7 +16333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:72 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:72", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16349,9 +16349,9 @@ end
 
   ##### DEFINE VM for leaf81 #####
   config.vm.define "leaf81" do |device|
-
-    device.vm.hostname = "leaf81"
-
+    
+    device.vm.hostname = "leaf81" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16458,7 +16458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:dc --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:dc", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16474,9 +16474,9 @@ end
 
   ##### DEFINE VM for leaf20 #####
   config.vm.define "leaf20" do |device|
-
-    device.vm.hostname = "leaf20"
-
+    
+    device.vm.hostname = "leaf20" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16583,7 +16583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:2e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:2e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16599,9 +16599,9 @@ end
 
   ##### DEFINE VM for leaf21 #####
   config.vm.define "leaf21" do |device|
-
-    device.vm.hostname = "leaf21"
-
+    
+    device.vm.hostname = "leaf21" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16656,12 +16656,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc1-2:swp5
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:2e",
+            :mac => "44:38:39:00:01:30",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10151',
+            :libvirt__tunnel_local_port => '10152',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8151',
+            :libvirt__tunnel_port => '8152',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -16705,10 +16705,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:44 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:44", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2e --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:30 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:30", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16724,9 +16724,9 @@ end
 
   ##### DEFINE VM for leaf22 #####
   config.vm.define "leaf22" do |device|
-
-    device.vm.hostname = "leaf22"
-
+    
+    device.vm.hostname = "leaf22" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16781,12 +16781,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc1-2:swp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:8a",
+            :mac => "44:38:39:00:01:8c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10197',
+            :libvirt__tunnel_local_port => '10198',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8197',
+            :libvirt__tunnel_port => '8198',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -16830,10 +16830,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:dc --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:dc", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8a --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8c --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8c", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16849,9 +16849,9 @@ end
 
   ##### DEFINE VM for leaf23 #####
   config.vm.define "leaf23" do |device|
-
-    device.vm.hostname = "leaf23"
-
+    
+    device.vm.hostname = "leaf23" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -16906,12 +16906,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc1-2:swp7
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:30",
+            :mac => "44:38:39:00:01:32",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10152',
+            :libvirt__tunnel_local_port => '10153',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8152',
+            :libvirt__tunnel_port => '8153',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -16955,10 +16955,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:24 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:24", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:30 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:30", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:32 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:32", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -16974,9 +16974,9 @@ end
 
   ##### DEFINE VM for leaf24 #####
   config.vm.define "leaf24" do |device|
-
-    device.vm.hostname = "leaf24"
-
+    
+    device.vm.hostname = "leaf24" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17031,12 +17031,12 @@ end
             auto_config: false
       # link for swp4 --> chassis04-lc1-2:swp8
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:90",
+            :mac => "44:38:39:00:01:92",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10200',
+            :libvirt__tunnel_local_port => '10201',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8200',
+            :libvirt__tunnel_port => '8201',
             :libvirt__iface_name => 'swp4',
             auto_config: false
 
@@ -17080,10 +17080,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:28 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:28", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:90 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:90", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:92 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:92", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17099,9 +17099,9 @@ end
 
   ##### DEFINE VM for leaf25 #####
   config.vm.define "leaf25" do |device|
-
-    device.vm.hostname = "leaf25"
-
+    
+    device.vm.hostname = "leaf25" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17208,7 +17208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:aa --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:aa", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17224,9 +17224,9 @@ end
 
   ##### DEFINE VM for leaf26 #####
   config.vm.define "leaf26" do |device|
-
-    device.vm.hostname = "leaf26"
-
+    
+    device.vm.hostname = "leaf26" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17333,7 +17333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:72 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:72", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17349,9 +17349,9 @@ end
 
   ##### DEFINE VM for leaf27 #####
   config.vm.define "leaf27" do |device|
-
-    device.vm.hostname = "leaf27"
-
+    
+    device.vm.hostname = "leaf27" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17458,7 +17458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:80 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:80", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17474,9 +17474,9 @@ end
 
   ##### DEFINE VM for leaf28 #####
   config.vm.define "leaf28" do |device|
-
-    device.vm.hostname = "leaf28"
-
+    
+    device.vm.hostname = "leaf28" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17583,7 +17583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:02 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:02", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17599,9 +17599,9 @@ end
 
   ##### DEFINE VM for leaf29 #####
   config.vm.define "leaf29" do |device|
-
-    device.vm.hostname = "leaf29"
-
+    
+    device.vm.hostname = "leaf29" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17708,7 +17708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:88 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:88", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17724,9 +17724,9 @@ end
 
   ##### DEFINE VM for leaf99 #####
   config.vm.define "leaf99" do |device|
-
-    device.vm.hostname = "leaf99"
-
+    
+    device.vm.hostname = "leaf99" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17761,12 +17761,12 @@ end
             auto_config: false
       # link for swp2 --> chassis02-lc4-1:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:70",
+            :mac => "44:38:39:00:01:72",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10184',
+            :libvirt__tunnel_local_port => '10185',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8184',
+            :libvirt__tunnel_port => '8185',
             :libvirt__iface_name => 'swp2',
             auto_config: false
       # link for swp3 --> chassis03-lc4-1:swp3
@@ -17822,8 +17822,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:ac --> swp1"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:ac", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:70 --> swp2"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:70", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:72 --> swp2"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:72", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:26 --> swp3"
@@ -17833,7 +17833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:e6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:e6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17849,9 +17849,9 @@ end
 
   ##### DEFINE VM for leaf98 #####
   config.vm.define "leaf98" do |device|
-
-    device.vm.hostname = "leaf98"
-
+    
+    device.vm.hostname = "leaf98" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -17958,7 +17958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:d2 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:d2", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -17974,9 +17974,9 @@ end
 
   ##### DEFINE VM for leaf95 #####
   config.vm.define "leaf95" do |device|
-
-    device.vm.hostname = "leaf95"
-
+    
+    device.vm.hostname = "leaf95" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18083,7 +18083,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:ae --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:ae", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18099,9 +18099,9 @@ end
 
   ##### DEFINE VM for leaf94 #####
   config.vm.define "leaf94" do |device|
-
-    device.vm.hostname = "leaf94"
-
+    
+    device.vm.hostname = "leaf94" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18208,7 +18208,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:f6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:f6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18224,9 +18224,9 @@ end
 
   ##### DEFINE VM for leaf97 #####
   config.vm.define "leaf97" do |device|
-
-    device.vm.hostname = "leaf97"
-
+    
+    device.vm.hostname = "leaf97" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18333,7 +18333,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:08 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:08", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18349,9 +18349,9 @@ end
 
   ##### DEFINE VM for leaf96 #####
   config.vm.define "leaf96" do |device|
-
-    device.vm.hostname = "leaf96"
-
+    
+    device.vm.hostname = "leaf96" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18458,7 +18458,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:f8 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:f8", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18474,9 +18474,9 @@ end
 
   ##### DEFINE VM for leaf91 #####
   config.vm.define "leaf91" do |device|
-
-    device.vm.hostname = "leaf91"
-
+    
+    device.vm.hostname = "leaf91" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18583,7 +18583,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:ea --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:ea", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18599,9 +18599,9 @@ end
 
   ##### DEFINE VM for leaf90 #####
   config.vm.define "leaf90" do |device|
-
-    device.vm.hostname = "leaf90"
-
+    
+    device.vm.hostname = "leaf90" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18708,7 +18708,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:9a --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:9a", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18724,9 +18724,9 @@ end
 
   ##### DEFINE VM for leaf93 #####
   config.vm.define "leaf93" do |device|
-
-    device.vm.hostname = "leaf93"
-
+    
+    device.vm.hostname = "leaf93" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18833,7 +18833,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:0e --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:0e", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18849,9 +18849,9 @@ end
 
   ##### DEFINE VM for leaf92 #####
   config.vm.define "leaf92" do |device|
-
-    device.vm.hostname = "leaf92"
-
+    
+    device.vm.hostname = "leaf92" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -18886,12 +18886,12 @@ end
             auto_config: false
       # link for swp2 --> chassis02-lc3-2:swp12
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:3c",
+            :mac => "44:38:39:00:01:3e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10158',
+            :libvirt__tunnel_local_port => '10159',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8158',
+            :libvirt__tunnel_port => '8159',
             :libvirt__iface_name => 'swp2',
             auto_config: false
       # link for swp3 --> chassis03-lc3-2:swp12
@@ -18947,8 +18947,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:84 --> swp1"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:84", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3c --> swp2"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3c", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3e --> swp2"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3e", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:52 --> swp3"
@@ -18958,7 +18958,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:b6 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:b6", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -18974,13 +18974,13 @@ end
 
   ##### DEFINE VM for netq-ts #####
   config.vm.define "netq-ts" do |device|
-
-    device.vm.hostname = "netq-ts"
-
+    
+    device.vm.hostname = "netq-ts" 
+    
     device.vm.box = "cumulus/ts"
 
     device.vm.provider :libvirt do |v|
-      v.nic_model_type = 'e1000'
+      v.nic_model_type = 'e1000' 
       v.memory = 1024
     end
     #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
@@ -18989,15 +18989,15 @@ end
 
 
     # NETWORK INTERFACES
-      # link for eth1 --> oob-mgmt-switch3:swp35
+      # link for eth0 --> oob-mgmt-switch3:swp35
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:a0",
+            :mac => "44:38:39:00:01:28",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10208',
+            :libvirt__tunnel_local_port => '10148',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8208',
-            :libvirt__iface_name => 'eth1',
+            :libvirt__tunnel_port => '8148',
+            :libvirt__iface_name => 'eth0',
             auto_config: false
 
 
@@ -19005,9 +19005,10 @@ end
     # Fixes "stdin: is not a tty" and "mesg: ttyname failed : Inappropriate ioctl for device"  messages --> https://github.com/mitchellh/vagrant/issues/1673
     device.vm.provision :shell , inline: "(sudo grep -q 'mesg n' /root/.profile 2>/dev/null && sudo sed -i '/mesg n/d' /root/.profile  2>/dev/null) || true;", privileged: false
 
-
+    
     # Run the Config specified in the Node Attributes
     device.vm.provision :shell , privileged: false, :inline => 'echo "$(whoami)" > /tmp/normal_user'
+    device.vm.provision :shell , path: "./helper_scripts/extra_server_config.sh"
 
 
     # Install Rules for the interface re-map
@@ -19019,13 +19020,13 @@ rm -rfv /etc/udev/rules.d/70-persistent-net.rules &> /dev/null
 delete_udev_directory
 
 device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:a0 --> eth1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:a0", NAME="eth1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:28 --> eth0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:28", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
-echo "  INFO: Adding UDEV Rule: Vagrant interface = eth0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 echo "#### UDEV Rules (/etc/udev/rules.d/70-persistent-net.rules) ####"
 cat /etc/udev/rules.d/70-persistent-net.rules
 vagrant_interface_rule
@@ -19038,9 +19039,9 @@ end
 
   ##### DEFINE VM for chassis02-fc1-1 #####
   config.vm.define "chassis02-fc1-1" do |device|
-
-    device.vm.hostname = "chassis02-fc1-1"
-
+    
+    device.vm.hostname = "chassis02-fc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -19195,12 +19196,12 @@ end
             auto_config: false
       # link for fp13 --> chassis02-lc2-2:fp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:44",
+            :mac => "44:38:39:00:01:46",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10162',
+            :libvirt__tunnel_local_port => '10163',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8162',
+            :libvirt__tunnel_port => '8163',
             :libvirt__iface_name => 'fp13',
             auto_config: false
       # link for fp14 --> chassis02-lc2-2:fp2
@@ -19265,12 +19266,12 @@ end
             auto_config: false
       # link for fp20 --> chassis02-lc3-2:fp0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:9c",
+            :mac => "44:38:39:00:01:9e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10206',
+            :libvirt__tunnel_local_port => '10207',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8206',
+            :libvirt__tunnel_port => '8207',
             :libvirt__iface_name => 'fp20',
             auto_config: false
       # link for fp21 --> chassis02-lc3-2:fp1
@@ -19464,8 +19465,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:ac --> fp12"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:ac", NAME="fp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:44 --> fp13"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:44", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:46 --> fp13"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:46", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:08 --> fp14"
@@ -19492,8 +19493,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:22 --> fp19"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:22", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9c --> fp20"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9c", NAME="fp20", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9e --> fp20"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9e", NAME="fp20", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:c6 --> fp21"
@@ -19539,7 +19540,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:ce --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:ce", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -19555,9 +19556,9 @@ end
 
   ##### DEFINE VM for chassis04-lc3-1 #####
   config.vm.define "chassis04-lc3-1" do |device|
-
-    device.vm.hostname = "chassis04-lc3-1"
-
+    
+    device.vm.hostname = "chassis04-lc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -19582,12 +19583,12 @@ end
             auto_config: false
       # link for fp0 --> chassis04-fc1-1:fp16
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:4f",
+            :mac => "44:38:39:00:01:51",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8168',
+            :libvirt__tunnel_local_port => '8169',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10168',
+            :libvirt__tunnel_port => '10169',
             :libvirt__iface_name => 'fp0',
             auto_config: false
       # link for fp1 --> chassis04-fc1-1:fp17
@@ -19652,12 +19653,12 @@ end
             auto_config: false
       # link for fp7 --> chassis04-fc2-1:fp19
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:33",
+            :mac => "44:38:39:00:01:35",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8154',
+            :libvirt__tunnel_local_port => '8155',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10154',
+            :libvirt__tunnel_port => '10155',
             :libvirt__iface_name => 'fp7',
             auto_config: false
       # link for fp8 --> chassis04-fc3-1:fp16
@@ -19929,8 +19930,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:06 --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:06", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4f --> fp0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4f", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:51 --> fp0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:51", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:bf --> fp1"
@@ -19957,8 +19958,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:bb --> fp6"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:bb", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:33 --> fp7"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:33", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:35 --> fp7"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:35", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:9f --> fp8"
@@ -20056,7 +20057,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:71 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:71", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -20072,9 +20073,9 @@ end
 
   ##### DEFINE VM for chassis04-lc3-2 #####
   config.vm.define "chassis04-lc3-2" do |device|
-
-    device.vm.hostname = "chassis04-lc3-2"
-
+    
+    device.vm.hostname = "chassis04-lc3-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -20573,7 +20574,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:f7 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:f7", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -20589,9 +20590,9 @@ end
 
   ##### DEFINE VM for chassis01-fc3-1 #####
   config.vm.define "chassis01-fc3-1" do |device|
-
-    device.vm.hostname = "chassis01-fc3-1"
-
+    
+    device.vm.hostname = "chassis01-fc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -21090,7 +21091,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:96 --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:96", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -21106,9 +21107,9 @@ end
 
   ##### DEFINE VM for chassis02-fc3-1 #####
   config.vm.define "chassis02-fc3-1" do |device|
-
-    device.vm.hostname = "chassis02-fc3-1"
-
+    
+    device.vm.hostname = "chassis02-fc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -21213,12 +21214,12 @@ end
             auto_config: false
       # link for fp8 --> chassis02-lc2-1:fp8
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:74",
+            :mac => "44:38:39:00:01:76",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10186',
+            :libvirt__tunnel_local_port => '10187',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8186',
+            :libvirt__tunnel_port => '8187',
             :libvirt__iface_name => 'fp8',
             auto_config: false
       # link for fp9 --> chassis02-lc2-1:fp9
@@ -21512,8 +21513,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:8a --> fp7"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:8a", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:74 --> fp8"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:74", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:76 --> fp8"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:76", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:56 --> fp9"
@@ -21607,7 +21608,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:a4 --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:a4", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -21623,9 +21624,9 @@ end
 
   ##### DEFINE VM for chassis04-fc3-1 #####
   config.vm.define "chassis04-fc3-1" do |device|
-
-    device.vm.hostname = "chassis04-fc3-1"
-
+    
+    device.vm.hostname = "chassis04-fc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -21740,12 +21741,12 @@ end
             auto_config: false
       # link for fp9 --> chassis04-lc2-1:fp9
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:60",
+            :mac => "44:38:39:00:01:62",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10176',
+            :libvirt__tunnel_local_port => '10177',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8176',
+            :libvirt__tunnel_port => '8177',
             :libvirt__iface_name => 'fp9',
             auto_config: false
       # link for fp10 --> chassis04-lc2-1:fp10
@@ -21800,12 +21801,12 @@ end
             auto_config: false
       # link for fp15 --> chassis04-lc2-2:fp11
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:5c",
+            :mac => "44:38:39:00:01:5e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10174',
+            :libvirt__tunnel_local_port => '10175',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8174',
+            :libvirt__tunnel_port => '8175',
             :libvirt__iface_name => 'fp15',
             auto_config: false
       # link for fp16 --> chassis04-lc3-1:fp8
@@ -22033,8 +22034,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:b8 --> fp8"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:b8", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:60 --> fp9"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:60", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:62 --> fp9"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:62", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:6e --> fp10"
@@ -22057,8 +22058,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:de --> fp14"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:de", NAME="fp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5c --> fp15"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5c", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5e --> fp15"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5e", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:a0 --> fp16"
@@ -22124,7 +22125,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:9c --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:9c", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -22140,9 +22141,9 @@ end
 
   ##### DEFINE VM for chassis04-fc4-1 #####
   config.vm.define "chassis04-fc4-1" do |device|
-
-    device.vm.hostname = "chassis04-fc4-1"
-
+    
+    device.vm.hostname = "chassis04-fc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -22267,12 +22268,12 @@ end
             auto_config: false
       # link for fp10 --> chassis04-lc2-1:fp14
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:78",
+            :mac => "44:38:39:00:01:7a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10188',
+            :libvirt__tunnel_local_port => '10189',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8188',
+            :libvirt__tunnel_port => '8189',
             :libvirt__iface_name => 'fp10',
             auto_config: false
       # link for fp11 --> chassis04-lc2-1:fp15
@@ -22554,8 +22555,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:5e --> fp9"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:5e", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:78 --> fp10"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:78", NAME="fp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7a --> fp10"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7a", NAME="fp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:be --> fp11"
@@ -22641,7 +22642,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:6e --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:6e", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -22657,9 +22658,9 @@ end
 
   ##### DEFINE VM for chassis03-fc3-1 #####
   config.vm.define "chassis03-fc3-1" do |device|
-
-    device.vm.hostname = "chassis03-fc3-1"
-
+    
+    device.vm.hostname = "chassis03-fc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -22854,12 +22855,12 @@ end
             auto_config: false
       # link for fp17 --> chassis03-lc3-1:fp9
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:7c",
+            :mac => "44:38:39:00:01:7e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10190',
+            :libvirt__tunnel_local_port => '10191',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8190',
+            :libvirt__tunnel_port => '8191',
             :libvirt__iface_name => 'fp17',
             auto_config: false
       # link for fp18 --> chassis03-lc3-1:fp10
@@ -22884,12 +22885,12 @@ end
             auto_config: false
       # link for fp20 --> chassis03-lc3-2:fp8
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:88",
+            :mac => "44:38:39:00:01:8a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10196',
+            :libvirt__tunnel_local_port => '10197',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8196',
+            :libvirt__tunnel_port => '8197',
             :libvirt__iface_name => 'fp20',
             auto_config: false
       # link for fp21 --> chassis03-lc3-2:fp9
@@ -22994,12 +22995,12 @@ end
             auto_config: false
       # link for fp31 --> chassis03-lc4-2:fp11
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:66",
+            :mac => "44:38:39:00:01:68",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10179',
+            :libvirt__tunnel_local_port => '10180',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8179',
+            :libvirt__tunnel_port => '8180',
             :libvirt__iface_name => 'fp31',
             auto_config: false
 
@@ -23099,8 +23100,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:90 --> fp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:90", NAME="fp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7c --> fp17"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7c", NAME="fp17", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7e --> fp17"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7e", NAME="fp17", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:3c --> fp18"
@@ -23111,8 +23112,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:26 --> fp19"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:26", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:88 --> fp20"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:88", NAME="fp20", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8a --> fp20"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8a", NAME="fp20", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:3e --> fp21"
@@ -23155,10 +23156,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:58 --> fp30"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:58", NAME="fp30", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:66 --> fp31"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:66", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:68 --> fp31"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:68", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -23174,9 +23175,9 @@ end
 
   ##### DEFINE VM for chassis01-lc2-1 #####
   config.vm.define "chassis01-lc2-1" do |device|
-
-    device.vm.hostname = "chassis01-lc2-1"
-
+    
+    device.vm.hostname = "chassis01-lc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -23511,12 +23512,12 @@ end
             auto_config: false
       # link for swp16 --> leaf48:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:67",
+            :mac => "44:38:39:00:01:69",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8180',
+            :libvirt__tunnel_local_port => '8181',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10180',
+            :libvirt__tunnel_port => '10181',
             :libvirt__iface_name => 'swp16',
             auto_config: false
 
@@ -23672,10 +23673,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:81 --> swp15"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:81", NAME="swp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:67 --> swp16"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:67", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:69 --> swp16"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:69", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -23691,9 +23692,9 @@ end
 
   ##### DEFINE VM for chassis01-lc2-2 #####
   config.vm.define "chassis01-lc2-2" do |device|
-
-    device.vm.hostname = "chassis01-lc2-2"
-
+    
+    device.vm.hostname = "chassis01-lc2-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -24192,7 +24193,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:b1 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:b1", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -24208,9 +24209,9 @@ end
 
   ##### DEFINE VM for chassis02-fc4-1 #####
   config.vm.define "chassis02-fc4-1" do |device|
-
-    device.vm.hostname = "chassis02-fc4-1"
-
+    
+    device.vm.hostname = "chassis02-fc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -24465,12 +24466,12 @@ end
             auto_config: false
       # link for fp23 --> chassis02-lc3-2:fp15
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:2c",
+            :mac => "44:38:39:00:01:2e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10150',
+            :libvirt__tunnel_local_port => '10151',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8150',
+            :libvirt__tunnel_port => '8151',
             :libvirt__iface_name => 'fp23',
             auto_config: false
       # link for fp24 --> chassis02-lc4-1:fp12
@@ -24674,8 +24675,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:f0 --> fp22"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:f0", NAME="fp22", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2c --> fp23"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2c", NAME="fp23", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2e --> fp23"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2e", NAME="fp23", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:5a --> fp24"
@@ -24709,7 +24710,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:3c --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:3c", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -24725,9 +24726,9 @@ end
 
   ##### DEFINE VM for chassis04-lc4-2 #####
   config.vm.define "chassis04-lc4-2" do |device|
-
-    device.vm.hostname = "chassis04-lc4-2"
-
+    
+    device.vm.hostname = "chassis04-lc4-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -24752,12 +24753,12 @@ end
             auto_config: false
       # link for fp0 --> chassis04-fc1-1:fp28
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:39",
+            :mac => "44:38:39:00:01:3b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8157',
+            :libvirt__tunnel_local_port => '8158',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10157',
+            :libvirt__tunnel_port => '10158',
             :libvirt__iface_name => 'fp0',
             auto_config: false
       # link for fp1 --> chassis04-fc1-1:fp29
@@ -24982,12 +24983,12 @@ end
             auto_config: false
       # link for swp8 --> leaf120:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:71",
+            :mac => "44:38:39:00:01:73",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8185',
+            :libvirt__tunnel_local_port => '8186',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10185',
+            :libvirt__tunnel_port => '10186',
             :libvirt__iface_name => 'swp8',
             auto_config: false
       # link for swp9 --> leaf121:swp4
@@ -25002,12 +25003,12 @@ end
             auto_config: false
       # link for swp10 --> leaf122:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:91",
+            :mac => "44:38:39:00:01:93",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8201',
+            :libvirt__tunnel_local_port => '8202',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10201',
+            :libvirt__tunnel_port => '10202',
             :libvirt__iface_name => 'swp10',
             auto_config: false
       # link for swp11 --> leaf123:swp4
@@ -25099,8 +25100,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:4e --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:4e", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:39 --> fp0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:39", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3b --> fp0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3b", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:51 --> fp1"
@@ -25191,16 +25192,16 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:1b --> swp7"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:1b", NAME="swp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:71 --> swp8"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:71", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:73 --> swp8"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:73", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:25 --> swp9"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:25", NAME="swp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:91 --> swp10"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:91", NAME="swp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:93 --> swp10"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:93", NAME="swp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:3d --> swp11"
@@ -25226,7 +25227,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:4d --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:4d", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -25242,9 +25243,9 @@ end
 
   ##### DEFINE VM for chassis04-lc4-1 #####
   config.vm.define "chassis04-lc4-1" do |device|
-
-    device.vm.hostname = "chassis04-lc4-1"
-
+    
+    device.vm.hostname = "chassis04-lc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -25339,12 +25340,12 @@ end
             auto_config: false
       # link for fp7 --> chassis04-fc2-1:fp27
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:57",
+            :mac => "44:38:39:00:01:59",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8172',
+            :libvirt__tunnel_local_port => '8173',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10172',
+            :libvirt__tunnel_port => '10173',
             :libvirt__iface_name => 'fp7',
             auto_config: false
       # link for fp8 --> chassis04-fc3-1:fp24
@@ -25499,12 +25500,12 @@ end
             auto_config: false
       # link for swp8 --> leaf104:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:81",
+            :mac => "44:38:39:00:01:83",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8193',
+            :libvirt__tunnel_local_port => '8194',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10193',
+            :libvirt__tunnel_port => '10194',
             :libvirt__iface_name => 'swp8',
             auto_config: false
       # link for swp9 --> leaf105:swp4
@@ -25644,8 +25645,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:6b --> fp6"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:6b", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:57 --> fp7"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:57", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:59 --> fp7"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:59", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:1d --> fp8"
@@ -25708,8 +25709,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:65 --> swp7"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:65", NAME="swp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:81 --> swp8"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:81", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:83 --> swp8"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:83", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:2d --> swp9"
@@ -25743,7 +25744,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:3b --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:3b", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -25759,9 +25760,9 @@ end
 
   ##### DEFINE VM for chassis02-lc1-1 #####
   config.vm.define "chassis02-lc1-1" do |device|
-
-    device.vm.hostname = "chassis02-lc1-1"
-
+    
+    device.vm.hostname = "chassis02-lc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -26260,7 +26261,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:6b --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:6b", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -26276,9 +26277,9 @@ end
 
   ##### DEFINE VM for chassis03-lc1-1 #####
   config.vm.define "chassis03-lc1-1" do |device|
-
-    device.vm.hostname = "chassis03-lc1-1"
-
+    
+    device.vm.hostname = "chassis03-lc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -26433,12 +26434,12 @@ end
             auto_config: false
       # link for fp13 --> chassis03-fc4-1:fp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:59",
+            :mac => "44:38:39:00:01:5b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8173',
+            :libvirt__tunnel_local_port => '8174',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10173',
+            :libvirt__tunnel_port => '10174',
             :libvirt__iface_name => 'fp13',
             auto_config: false
       # link for fp14 --> chassis03-fc4-1:fp2
@@ -26493,12 +26494,12 @@ end
             auto_config: false
       # link for swp4 --> leaf04:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:7f",
+            :mac => "44:38:39:00:01:81",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8192',
+            :libvirt__tunnel_local_port => '8193',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10192',
+            :libvirt__tunnel_port => '10193',
             :libvirt__iface_name => 'swp4',
             auto_config: false
       # link for swp5 --> leaf05:swp3
@@ -26583,12 +26584,12 @@ end
             auto_config: false
       # link for swp13 --> leaf13:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:61",
+            :mac => "44:38:39:00:01:63",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8177',
+            :libvirt__tunnel_local_port => '8178',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10177',
+            :libvirt__tunnel_port => '10178',
             :libvirt__iface_name => 'swp13',
             auto_config: false
       # link for swp14 --> leaf14:swp3
@@ -26702,8 +26703,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:47 --> fp12"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:47", NAME="fp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:59 --> fp13"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:59", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5b --> fp13"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5b", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:21 --> fp14"
@@ -26726,8 +26727,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:23 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:23", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7f --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7f", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:81 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:81", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:1f --> swp5"
@@ -26762,8 +26763,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:8f --> swp12"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:8f", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:61 --> swp13"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:61", NAME="swp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:63 --> swp13"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:63", NAME="swp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:21 --> swp14"
@@ -26777,7 +26778,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:09 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:09", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -26793,9 +26794,9 @@ end
 
   ##### DEFINE VM for chassis03-lc1-2 #####
   config.vm.define "chassis03-lc1-2" do |device|
-
-    device.vm.hostname = "chassis03-lc1-2"
-
+    
+    device.vm.hostname = "chassis03-lc1-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -27294,7 +27295,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:a9 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:a9", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -27310,9 +27311,9 @@ end
 
   ##### DEFINE VM for chassis02-lc1-2 #####
   config.vm.define "chassis02-lc1-2" do |device|
-
-    device.vm.hostname = "chassis02-lc1-2"
-
+    
+    device.vm.hostname = "chassis02-lc1-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -27811,7 +27812,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:ed --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:ed", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -27827,9 +27828,9 @@ end
 
   ##### DEFINE VM for chassis02-lc2-2 #####
   config.vm.define "chassis02-lc2-2" do |device|
-
-    device.vm.hostname = "chassis02-lc2-2"
-
+    
+    device.vm.hostname = "chassis02-lc2-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -27864,12 +27865,12 @@ end
             auto_config: false
       # link for fp1 --> chassis02-fc1-1:fp13
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:43",
+            :mac => "44:38:39:00:01:45",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8162',
+            :libvirt__tunnel_local_port => '8163',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10162',
+            :libvirt__tunnel_port => '10163',
             :libvirt__iface_name => 'fp1',
             auto_config: false
       # link for fp2 --> chassis02-fc1-1:fp14
@@ -28205,8 +28206,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:ab --> fp0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:ab", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:43 --> fp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:43", NAME="fp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:45 --> fp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:45", NAME="fp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:07 --> fp2"
@@ -28328,7 +28329,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:99 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:99", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -28344,9 +28345,9 @@ end
 
   ##### DEFINE VM for chassis02-lc2-1 #####
   config.vm.define "chassis02-lc2-1" do |device|
-
-    device.vm.hostname = "chassis02-lc2-1"
-
+    
+    device.vm.hostname = "chassis02-lc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -28451,12 +28452,12 @@ end
             auto_config: false
       # link for fp8 --> chassis02-fc3-1:fp8
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:73",
+            :mac => "44:38:39:00:01:75",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8186',
+            :libvirt__tunnel_local_port => '8187',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10186',
+            :libvirt__tunnel_port => '10187',
             :libvirt__iface_name => 'fp8',
             auto_config: false
       # link for fp9 --> chassis02-fc3-1:fp9
@@ -28750,8 +28751,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:f7 --> fp7"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:f7", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:73 --> fp8"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:73", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:75 --> fp8"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:75", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:55 --> fp9"
@@ -28845,7 +28846,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:a3 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:a3", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -28861,9 +28862,9 @@ end
 
   ##### DEFINE VM for chassis01-fc2-1 #####
   config.vm.define "chassis01-fc2-1" do |device|
-
-    device.vm.hostname = "chassis01-fc2-1"
-
+    
+    device.vm.hostname = "chassis01-fc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -29078,12 +29079,12 @@ end
             auto_config: false
       # link for fp19 --> chassis01-lc3-1:fp7
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:86",
+            :mac => "44:38:39:00:01:88",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10195',
+            :libvirt__tunnel_local_port => '10196',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8195',
+            :libvirt__tunnel_port => '8196',
             :libvirt__iface_name => 'fp19',
             auto_config: false
       # link for fp20 --> chassis01-lc3-2:fp4
@@ -29311,8 +29312,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:06 --> fp18"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:06", NAME="fp18", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:86 --> fp19"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:86", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:88 --> fp19"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:88", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:9a --> fp20"
@@ -29362,7 +29363,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:7a --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:7a", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -29378,9 +29379,9 @@ end
 
   ##### DEFINE VM for chassis03-lc2-2 #####
   config.vm.define "chassis03-lc2-2" do |device|
-
-    device.vm.hostname = "chassis03-lc2-2"
-
+    
+    device.vm.hostname = "chassis03-lc2-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -29879,7 +29880,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:fb --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:fb", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -29895,9 +29896,9 @@ end
 
   ##### DEFINE VM for chassis03-lc2-1 #####
   config.vm.define "chassis03-lc2-1" do |device|
-
-    device.vm.hostname = "chassis03-lc2-1"
-
+    
+    device.vm.hostname = "chassis03-lc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -29972,12 +29973,12 @@ end
             auto_config: false
       # link for fp5 --> chassis03-fc2-1:fp9
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:79",
+            :mac => "44:38:39:00:01:7b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8189',
+            :libvirt__tunnel_local_port => '8190',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10189',
+            :libvirt__tunnel_port => '10190',
             :libvirt__iface_name => 'fp5',
             auto_config: false
       # link for fp6 --> chassis03-fc2-1:fp10
@@ -30052,12 +30053,12 @@ end
             auto_config: false
       # link for fp13 --> chassis03-fc4-1:fp9
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:8b",
+            :mac => "44:38:39:00:01:8d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8198',
+            :libvirt__tunnel_local_port => '8199',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10198',
+            :libvirt__tunnel_port => '10199',
             :libvirt__iface_name => 'fp13',
             auto_config: false
       # link for fp14 --> chassis03-fc4-1:fp10
@@ -30192,12 +30193,12 @@ end
             auto_config: false
       # link for swp12 --> leaf44:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:8d",
+            :mac => "44:38:39:00:01:8f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8199',
+            :libvirt__tunnel_local_port => '8200',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10199',
+            :libvirt__tunnel_port => '10200',
             :libvirt__iface_name => 'swp12',
             auto_config: false
       # link for swp13 --> leaf45:swp3
@@ -30289,8 +30290,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:dd --> fp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:dd", NAME="fp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:79 --> fp5"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:79", NAME="fp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7b --> fp5"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7b", NAME="fp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:0f --> fp6"
@@ -30321,8 +30322,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:7b --> fp12"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:7b", NAME="fp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8b --> fp13"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8b", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8d --> fp13"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8d", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:d5 --> fp14"
@@ -30377,8 +30378,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:ef --> swp11"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:ef", NAME="swp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8d --> swp12"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8d", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8f --> swp12"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8f", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:9f --> swp13"
@@ -30396,7 +30397,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:8d --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:8d", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -30412,9 +30413,9 @@ end
 
   ##### DEFINE VM for chassis03-fc4-1 #####
   config.vm.define "chassis03-fc4-1" do |device|
-
-    device.vm.hostname = "chassis03-fc4-1"
-
+    
+    device.vm.hostname = "chassis03-fc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -30449,12 +30450,12 @@ end
             auto_config: false
       # link for fp1 --> chassis03-lc1-1:fp13
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:5a",
+            :mac => "44:38:39:00:01:5c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10173',
+            :libvirt__tunnel_local_port => '10174',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8173',
+            :libvirt__tunnel_port => '8174',
             :libvirt__iface_name => 'fp1',
             auto_config: false
       # link for fp2 --> chassis03-lc1-1:fp14
@@ -30529,12 +30530,12 @@ end
             auto_config: false
       # link for fp9 --> chassis03-lc2-1:fp13
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:8c",
+            :mac => "44:38:39:00:01:8e",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10198',
+            :libvirt__tunnel_local_port => '10199',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8198',
+            :libvirt__tunnel_port => '8199',
             :libvirt__iface_name => 'fp9',
             auto_config: false
       # link for fp10 --> chassis03-lc2-1:fp14
@@ -30639,12 +30640,12 @@ end
             auto_config: false
       # link for fp20 --> chassis03-lc3-2:fp12
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:9a",
+            :mac => "44:38:39:00:01:9c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10205',
+            :libvirt__tunnel_local_port => '10206',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8205',
+            :libvirt__tunnel_port => '8206',
             :libvirt__iface_name => 'fp20',
             auto_config: false
       # link for fp21 --> chassis03-lc3-2:fp13
@@ -30790,8 +30791,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:48 --> fp0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:48", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5a --> fp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5a", NAME="fp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5c --> fp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5c", NAME="fp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:22 --> fp2"
@@ -30822,8 +30823,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:7c --> fp8"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:7c", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8c --> fp9"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8c", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8e --> fp9"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8e", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:d6 --> fp10"
@@ -30866,8 +30867,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:78 --> fp19"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:78", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9a --> fp20"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9a", NAME="fp20", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9c --> fp20"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9c", NAME="fp20", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:10 --> fp21"
@@ -30913,7 +30914,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:b0 --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:b0", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -30929,9 +30930,9 @@ end
 
   ##### DEFINE VM for chassis01-fc1-1 #####
   config.vm.define "chassis01-fc1-1" do |device|
-
-    device.vm.hostname = "chassis01-fc1-1"
-
+    
+    device.vm.hostname = "chassis01-fc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -31430,7 +31431,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:5a --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:5a", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -31446,9 +31447,9 @@ end
 
   ##### DEFINE VM for chassis03-lc4-2 #####
   config.vm.define "chassis03-lc4-2" do |device|
-
-    device.vm.hostname = "chassis03-lc4-2"
-
+    
+    device.vm.hostname = "chassis03-lc4-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -31463,12 +31464,12 @@ end
     # NETWORK INTERFACES
       # link for eth0 --> oob-mgmt-switch4:swp34
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:6a",
+            :mac => "44:38:39:00:01:6c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10181',
+            :libvirt__tunnel_local_port => '10182',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8181',
+            :libvirt__tunnel_port => '8182',
             :libvirt__iface_name => 'eth0',
             auto_config: false
       # link for fp0 --> chassis03-fc1-1:fp28
@@ -31583,12 +31584,12 @@ end
             auto_config: false
       # link for fp11 --> chassis03-fc3-1:fp31
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:65",
+            :mac => "44:38:39:00:01:67",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8179',
+            :libvirt__tunnel_local_port => '8180',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10179',
+            :libvirt__tunnel_port => '10180',
             :libvirt__iface_name => 'fp11',
             auto_config: false
       # link for fp12 --> chassis03-fc4-1:fp28
@@ -31683,12 +31684,12 @@ end
             auto_config: false
       # link for swp6 --> leaf118:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:55",
+            :mac => "44:38:39:00:01:57",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8171',
+            :libvirt__tunnel_local_port => '8172',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10171',
+            :libvirt__tunnel_port => '10172',
             :libvirt__iface_name => 'swp6',
             auto_config: false
       # link for swp7 --> leaf119:swp3
@@ -31816,8 +31817,8 @@ rm -rfv /etc/udev/rules.d/70-persistent-net.rules &> /dev/null
 delete_udev_directory
 
 device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6a --> eth0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6a", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6c --> eth0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6c", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:11 --> fp0"
@@ -31864,8 +31865,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:57 --> fp10"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:57", NAME="fp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:65 --> fp11"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:65", NAME="fp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:67 --> fp11"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:67", NAME="fp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:dd --> fp12"
@@ -31904,8 +31905,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:bf --> swp5"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:bf", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:55 --> swp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:55", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:57 --> swp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:57", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:df --> swp7"
@@ -31947,7 +31948,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:03 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:03", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -31963,9 +31964,9 @@ end
 
   ##### DEFINE VM for chassis02-fc2-1 #####
   config.vm.define "chassis02-fc2-1" do |device|
-
-    device.vm.hostname = "chassis02-fc2-1"
-
+    
+    device.vm.hostname = "chassis02-fc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -32250,12 +32251,12 @@ end
             auto_config: false
       # link for fp26 --> chassis02-lc4-1:fp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:96",
+            :mac => "44:38:39:00:01:98",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10203',
+            :libvirt__tunnel_local_port => '10204',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8203',
+            :libvirt__tunnel_port => '8204',
             :libvirt__iface_name => 'fp26',
             auto_config: false
       # link for fp27 --> chassis02-lc4-1:fp7
@@ -32270,12 +32271,12 @@ end
             auto_config: false
       # link for fp28 --> chassis02-lc4-2:fp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:76",
+            :mac => "44:38:39:00:01:78",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10187',
+            :libvirt__tunnel_local_port => '10188',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8187',
+            :libvirt__tunnel_port => '8188',
             :libvirt__iface_name => 'fp28',
             auto_config: false
       # link for fp29 --> chassis02-lc4-2:fp5
@@ -32441,16 +32442,16 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:a6 --> fp25"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:a6", NAME="fp25", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:96 --> fp26"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:96", NAME="fp26", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:98 --> fp26"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:98", NAME="fp26", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:fa --> fp27"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:fa", NAME="fp27", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:76 --> fp28"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:76", NAME="fp28", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:78 --> fp28"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:78", NAME="fp28", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:8e --> fp29"
@@ -32464,7 +32465,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:f8 --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:f8", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -32480,9 +32481,9 @@ end
 
   ##### DEFINE VM for chassis04-fc1-1 #####
   config.vm.define "chassis04-fc1-1" do |device|
-
-    device.vm.hostname = "chassis04-fc1-1"
-
+    
+    device.vm.hostname = "chassis04-fc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -32667,12 +32668,12 @@ end
             auto_config: false
       # link for fp16 --> chassis04-lc3-1:fp0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:50",
+            :mac => "44:38:39:00:01:52",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10168',
+            :libvirt__tunnel_local_port => '10169',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8168',
+            :libvirt__tunnel_port => '8169',
             :libvirt__iface_name => 'fp16',
             auto_config: false
       # link for fp17 --> chassis04-lc3-1:fp1
@@ -32787,12 +32788,12 @@ end
             auto_config: false
       # link for fp28 --> chassis04-lc4-2:fp0
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:3a",
+            :mac => "44:38:39:00:01:3c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10157',
+            :libvirt__tunnel_local_port => '10158',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8157',
+            :libvirt__tunnel_port => '8158',
             :libvirt__iface_name => 'fp28',
             auto_config: false
       # link for fp29 --> chassis04-lc4-2:fp1
@@ -32918,8 +32919,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:40 --> fp15"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:40", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:50 --> fp16"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:50", NAME="fp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:52 --> fp16"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:52", NAME="fp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:c0 --> fp17"
@@ -32966,8 +32967,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:6a --> fp27"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:6a", NAME="fp27", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3a --> fp28"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3a", NAME="fp28", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3c --> fp28"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3c", NAME="fp28", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:52 --> fp29"
@@ -32981,7 +32982,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:1e --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:1e", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -32997,9 +32998,9 @@ end
 
   ##### DEFINE VM for chassis04-lc2-1 #####
   config.vm.define "chassis04-lc2-1" do |device|
-
-    device.vm.hostname = "chassis04-lc2-1"
-
+    
+    device.vm.hostname = "chassis04-lc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -33084,12 +33085,12 @@ end
             auto_config: false
       # link for fp6 --> chassis04-fc2-1:fp10
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:6d",
+            :mac => "44:38:39:00:01:6f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8183',
+            :libvirt__tunnel_local_port => '8184',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10183',
+            :libvirt__tunnel_port => '10184',
             :libvirt__iface_name => 'fp6',
             auto_config: false
       # link for fp7 --> chassis04-fc2-1:fp11
@@ -33114,12 +33115,12 @@ end
             auto_config: false
       # link for fp9 --> chassis04-fc3-1:fp9
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:5f",
+            :mac => "44:38:39:00:01:61",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8176',
+            :libvirt__tunnel_local_port => '8177',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10176',
+            :libvirt__tunnel_port => '10177',
             :libvirt__iface_name => 'fp9',
             auto_config: false
       # link for fp10 --> chassis04-fc3-1:fp10
@@ -33164,12 +33165,12 @@ end
             auto_config: false
       # link for fp14 --> chassis04-fc4-1:fp10
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:77",
+            :mac => "44:38:39:00:01:79",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8188',
+            :libvirt__tunnel_local_port => '8189',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10188',
+            :libvirt__tunnel_port => '10189',
             :libvirt__iface_name => 'fp14',
             auto_config: false
       # link for fp15 --> chassis04-fc4-1:fp11
@@ -33214,12 +33215,12 @@ end
             auto_config: false
       # link for swp4 --> leaf36:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:97",
+            :mac => "44:38:39:00:01:99",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8204',
+            :libvirt__tunnel_local_port => '8205',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10204',
+            :libvirt__tunnel_port => '10205',
             :libvirt__iface_name => 'swp4',
             auto_config: false
       # link for swp5 --> leaf37:swp4
@@ -33395,8 +33396,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:b5 --> fp5"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:b5", NAME="fp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6d --> fp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6d", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6f --> fp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6f", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:07 --> fp7"
@@ -33407,8 +33408,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:b7 --> fp8"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:b7", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5f --> fp9"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5f", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:61 --> fp9"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:61", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:6d --> fp10"
@@ -33427,8 +33428,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:5d --> fp13"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:5d", NAME="fp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:77 --> fp14"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:77", NAME="fp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:79 --> fp14"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:79", NAME="fp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:bd --> fp15"
@@ -33447,8 +33448,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:09 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:09", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:97 --> swp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:97", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:99 --> swp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:99", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:c3 --> swp5"
@@ -33498,7 +33499,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:39 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:39", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -33514,9 +33515,9 @@ end
 
   ##### DEFINE VM for chassis04-lc2-2 #####
   config.vm.define "chassis04-lc2-2" do |device|
-
-    device.vm.hostname = "chassis04-lc2-2"
-
+    
+    device.vm.hostname = "chassis04-lc2-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -33611,12 +33612,12 @@ end
             auto_config: false
       # link for fp7 --> chassis04-fc2-1:fp15
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:9d",
+            :mac => "44:38:39:00:01:9f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8207',
+            :libvirt__tunnel_local_port => '8208',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10207',
+            :libvirt__tunnel_port => '10208',
             :libvirt__iface_name => 'fp7',
             auto_config: false
       # link for fp8 --> chassis04-fc3-1:fp12
@@ -33651,12 +33652,12 @@ end
             auto_config: false
       # link for fp11 --> chassis04-fc3-1:fp15
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:5b",
+            :mac => "44:38:39:00:01:5d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8174',
+            :libvirt__tunnel_local_port => '8175',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10174',
+            :libvirt__tunnel_port => '10175',
             :libvirt__iface_name => 'fp11',
             auto_config: false
       # link for fp12 --> chassis04-fc4-1:fp12
@@ -33701,12 +33702,12 @@ end
             auto_config: false
       # link for swp1 --> leaf49:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:63",
+            :mac => "44:38:39:00:01:65",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8178',
+            :libvirt__tunnel_local_port => '8179',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10178',
+            :libvirt__tunnel_port => '10179',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> leaf50:swp4
@@ -33811,22 +33812,22 @@ end
             auto_config: false
       # link for swp12 --> leaf60:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:47",
+            :mac => "44:38:39:00:01:49",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8164',
+            :libvirt__tunnel_local_port => '8165',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10164',
+            :libvirt__tunnel_port => '10165',
             :libvirt__iface_name => 'swp12',
             auto_config: false
       # link for swp13 --> leaf61:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:83",
+            :mac => "44:38:39:00:01:85",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8194',
+            :libvirt__tunnel_local_port => '8195',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10194',
+            :libvirt__tunnel_port => '10195',
             :libvirt__iface_name => 'swp13',
             auto_config: false
       # link for swp14 --> leaf62:swp4
@@ -33916,8 +33917,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:c3 --> fp6"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:c3", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9d --> fp7"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9d", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9f --> fp7"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9f", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:fd --> fp8"
@@ -33932,8 +33933,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:dd --> fp10"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:dd", NAME="fp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5b --> fp11"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5b", NAME="fp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5d --> fp11"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5d", NAME="fp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:cb --> fp12"
@@ -33952,8 +33953,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:29 --> fp15"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:29", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:63 --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:63", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:65 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:65", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:0b --> swp2"
@@ -33996,12 +33997,12 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:e5 --> swp11"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:e5", NAME="swp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:47 --> swp12"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:47", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:49 --> swp12"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:49", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:83 --> swp13"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:83", NAME="swp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:85 --> swp13"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:85", NAME="swp13", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:77 --> swp14"
@@ -34015,7 +34016,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:85 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:85", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -34031,9 +34032,9 @@ end
 
   ##### DEFINE VM for chassis04-fc2-1 #####
   config.vm.define "chassis04-fc2-1" do |device|
-
-    device.vm.hostname = "chassis04-fc2-1"
-
+    
+    device.vm.hostname = "chassis04-fc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -34158,12 +34159,12 @@ end
             auto_config: false
       # link for fp10 --> chassis04-lc2-1:fp6
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:6e",
+            :mac => "44:38:39:00:01:70",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10183',
+            :libvirt__tunnel_local_port => '10184',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8183',
+            :libvirt__tunnel_port => '8184',
             :libvirt__iface_name => 'fp10',
             auto_config: false
       # link for fp11 --> chassis04-lc2-1:fp7
@@ -34208,12 +34209,12 @@ end
             auto_config: false
       # link for fp15 --> chassis04-lc2-2:fp7
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:9e",
+            :mac => "44:38:39:00:01:a0",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10207',
+            :libvirt__tunnel_local_port => '10208',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8207',
+            :libvirt__tunnel_port => '8208',
             :libvirt__iface_name => 'fp15',
             auto_config: false
       # link for fp16 --> chassis04-lc3-1:fp4
@@ -34248,12 +34249,12 @@ end
             auto_config: false
       # link for fp19 --> chassis04-lc3-1:fp7
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:34",
+            :mac => "44:38:39:00:01:36",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10154',
+            :libvirt__tunnel_local_port => '10155',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8154',
+            :libvirt__tunnel_port => '8155',
             :libvirt__iface_name => 'fp19',
             auto_config: false
       # link for fp20 --> chassis04-lc3-2:fp4
@@ -34328,12 +34329,12 @@ end
             auto_config: false
       # link for fp27 --> chassis04-lc4-1:fp7
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:58",
+            :mac => "44:38:39:00:01:5a",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10172',
+            :libvirt__tunnel_local_port => '10173',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8172',
+            :libvirt__tunnel_port => '8173',
             :libvirt__iface_name => 'fp27',
             auto_config: false
       # link for fp28 --> chassis04-lc4-2:fp4
@@ -34445,8 +34446,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:b6 --> fp9"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:b6", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6e --> fp10"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6e", NAME="fp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:70 --> fp10"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:70", NAME="fp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:08 --> fp11"
@@ -34465,8 +34466,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:c4 --> fp14"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:c4", NAME="fp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9e --> fp15"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9e", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:a0 --> fp15"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:a0", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:42 --> fp16"
@@ -34481,8 +34482,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:bc --> fp18"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:bc", NAME="fp18", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:34 --> fp19"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:34", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:36 --> fp19"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:36", NAME="fp19", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:4e --> fp20"
@@ -34513,8 +34514,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:6c --> fp26"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:6c", NAME="fp26", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:58 --> fp27"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:58", NAME="fp27", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5a --> fp27"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5a", NAME="fp27", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:2e --> fp28"
@@ -34532,7 +34533,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:f2 --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:f2", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -34548,9 +34549,9 @@ end
 
   ##### DEFINE VM for chassis03-fc2-1 #####
   config.vm.define "chassis03-fc2-1" do |device|
-
-    device.vm.hostname = "chassis03-fc2-1"
-
+    
+    device.vm.hostname = "chassis03-fc2-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -34665,12 +34666,12 @@ end
             auto_config: false
       # link for fp9 --> chassis03-lc2-1:fp5
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:7a",
+            :mac => "44:38:39:00:01:7c",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10189',
+            :libvirt__tunnel_local_port => '10190',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8189',
+            :libvirt__tunnel_port => '8190',
             :libvirt__iface_name => 'fp9',
             auto_config: false
       # link for fp10 --> chassis03-lc2-1:fp6
@@ -34815,12 +34816,12 @@ end
             auto_config: false
       # link for fp24 --> chassis03-lc4-1:fp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:40",
+            :mac => "44:38:39:00:01:42",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10160',
+            :libvirt__tunnel_local_port => '10161',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8160',
+            :libvirt__tunnel_port => '8161',
             :libvirt__iface_name => 'fp24',
             auto_config: false
       # link for fp25 --> chassis03-lc4-1:fp5
@@ -34958,8 +34959,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:de --> fp8"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:de", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7a --> fp9"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7a", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7c --> fp9"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7c", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:10 --> fp10"
@@ -35018,8 +35019,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:02 --> fp23"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:02", NAME="fp23", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:40 --> fp24"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:40", NAME="fp24", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:42 --> fp24"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:42", NAME="fp24", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:64 --> fp25"
@@ -35049,7 +35050,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:9c --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:9c", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -35065,9 +35066,9 @@ end
 
   ##### DEFINE VM for chassis04-lc1-2 #####
   config.vm.define "chassis04-lc1-2" do |device|
-
-    device.vm.hostname = "chassis04-lc1-2"
-
+    
+    device.vm.hostname = "chassis04-lc1-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -35252,12 +35253,12 @@ end
             auto_config: false
       # link for swp1 --> leaf17:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:35",
+            :mac => "44:38:39:00:01:37",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8155',
+            :libvirt__tunnel_local_port => '8156',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10155',
+            :libvirt__tunnel_port => '10156',
             :libvirt__iface_name => 'swp1',
             auto_config: false
       # link for swp2 --> leaf18:swp4
@@ -35292,42 +35293,42 @@ end
             auto_config: false
       # link for swp5 --> leaf21:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:2d",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8151',
-            :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10151',
-            :libvirt__iface_name => 'swp5',
-            auto_config: false
-      # link for swp6 --> leaf22:swp4
-      device.vm.network "private_network",
-            :mac => "44:38:39:00:01:89",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8197',
-            :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10197',
-            :libvirt__iface_name => 'swp6',
-            auto_config: false
-      # link for swp7 --> leaf23:swp4
-      device.vm.network "private_network",
             :mac => "44:38:39:00:01:2f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
             :libvirt__tunnel_local_port => '8152',
             :libvirt__tunnel_ip => '127.0.0.1',
             :libvirt__tunnel_port => '10152',
+            :libvirt__iface_name => 'swp5',
+            auto_config: false
+      # link for swp6 --> leaf22:swp4
+      device.vm.network "private_network",
+            :mac => "44:38:39:00:01:8b",
+            :libvirt__tunnel_type => 'udp',
+            :libvirt__tunnel_local_ip => '127.0.0.1',
+            :libvirt__tunnel_local_port => '8198',
+            :libvirt__tunnel_ip => '127.0.0.1',
+            :libvirt__tunnel_port => '10198',
+            :libvirt__iface_name => 'swp6',
+            auto_config: false
+      # link for swp7 --> leaf23:swp4
+      device.vm.network "private_network",
+            :mac => "44:38:39:00:01:31",
+            :libvirt__tunnel_type => 'udp',
+            :libvirt__tunnel_local_ip => '127.0.0.1',
+            :libvirt__tunnel_local_port => '8153',
+            :libvirt__tunnel_ip => '127.0.0.1',
+            :libvirt__tunnel_port => '10153',
             :libvirt__iface_name => 'swp7',
             auto_config: false
       # link for swp8 --> leaf24:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:8f",
+            :mac => "44:38:39:00:01:91",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8200',
+            :libvirt__tunnel_local_port => '8201',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10200',
+            :libvirt__tunnel_port => '10201',
             :libvirt__iface_name => 'swp8',
             auto_config: false
       # link for swp9 --> leaf25:swp4
@@ -35503,8 +35504,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:c1 --> fp15"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:c1", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:35 --> swp1"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:35", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:37 --> swp1"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:37", NAME="swp1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:d3 --> swp2"
@@ -35519,20 +35520,20 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:2d --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:2d", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2d --> swp5"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2d", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2f --> swp5"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2f", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:89 --> swp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:89", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8b --> swp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8b", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2f --> swp7"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2f", NAME="swp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:31 --> swp7"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:31", NAME="swp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:8f --> swp8"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:8f", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:91 --> swp8"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:91", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:a9 --> swp9"
@@ -35566,7 +35567,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:5f --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:5f", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -35582,9 +35583,9 @@ end
 
   ##### DEFINE VM for chassis04-lc1-1 #####
   config.vm.define "chassis04-lc1-1" do |device|
-
-    device.vm.hostname = "chassis04-lc1-1"
-
+    
+    device.vm.hostname = "chassis04-lc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -35909,12 +35910,12 @@ end
             auto_config: false
       # link for swp15 --> leaf15:swp4
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:37",
+            :mac => "44:38:39:00:01:39",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8156',
+            :libvirt__tunnel_local_port => '8157',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10156',
+            :libvirt__tunnel_port => '10157',
             :libvirt__iface_name => 'swp15',
             auto_config: false
       # link for swp16 --> leaf16:swp4
@@ -36076,14 +36077,14 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:d3 --> swp14"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:d3", NAME="swp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:37 --> swp15"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:37", NAME="swp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:39 --> swp15"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:39", NAME="swp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:e5 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:e5", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -36099,9 +36100,9 @@ end
 
   ##### DEFINE VM for chassis03-fc1-1 #####
   config.vm.define "chassis03-fc1-1" do |device|
-
-    device.vm.hostname = "chassis03-fc1-1"
-
+    
+    device.vm.hostname = "chassis03-fc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -36600,7 +36601,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:0e --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:0e", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -36616,9 +36617,9 @@ end
 
   ##### DEFINE VM for chassis01-lc4-2 #####
   config.vm.define "chassis01-lc4-2" do |device|
-
-    device.vm.hostname = "chassis01-lc4-2"
-
+    
+    device.vm.hostname = "chassis01-lc4-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -36853,12 +36854,12 @@ end
             auto_config: false
       # link for swp6 --> leaf118:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:4b",
+            :mac => "44:38:39:00:01:4d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8166',
+            :libvirt__tunnel_local_port => '8167',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10166',
+            :libvirt__tunnel_port => '10167',
             :libvirt__iface_name => 'swp6',
             auto_config: false
       # link for swp7 --> leaf119:swp1
@@ -37074,8 +37075,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:1f --> swp5"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:1f", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4b --> swp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4b", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4d --> swp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4d", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:cb --> swp7"
@@ -37117,7 +37118,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:63 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:63", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -37133,9 +37134,9 @@ end
 
   ##### DEFINE VM for chassis01-lc4-1 #####
   config.vm.define "chassis01-lc4-1" do |device|
-
-    device.vm.hostname = "chassis01-lc4-1"
-
+    
+    device.vm.hostname = "chassis01-lc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -37400,12 +37401,12 @@ end
             auto_config: false
       # link for swp9 --> leaf105:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:5d",
+            :mac => "44:38:39:00:01:5f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8175',
+            :libvirt__tunnel_local_port => '8176',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10175',
+            :libvirt__tunnel_port => '10176',
             :libvirt__iface_name => 'swp9',
             auto_config: false
       # link for swp10 --> leaf106:swp1
@@ -37603,8 +37604,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:35 --> swp8"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:35", NAME="swp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5d --> swp9"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5d", NAME="swp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:5f --> swp9"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:5f", NAME="swp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:a7 --> swp10"
@@ -37634,7 +37635,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:e9 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:e9", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -37650,9 +37651,9 @@ end
 
   ##### DEFINE VM for chassis01-lc3-1 #####
   config.vm.define "chassis01-lc3-1" do |device|
-
-    device.vm.hostname = "chassis01-lc3-1"
-
+    
+    device.vm.hostname = "chassis01-lc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -37747,12 +37748,12 @@ end
             auto_config: false
       # link for fp7 --> chassis01-fc2-1:fp19
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:85",
+            :mac => "44:38:39:00:01:87",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8195',
+            :libvirt__tunnel_local_port => '8196',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10195',
+            :libvirt__tunnel_port => '10196',
             :libvirt__iface_name => 'fp7',
             auto_config: false
       # link for fp8 --> chassis01-fc3-1:fp16
@@ -37927,12 +37928,12 @@ end
             auto_config: false
       # link for swp10 --> leaf74:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:93",
+            :mac => "44:38:39:00:01:95",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8202',
+            :libvirt__tunnel_local_port => '8203',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10202',
+            :libvirt__tunnel_port => '10203',
             :libvirt__iface_name => 'swp10',
             auto_config: false
       # link for swp11 --> leaf75:swp1
@@ -38052,8 +38053,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:05 --> fp6"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:05", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:85 --> fp7"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:85", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:87 --> fp7"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:87", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:4f --> fp8"
@@ -38124,8 +38125,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:a5 --> swp9"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:a5", NAME="swp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:93 --> swp10"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:93", NAME="swp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:95 --> swp10"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:95", NAME="swp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:e7 --> swp11"
@@ -38151,7 +38152,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:93 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:93", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -38167,9 +38168,9 @@ end
 
   ##### DEFINE VM for chassis01-lc3-2 #####
   config.vm.define "chassis01-lc3-2" do |device|
-
-    device.vm.hostname = "chassis01-lc3-2"
-
+    
+    device.vm.hostname = "chassis01-lc3-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -38668,7 +38669,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:bf --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:bf", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -38684,9 +38685,9 @@ end
 
   ##### DEFINE VM for chassis03-lc3-2 #####
   config.vm.define "chassis03-lc3-2" do |device|
-
-    device.vm.hostname = "chassis03-lc3-2"
-
+    
+    device.vm.hostname = "chassis03-lc3-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -38791,12 +38792,12 @@ end
             auto_config: false
       # link for fp8 --> chassis03-fc3-1:fp20
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:87",
+            :mac => "44:38:39:00:01:89",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8196',
+            :libvirt__tunnel_local_port => '8197',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10196',
+            :libvirt__tunnel_port => '10197',
             :libvirt__iface_name => 'fp8',
             auto_config: false
       # link for fp9 --> chassis03-fc3-1:fp21
@@ -38831,12 +38832,12 @@ end
             auto_config: false
       # link for fp12 --> chassis03-fc4-1:fp20
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:99",
+            :mac => "44:38:39:00:01:9b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8205',
+            :libvirt__tunnel_local_port => '8206',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10205',
+            :libvirt__tunnel_port => '10206',
             :libvirt__iface_name => 'fp12',
             auto_config: false
       # link for fp13 --> chassis03-fc4-1:fp21
@@ -38891,12 +38892,12 @@ end
             auto_config: false
       # link for swp3 --> leaf83:swp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:49",
+            :mac => "44:38:39:00:01:4b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8165',
+            :libvirt__tunnel_local_port => '8166',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10165',
+            :libvirt__tunnel_port => '10166',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> leaf84:swp3
@@ -39090,8 +39091,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:01 --> fp7"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:01", NAME="fp7", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:87 --> fp8"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:87", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:89 --> fp8"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:89", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:3d --> fp9"
@@ -39106,8 +39107,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:39 --> fp11"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:39", NAME="fp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:99 --> fp12"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:99", NAME="fp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9b --> fp12"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9b", NAME="fp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:0f --> fp13"
@@ -39130,8 +39131,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:cd --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:cd", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:49 --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:49", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:4b --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:4b", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:15 --> swp4"
@@ -39185,7 +39186,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:09 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:09", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -39201,9 +39202,9 @@ end
 
   ##### DEFINE VM for chassis03-lc3-1 #####
   config.vm.define "chassis03-lc3-1" do |device|
-
-    device.vm.hostname = "chassis03-lc3-1"
-
+    
+    device.vm.hostname = "chassis03-lc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -39318,12 +39319,12 @@ end
             auto_config: false
       # link for fp9 --> chassis03-fc3-1:fp17
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:7b",
+            :mac => "44:38:39:00:01:7d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8190',
+            :libvirt__tunnel_local_port => '8191',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10190',
+            :libvirt__tunnel_port => '10191',
             :libvirt__iface_name => 'fp9',
             auto_config: false
       # link for fp10 --> chassis03-fc3-1:fp18
@@ -39611,8 +39612,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:8f --> fp8"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:8f", NAME="fp8", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7b --> fp9"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7b", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7d --> fp9"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7d", NAME="fp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:3b --> fp10"
@@ -39702,7 +39703,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:d7 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:03:d7", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -39718,9 +39719,9 @@ end
 
   ##### DEFINE VM for chassis01-fc4-1 #####
   config.vm.define "chassis01-fc4-1" do |device|
-
-    device.vm.hostname = "chassis01-fc4-1"
-
+    
+    device.vm.hostname = "chassis01-fc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -39775,12 +39776,12 @@ end
             auto_config: false
       # link for fp3 --> chassis01-lc1-1:fp15
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:46",
+            :mac => "44:38:39:00:01:48",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '10163',
+            :libvirt__tunnel_local_port => '10164',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '8163',
+            :libvirt__tunnel_port => '8164',
             :libvirt__iface_name => 'fp3',
             auto_config: false
       # link for fp4 --> chassis01-lc1-2:fp12
@@ -40104,8 +40105,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:7a --> fp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:7a", NAME="fp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:46 --> fp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:46", NAME="fp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:48 --> fp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:48", NAME="fp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:d0 --> fp4"
@@ -40219,7 +40220,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:82 --> fp31"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:82", NAME="fp31", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -40235,9 +40236,9 @@ end
 
   ##### DEFINE VM for chassis02-lc3-2 #####
   config.vm.define "chassis02-lc3-2" do |device|
-
-    device.vm.hostname = "chassis02-lc3-2"
-
+    
+    device.vm.hostname = "chassis02-lc3-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -40262,12 +40263,12 @@ end
             auto_config: false
       # link for fp0 --> chassis02-fc1-1:fp20
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:9b",
+            :mac => "44:38:39:00:01:9d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8206',
+            :libvirt__tunnel_local_port => '8207',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10206',
+            :libvirt__tunnel_port => '10207',
             :libvirt__iface_name => 'fp0',
             auto_config: false
       # link for fp1 --> chassis02-fc1-1:fp21
@@ -40412,12 +40413,12 @@ end
             auto_config: false
       # link for fp15 --> chassis02-fc4-1:fp23
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:2b",
+            :mac => "44:38:39:00:01:2d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8150',
+            :libvirt__tunnel_local_port => '8151',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10150',
+            :libvirt__tunnel_port => '10151',
             :libvirt__iface_name => 'fp15',
             auto_config: false
       # link for swp1 --> leaf81:swp2
@@ -40462,12 +40463,12 @@ end
             auto_config: false
       # link for swp5 --> leaf85:swp2
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:6b",
+            :mac => "44:38:39:00:01:6d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8182',
+            :libvirt__tunnel_local_port => '8183',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10182',
+            :libvirt__tunnel_port => '10183',
             :libvirt__iface_name => 'swp5',
             auto_config: false
       # link for swp6 --> leaf86:swp2
@@ -40532,12 +40533,12 @@ end
             auto_config: false
       # link for swp12 --> leaf92:swp2
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:3b",
+            :mac => "44:38:39:00:01:3d",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8158',
+            :libvirt__tunnel_local_port => '8159',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10158',
+            :libvirt__tunnel_port => '10159',
             :libvirt__iface_name => 'swp12',
             auto_config: false
       # link for swp13 --> leaf93:swp2
@@ -40609,8 +40610,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:de --> eth0"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:de", NAME="eth0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9b --> fp0"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9b", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:9d --> fp0"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:9d", NAME="fp0", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:c5 --> fp1"
@@ -40669,8 +40670,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:ef --> fp14"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:ef", NAME="fp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2b --> fp15"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2b", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2d --> fp15"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2d", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:cb --> swp1"
@@ -40689,8 +40690,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:75 --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:75", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6b --> swp5"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6b", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6d --> swp5"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6d", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:13 --> swp6"
@@ -40717,8 +40718,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:4f --> swp11"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:4f", NAME="swp11", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3b --> swp12"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3b", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3d --> swp12"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3d", NAME="swp12", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:df --> swp13"
@@ -40736,7 +40737,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:49 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:49", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -40752,9 +40753,9 @@ end
 
   ##### DEFINE VM for chassis02-lc3-1 #####
   config.vm.define "chassis02-lc3-1" do |device|
-
-    device.vm.hostname = "chassis02-lc3-1"
-
+    
+    device.vm.hostname = "chassis02-lc3-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -40989,12 +40990,12 @@ end
             auto_config: false
       # link for swp6 --> leaf70:swp2
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:53",
+            :mac => "44:38:39:00:01:55",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8170',
+            :libvirt__tunnel_local_port => '8171',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10170',
+            :libvirt__tunnel_port => '10171',
             :libvirt__iface_name => 'swp6',
             auto_config: false
       # link for swp7 --> leaf71:swp2
@@ -41210,8 +41211,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:5d --> swp5"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:04:5d", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:53 --> swp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:53", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:55 --> swp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:55", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:04:a1 --> swp7"
@@ -41253,7 +41254,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:85 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:85", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -41269,9 +41270,9 @@ end
 
   ##### DEFINE VM for chassis02-lc4-1 #####
   config.vm.define "chassis02-lc4-1" do |device|
-
-    device.vm.hostname = "chassis02-lc4-1"
-
+    
+    device.vm.hostname = "chassis02-lc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -41356,12 +41357,12 @@ end
             auto_config: false
       # link for fp6 --> chassis02-fc2-1:fp26
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:95",
+            :mac => "44:38:39:00:01:97",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8203',
+            :libvirt__tunnel_local_port => '8204',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10203',
+            :libvirt__tunnel_port => '10204',
             :libvirt__iface_name => 'fp6',
             auto_config: false
       # link for fp7 --> chassis02-fc2-1:fp27
@@ -41476,12 +41477,12 @@ end
             auto_config: false
       # link for swp3 --> leaf99:swp2
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:6f",
+            :mac => "44:38:39:00:01:71",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8184',
+            :libvirt__tunnel_local_port => '8185',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10184',
+            :libvirt__tunnel_port => '10185',
             :libvirt__iface_name => 'swp3',
             auto_config: false
       # link for swp4 --> leaf100:swp2
@@ -41667,8 +41668,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:a5 --> fp5"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:a5", NAME="fp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:95 --> fp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:95", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:97 --> fp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:97", NAME="fp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:03:f9 --> fp7"
@@ -41715,8 +41716,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:f5 --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:f5", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:6f --> swp3"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:6f", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:71 --> swp3"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:71", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:cb --> swp4"
@@ -41770,7 +41771,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:31 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:09:31", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -41786,9 +41787,9 @@ end
 
   ##### DEFINE VM for chassis02-lc4-2 #####
   config.vm.define "chassis02-lc4-2" do |device|
-
-    device.vm.hostname = "chassis02-lc4-2"
-
+    
+    device.vm.hostname = "chassis02-lc4-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -41853,12 +41854,12 @@ end
             auto_config: false
       # link for fp4 --> chassis02-fc2-1:fp28
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:75",
+            :mac => "44:38:39:00:01:77",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8187',
+            :libvirt__tunnel_local_port => '8188',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10187',
+            :libvirt__tunnel_port => '10188',
             :libvirt__iface_name => 'fp4',
             auto_config: false
       # link for fp5 --> chassis02-fc2-1:fp29
@@ -42023,12 +42024,12 @@ end
             auto_config: false
       # link for swp6 --> leaf118:swp2
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:29",
+            :mac => "44:38:39:00:01:2b",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8149',
+            :libvirt__tunnel_local_port => '8150',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10149',
+            :libvirt__tunnel_port => '10150',
             :libvirt__iface_name => 'swp6',
             auto_config: false
       # link for swp7 --> leaf119:swp2
@@ -42176,8 +42177,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:cd --> fp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:cd", NAME="fp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:75 --> fp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:75", NAME="fp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:77 --> fp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:77", NAME="fp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:8d --> fp5"
@@ -42244,8 +42245,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:4f --> swp5"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:4f", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:29 --> swp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:29", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:2b --> swp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:2b", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:ad --> swp7"
@@ -42287,7 +42288,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:05:4b --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:05:4b", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -42303,9 +42304,9 @@ end
 
   ##### DEFINE VM for chassis01-lc1-2 #####
   config.vm.define "chassis01-lc1-2" do |device|
-
-    device.vm.hostname = "chassis01-lc1-2"
-
+    
+    device.vm.hostname = "chassis01-lc1-2" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -42640,12 +42641,12 @@ end
             auto_config: false
       # link for swp16 --> leaf32:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:3d",
+            :mac => "44:38:39:00:01:3f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8159',
+            :libvirt__tunnel_local_port => '8160',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10159',
+            :libvirt__tunnel_port => '10160',
             :libvirt__iface_name => 'swp16',
             auto_config: false
 
@@ -42801,10 +42802,10 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:09 --> swp15"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:09", NAME="swp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3d --> swp16"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3d", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3f --> swp16"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3f", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -42820,9 +42821,9 @@ end
 
   ##### DEFINE VM for chassis01-lc1-1 #####
   config.vm.define "chassis01-lc1-1" do |device|
-
-    device.vm.hostname = "chassis01-lc1-1"
-
+    
+    device.vm.hostname = "chassis01-lc1-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -42997,12 +42998,12 @@ end
             auto_config: false
       # link for fp15 --> chassis01-fc4-1:fp3
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:45",
+            :mac => "44:38:39:00:01:47",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8163',
+            :libvirt__tunnel_local_port => '8164',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10163',
+            :libvirt__tunnel_port => '10164',
             :libvirt__iface_name => 'fp15',
             auto_config: false
       # link for swp1 --> leaf01:swp1
@@ -43047,22 +43048,22 @@ end
             auto_config: false
       # link for swp5 --> leaf05:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:27",
+            :mac => "44:38:39:00:01:29",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8148',
+            :libvirt__tunnel_local_port => '8149',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10148',
+            :libvirt__tunnel_port => '10149',
             :libvirt__iface_name => 'swp5',
             auto_config: false
       # link for swp6 --> leaf06:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:41",
+            :mac => "44:38:39:00:01:43",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8161',
+            :libvirt__tunnel_local_port => '8162',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10161',
+            :libvirt__tunnel_port => '10162',
             :libvirt__iface_name => 'swp6',
             auto_config: false
       # link for swp7 --> leaf07:swp1
@@ -43097,12 +43098,12 @@ end
             auto_config: false
       # link for swp10 --> leaf10:swp1
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:7d",
+            :mac => "44:38:39:00:01:7f",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8191',
+            :libvirt__tunnel_local_port => '8192',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10191',
+            :libvirt__tunnel_port => '10192',
             :libvirt__iface_name => 'swp10',
             auto_config: false
       # link for swp11 --> leaf11:swp1
@@ -43254,8 +43255,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:79 --> fp14"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:06:79", NAME="fp14", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:45 --> fp15"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:45", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:47 --> fp15"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:47", NAME="fp15", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:8b --> swp1"
@@ -43274,12 +43275,12 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:07:dd --> swp4"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:07:dd", NAME="swp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:27 --> swp5"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:27", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:29 --> swp5"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:29", NAME="swp5", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:41 --> swp6"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:41", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:43 --> swp6"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:43", NAME="swp6", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:b9 --> swp7"
@@ -43294,8 +43295,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:07 --> swp9"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:07", NAME="swp9", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7d --> swp10"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7d", NAME="swp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:7f --> swp10"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:7f", NAME="swp10", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:09:0f --> swp11"
@@ -43321,7 +43322,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:02:b3 --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:02:b3", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -43337,9 +43338,9 @@ end
 
   ##### DEFINE VM for chassis03-lc4-1 #####
   config.vm.define "chassis03-lc4-1" do |device|
-
-    device.vm.hostname = "chassis03-lc4-1"
-
+    
+    device.vm.hostname = "chassis03-lc4-1" 
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.5.0"
 
@@ -43404,12 +43405,12 @@ end
             auto_config: false
       # link for fp4 --> chassis03-fc2-1:fp24
       device.vm.network "private_network",
-            :mac => "44:38:39:00:01:3f",
+            :mac => "44:38:39:00:01:41",
             :libvirt__tunnel_type => 'udp',
             :libvirt__tunnel_local_ip => '127.0.0.1',
-            :libvirt__tunnel_local_port => '8160',
+            :libvirt__tunnel_local_port => '8161',
             :libvirt__tunnel_ip => '127.0.0.1',
-            :libvirt__tunnel_port => '10160',
+            :libvirt__tunnel_port => '10161',
             :libvirt__iface_name => 'fp4',
             auto_config: false
       # link for fp5 --> chassis03-fc2-1:fp25
@@ -43727,8 +43728,8 @@ echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:73 --> fp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:73", NAME="fp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
-echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:3f --> fp4"
-echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:3f", NAME="fp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+echo "  INFO: Adding UDEV Rule: 44:38:39:00:01:41 --> fp4"
+echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:01:41", NAME="fp4", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
      device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:06:63 --> fp5"
@@ -43838,7 +43839,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:08:ed --> swp16"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:08:ed", NAME="swp16", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules

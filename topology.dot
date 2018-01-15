@@ -3,8 +3,8 @@ graph dc1 {
 "oob-mgmt-switch2" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
 "oob-mgmt-switch3" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
 "oob-mgmt-switch4" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
-"oob-mgmt-server" [function="oob-server" vagrant="eth0" os="CumulusCommunity/vx_oob_server" version="1.0.4" memory="1024" config="./helper_scripts/config_oob_server.sh" mgmt_ip="192.168.255.254" ]
-"netq-ts" [function="host" vagrant="eth0" os="cumulus/ts" memory="1024" mgmt_ip="192.168.255.253" ]
+"oob-mgmt-server" [function="oob-server" vagrant="eth0" memory="1024" config="./helper_scripts/config_oob_server.sh" mgmt_ip="192.168.255.254" ]
+"netq-ts" [function="host" os="cumulus/ts" memory="1024" mgmt_ip="192.168.255.253" ]
  "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.2"]
  "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.3"]
  "leaf03" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.4"]
@@ -1345,7 +1345,7 @@ graph dc1 {
 "oob-mgmt-switch3":"swp32" -- "leaf126":"eth0"
 "oob-mgmt-switch3":"swp33" -- "leaf127":"eth0"
 "oob-mgmt-switch3":"swp34" -- "leaf128":"eth0"
-"oob-mgmt-switch3":"swp35" -- "netq-ts:eth1"
+"oob-mgmt-switch3":"swp35" -- "netq-ts":"eth0"
 "oob-mgmt-switch4":"swp3" -- "chassis01-lc1-1":"eth0"
 "oob-mgmt-switch4":"swp4" -- "chassis01-lc1-2":"eth0"
 "oob-mgmt-switch4":"swp5" -- "chassis01-lc2-1":"eth0"
