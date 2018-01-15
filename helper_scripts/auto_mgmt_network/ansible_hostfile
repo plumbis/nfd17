@@ -153,3 +153,6 @@ leaf92 ansible_host=192.168.255.93 ansible_user=cumulus
 
 
 
+
+[host]
+netq-ts ansible_host=192.168.255.253 ansible_user=cumulus

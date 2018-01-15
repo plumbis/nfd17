@@ -19,7 +19,7 @@ output.append("\"oob-mgmt-switch2\" [function=\"oob-switch\" vagrant=\"eth0\" os
 output.append("\"oob-mgmt-switch3\" [function=\"oob-switch\" vagrant=\"eth0\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/config_oob_switch.sh\" ]")
 output.append("\"oob-mgmt-switch4\" [function=\"oob-switch\" vagrant=\"eth0\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/config_oob_switch.sh\" ]")
 output.append("\"oob-mgmt-server\" [function=\"oob-server\" vagrant=\"eth0\" os=\"CumulusCommunity/vx_oob_server\" version=\"1.0.4\" memory=\"1024\" config=\"./helper_scripts/config_oob_server.sh\" mgmt_ip=\"192.168.255.254\" ]")
-
+output.append("\"netq-ts\" [function=\"host\" vagrant=\"eth0\" os=\"cumulus/ts\" memory=\"1024\" mgmt_ip=\"192.168.255.253\" ]")
 mgmt_ip = 2
 
 while current_leaf <= leaf_count:
@@ -605,6 +605,8 @@ while current_leaf <= leaf_count:
     output.append("\"oob-mgmt-switch3\":\"swp" + str(mgmt_port) + "\" -- \"leaf" + str("%02d" % current_leaf) + "\"" + ":" + "\"" + "eth0\"")
     current_leaf += 1
     mgmt_port += 1
+
+output.append("\"oob-mgmt-switch3\":\"swp" + str(mgmt_port) + "\" -- \"netq-ts:eth1\"")
 
 mgmt_port = 3
 for chassis in chassis_list:
