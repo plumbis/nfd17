@@ -7,7 +7,7 @@ function error() {
 }
 trap error ERR
 
-SSH_URL="http://192.168.200.254/authorized_keys"
+SSH_URL="http://192.168.255.254/authorized_keys"
 #Setup SSH key authentication for Ansible
 mkdir -p /home/cumulus/.ssh
 wget -O /home/cumulus/.ssh/authorized_keys $SSH_URL

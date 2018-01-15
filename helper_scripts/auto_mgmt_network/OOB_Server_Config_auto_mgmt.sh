@@ -40,7 +40,7 @@ install_puppet(){
     sed -i 's/-Xms2g/-Xms512m/g' /etc/default/puppetserver
     sed -i 's/-Xmx2g/-Xmx512m/g' /etc/default/puppetserver
     echo "*" > /etc/puppetlabs/puppet/autosign.conf
-    sed -i 's/192.168.200.254/192.168.200.254 puppet /g'>> /etc/hosts
+    sed -i 's/192.168.255.254/192.168.255.254 puppet /g'>> /etc/hosts
 }
 
 install_ansible(){
@@ -80,13 +80,13 @@ auto lo
 iface lo inet loopback
 
 
-auto vagrant
-iface vagrant inet dhcp
+auto eth0
+iface eth0 inet dhcp
 
 
 auto eth1
 iface eth1 inet static
-    address 192.168.200.254/24
+    address 192.168.255.254/24
 EOT
 
 echo " ### Overwriting DNS Server to 8.8.8.8 ###"
@@ -184,7 +184,7 @@ if [ $puppet -eq 1 ]; then
 sudo rm -rf /etc/puppetlabs/code/environments/production
 sudo ln -s  /home/cumulus/$REPONAME/puppet/ /etc/puppetlabs/code/environments/production
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-stdlib
-#sudo bash -c 'echo "certname = 192.168.200.254" >> /etc/puppetlabs/puppet/puppet.conf'
+#sudo bash -c 'echo "certname = 192.168.255.254" >> /etc/puppetlabs/puppet/puppet.conf'
 echo " ### Starting PUPPET Master ###"
 echo "     (this may take a while 30 secs or so...)"
 sudo systemctl restart puppetserver.service

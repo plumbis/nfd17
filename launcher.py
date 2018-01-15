@@ -10,7 +10,7 @@ output = []
 current_leaf = 1
 
 output.append("vagrant up oob-mgmt-server oob-mgmt-switch")
-
+output.append("vagrant up netq-ts")
 working_leaf_list = []
 
 while current_leaf <= leaf_count:

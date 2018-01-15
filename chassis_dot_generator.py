@@ -4,70 +4,46 @@
 leaf_count = 128
 chassis_list = ["chassis01", "chassis02", "chassis03", "chassis04"]
 linecard_list = ["lc1-1", "lc1-2", "lc2-1", "lc2-2", "lc3-1", "lc3-2", "lc4-1", "lc4-2"]
+fabriccard_list = ["fc1-1", "fc2-1", "fc3-1", "fc4-1"]
 
-leaf_attributes = "[function=\"leaf\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]"
+leaf_attributes = "[function=\"leaf\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\" "
+linecard_attributes = "[function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\" "
+
 output = []
 current_leaf = 1
 
 output.append("graph dc1 {")
+
+output.append("\"oob-mgmt-switch1\" [function=\"oob-switch\" vagrant=\"eth0\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/config_oob_switch.sh\" ]")
+output.append("\"oob-mgmt-switch2\" [function=\"oob-switch\" vagrant=\"eth0\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/config_oob_switch.sh\" ]")
+output.append("\"oob-mgmt-switch3\" [function=\"oob-switch\" vagrant=\"eth0\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/config_oob_switch.sh\" ]")
+output.append("\"oob-mgmt-switch4\" [function=\"oob-switch\" vagrant=\"eth0\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/config_oob_switch.sh\" ]")
+output.append("\"oob-mgmt-server\" [function=\"oob-server\" vagrant=\"eth0\" os=\"CumulusCommunity/vx_oob_server\" version=\"1.0.4\" memory=\"1024\" config=\"./helper_scripts/config_oob_server.sh\" mgmt_ip=\"192.168.255.254\" ]")
+
+mgmt_ip = 2
+
 while current_leaf <= leaf_count:
-    output.append(" \"leaf" + str("%02d" % current_leaf) + "\"" + " " + leaf_attributes)
+    output.append(" \"leaf" + str("%02d" % current_leaf) + "\"" + " " + leaf_attributes + "mgmt_ip=\"192.168.255." + str(mgmt_ip) + "\"]")
     current_leaf += 1
+    mgmt_ip += 1
 
 output.append("")
 
-output.append(" \"chassis01-lc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc1-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc2-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc3-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-lc4-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-fc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-fc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-fc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis01-fc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append("")
-output.append(" \"chassis02-lc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc1-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc2-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc3-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-lc4-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-fc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-fc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-fc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis02-fc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append("")
-output.append(" \"chassis03-lc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc1-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc2-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc3-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-lc4-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-fc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-fc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-fc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis03-fc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append("")
-output.append(" \"chassis04-lc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc1-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc2-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc3-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-lc4-2\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-fc1-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-fc2-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-fc3-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
-output.append(" \"chassis04-fc4-1\" [function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\"]")
+for chassis in chassis_list:
+    for linecard in linecard_list:
+        output.append(" \"" + chassis + "-" + linecard + "\" " +
+                     "[function=\"" + chassis + "-lc\"" +
+                     "os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\" " +
+                     "mgmt_ip=\"192.168.255." + str(mgmt_ip) + "\"]")
+        mgmt_ip += 1
 
+    for fabriccard in fabriccard_list:
+        #fabriccard_attributes = "[function=\"spine\" os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\" "
+        output.append(" \"" + chassis  + "-" + fabriccard + "\" " +
+                      "[function=\"" + chassis + "-fc\"" +
+                      "os=\"CumulusCommunity/cumulus-vx\" version=\"3.5.0\" memory=\"768\" config=\"./helper_scripts/extra_switch_config.sh\" " +
+                      "mgmt_ip=\"192.168.255." + str(mgmt_ip) + "\"]")
+        mgmt_ip += 1
 
 output.append("")
 output.append("")
@@ -605,6 +581,41 @@ output.append(" \"chassis04-lc4-2\":\"fp14\" -- \"chassis04-fc4-1\":\"fp30\"")
 output.append(" \"chassis04-lc4-2\":\"fp15\" -- \"chassis04-fc4-1\":\"fp31\"")
 
 output.append("")
+
+output.append("\"oob-mgmt-server\":\"eth1\" -- \"oob-mgmt-switch1\":\"swp1\"")
+output.append("\"oob-mgmt-switch2\":\"swp1\" -- \"oob-mgmt-switch1\":\"swp2\"")
+output.append("\"oob-mgmt-switch3\":\"swp1\" -- \"oob-mgmt-switch2\":\"swp2\"")
+output.append("\"oob-mgmt-switch4\":\"swp1\" -- \"oob-mgmt-switch3\":\"swp2\"")
+
+current_leaf = 1
+mgmt_port = 3
+while current_leaf <= 48:
+    output.append("\"oob-mgmt-switch1\":\"swp" + str(mgmt_port) + "\" -- \"leaf" + str("%02d" % current_leaf) + "\"" + ":" + "\"" + "eth0\"")
+    current_leaf += 1
+    mgmt_port += 1
+
+mgmt_port = 3
+while current_leaf <= 96:
+    output.append("\"oob-mgmt-switch2\":\"swp" + str(mgmt_port) + "\" -- \"leaf" + str("%02d" % current_leaf) + "\"" + ":" + "\"" + "eth0\"")
+    current_leaf += 1
+    mgmt_port += 1
+
+mgmt_port = 3
+while current_leaf <= leaf_count:
+    output.append("\"oob-mgmt-switch3\":\"swp" + str(mgmt_port) + "\" -- \"leaf" + str("%02d" % current_leaf) + "\"" + ":" + "\"" + "eth0\"")
+    current_leaf += 1
+    mgmt_port += 1
+
+mgmt_port = 3
+for chassis in chassis_list:
+    for linecard in linecard_list:
+        output.append("\"oob-mgmt-switch4\":\"swp" + str(mgmt_port) + "\" -- \"" + chassis + "-" + linecard + "\"" + ":" + "\"" + "eth0\"")
+        mgmt_port += 1
+
+    for fabriccard in fabriccard_list:
+        output.append("\"oob-mgmt-switch4\":\"swp" + str(mgmt_port) + "\" -- \"" + chassis + "-" + fabriccard + "\"" + ":" + "\"" + "eth0\"")
+        mgmt_port += 1
+
 output.append("}")
 
 print "\n".join(output)
