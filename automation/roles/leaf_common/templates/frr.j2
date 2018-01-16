@@ -16,6 +16,7 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
  bgp router-id {{ node[inventory_hostname]["interfaces"]["lo"]|replace("/32", "")}}
  neighbor FABRIC peer-group
  neighbor FABRIC remote-as external
+ neighbor FABRIC timers 60 240
 {% for interface in node[inventory_hostname]["bgp"]["peers"] -%}
  neighbor {{interface}} interface peer-group FABRIC
 {% endfor -%}
