@@ -1,0 +1,36 @@
+{% set bgp = node[ansible_hostname]["bgp"] -%}
+{% set interfaces = node[ansible_hostname]["interfaces"] -%}
+
+frr version 3.1+cl3u3
+frr defaults datacenter
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+log syslog informational
+!
+{% for interface in fabriccards["fabric_ports"] -%}
+interface {{interface}}
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+{% endfor %}
+router bgp {{ bgp["asn"] }}
+ bgp router-id {{ interfaces["lo"]["ipv4"]|replace("/32", "")}}
+ neighbor FABRIC peer-group
+ neighbor FABRIC remote-as external
+{% for interface in fabriccards["fabric_ports"] -%}
+ neighbor {{interface}} interface peer-group FABRIC
+{% endfor -%}
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor FABRIC activate
+ exit-address-family
+!
+line vty
+!

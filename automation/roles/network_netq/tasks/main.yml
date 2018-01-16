@@ -1,0 +1,38 @@
+---
+# return code 0 means it's running
+# return code 1 means it's not in the output of grep
+# other return code is unknown
+- name: Check if NTP is already in the vrf
+  shell: "vrf task list | grep ntpd"
+  register: ntp_vrf
+  failed_when: ntp_vrf.rc >= 2
+
+- name: Configure NTP in management VRF
+  command: "{{item}}"
+  with_items:
+    - systemctl stop ntp.service
+    - systemctl disable ntp.service
+    - systemctl start ntp@mgmt
+  when: ntp_vrf.rc != 0
+
+- name: Restart Rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+  when: netq_installed.changed
+
+- name: Restart Netqd
+  command: "{{ item }}"
+  with_items:
+    - systemctl stop netqd.service
+    - systemctl disable netqd.service
+    - systemctl enable netqd@mgmt.service
+    - systemctl start netqd@mgmt.service
+  when: netqd_vrf.rc == 1
+
+- name: Add netq server IP
+  command: netq config add server 192.168.0.253 vrf mgmt
+
+- name: Restart NetQ Agent
+  command: netq config restart agent
+

@@ -1,0 +1,7 @@
+---
+- name: Copy Quagga daemons file
+  copy:
+    src: daemons
+    dest: /etc/frr/daemons
+    backup: yes
+  notify: restart frr
