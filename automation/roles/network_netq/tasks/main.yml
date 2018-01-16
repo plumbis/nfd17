@@ -29,7 +29,7 @@
     - systemctl start netqd@mgmt.service
 
 - name: Add netq server IP
-  command: netq config add server 192.168.0.253 vrf mgmt
+  command: netq config add server 192.168.255.253 vrf mgmt
 
 - name: Restart NetQ Agent
   command: netq config restart agent
