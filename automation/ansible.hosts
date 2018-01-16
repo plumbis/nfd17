@@ -6,7 +6,7 @@ oob-mgmt-switch4
 oob-mgmt-switch3
 oob-mgmt-switch2
 
-[leafs]
+[leafs1]
 leaf01
 leaf02
 leaf03
@@ -39,6 +39,8 @@ leaf29
 leaf30
 leaf31
 leaf32
+
+[leafs2]
 leaf33
 leaf34
 leaf35
@@ -71,6 +73,8 @@ leaf61
 leaf62
 leaf63
 leaf64
+
+[leafs3]
 leaf65
 leaf66
 leaf67
@@ -103,6 +107,8 @@ leaf93
 leaf94
 leaf95
 leaf96
+
+[leafs4]
 leaf97
 leaf98
 leaf99
@@ -135,6 +141,12 @@ leaf125
 leaf126
 leaf127
 leaf128
+
+[leafs:children]
+leafs1
+leafs2
+leafs3
+leafs4
 
 [chassis01-lc]
 chassis01-lc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
