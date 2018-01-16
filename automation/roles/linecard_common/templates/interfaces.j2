@@ -13,13 +13,7 @@ iface mgmt
   address 127.0.0.1/8
   vrf-table auto
 
-{% for interface in node[ansible_hostname]["bgp"]["leafs"] -%}
-auto {{interface}}
-iface {{interface}}
-
-{% endfor %}
-
-{% for interface in linecards["fabric_ports"] -%}
+{% for interface in node[ansible_hostname]["bgp"]["peers"] -%}
 auto {{interface}}
 iface {{interface}}
 
