@@ -9,30 +9,30 @@ fabriccard_list = ["fc1-1", "fc2-1", "fc3-1", "fc4-1"]
 output = []
 current_leaf = 1
 
-output.append("vagrant up oob-mgmt-server oob-mgmt-switch1 oob-mgmt-switch2 oob-mgmt-switch3 oob-mgmt-switch4 && vagrant up netq-ts ")
+output.append("vagrant destroy -f netq-ts ")
 working_leaf_list = []
 
 while current_leaf <= leaf_count:
     working_leaf_list.append("leaf" + str("%02d" % current_leaf))
 
     if not current_leaf % 10:
-        output.append("vagrant up " +  " ".join(working_leaf_list) + " && ")
+        output.append("vagrant destroy -f " +  " ".join(working_leaf_list) + " && ")
         working_leaf_list = []
     current_leaf += 1
 
-output.append("vagrant up " +  " ".join(working_leaf_list) + " && ")
+output.append("vagrant destroy -f " +  " ".join(working_leaf_list) + " && ")
 
 for chassis in chassis_list:
     chassis_string = []
     for linecard in linecard_list:
         chassis_string.append(chassis + "-" + linecard + " ")
 
-    output.append("vagrant up " + " ".join(chassis_string) + " && ")
+    output.append("vagrant destroy -f " + " ".join(chassis_string) + " && ")
     chassis_string = []
 
     for fabriccard in fabriccard_list:
         chassis_string.append(chassis + "-" + fabriccard + " ")
 
-    output.append("vagrant up " + " ".join(chassis_string) + " && ")
+    output.append("vagrant destroy -f " + " ".join(chassis_string))
 
 print "\n".join(output)
