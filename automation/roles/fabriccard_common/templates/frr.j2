@@ -13,7 +13,7 @@ interface {{interface}}
 !
 {% endfor %}
 router bgp {{ node[ansible_hostname]["bgp"]["asn"]}}
- bgp router-id {{ node[ansible_hostname]["lo"]|replace("/32", "")}}
+ bgp router-id {{ node[ansible_hostname]["interfaces"]["lo"]|replace("/32", "")}}
  neighbor FABRIC peer-group
  neighbor FABRIC remote-as external
 {% for interface in node[ansible_hostname]["bgp"]["peers"] -%}
