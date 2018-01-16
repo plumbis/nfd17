@@ -7,17 +7,13 @@ function error() {
 }
 trap error ERR
 
+echo "deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.2" >> /etc/apt/sources.list
+apt-get -y update
+apt-get -y install cumulus-netq
 SSH_URL="http://192.168.255.254/authorized_keys"
 #Setup SSH key authentication for Ansible
 mkdir -p /home/cumulus/.ssh
 wget -O /home/cumulus/.ssh/authorized_keys $SSH_URL
-sed -i '/iface eth0/a \ vrf mgmt' /etc/network/interfaces
-cat <<EOT >> /etc/network/interfaces
-auto mgmt
-iface mgmt
-  address 127.0.0.1/8
-  vrf-table auto
-EOT
 
 echo "cumulus ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/10_cumulus
 
