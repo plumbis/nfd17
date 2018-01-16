@@ -60,6 +60,9 @@ for chassis in chassis_list:
             peers.append("swp" + str(swp))
             peers.append("fp" + str(swp - 1))
 
+            inventory[hostname] = {"interfaces": {"lo": v4_addr},
+                                                      "bgp" : {"asn": str(asn), "peers": peers}
+                                                     }
 
         ip += 1
         asn += 1
