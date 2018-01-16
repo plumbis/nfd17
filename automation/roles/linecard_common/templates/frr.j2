@@ -12,12 +12,6 @@ interface {{interface}}
  no ipv6 nd suppress-ra
 !
 {% endfor %}
-
-interface {{interface}}
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-{% endfor %}
 router bgp {{ node[ansible_hostname]["bgp"]["asn"] }}
  bgp router-id {{ node[ansible_hostname]["interfaces"]["lo"]|replace("/32", "")}}
  neighbor FABRIC peer-group
