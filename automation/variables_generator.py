@@ -69,7 +69,7 @@ for chassis in chassis_list:
 
     for fabriccard in fabriccard_list:
         hostname = chassis + "-" + fabriccard
-        v4_addr = subnet + str(current_leaf) + "/32"
+        v4_addr = subnet + str(ip) + "/32"
         peers = []
         for fp in range(0,32):
             peers.append("fp" + str(fp))

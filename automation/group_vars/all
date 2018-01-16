@@ -36,7 +36,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.137/32
   chassis01-fc2-1:
     bgp:
       asn: '64648'
@@ -74,7 +74,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.138/32
   chassis01-fc3-1:
     bgp:
       asn: '64648'
@@ -112,7 +112,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.139/32
   chassis01-fc4-1:
     bgp:
       asn: '64648'
@@ -150,7 +150,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.140/32
   chassis01-lc1-1:
     bgp:
       asn: '64640'
@@ -492,7 +492,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.149/32
   chassis02-fc2-1:
     bgp:
       asn: '64657'
@@ -530,7 +530,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.150/32
   chassis02-fc3-1:
     bgp:
       asn: '64657'
@@ -568,7 +568,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.151/32
   chassis02-fc4-1:
     bgp:
       asn: '64657'
@@ -606,7 +606,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.152/32
   chassis02-lc1-1:
     bgp:
       asn: '64649'
@@ -948,7 +948,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.161/32
   chassis03-fc2-1:
     bgp:
       asn: '64666'
@@ -986,7 +986,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.162/32
   chassis03-fc3-1:
     bgp:
       asn: '64666'
@@ -1024,7 +1024,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.163/32
   chassis03-fc4-1:
     bgp:
       asn: '64666'
@@ -1062,7 +1062,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.164/32
   chassis03-lc1-1:
     bgp:
       asn: '64658'
@@ -1404,7 +1404,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.173/32
   chassis04-fc2-1:
     bgp:
       asn: '64675'
@@ -1442,7 +1442,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.174/32
   chassis04-fc3-1:
     bgp:
       asn: '64675'
@@ -1480,7 +1480,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.175/32
   chassis04-fc4-1:
     bgp:
       asn: '64675'
@@ -1518,7 +1518,7 @@ node:
       - fp30
       - fp31
     interfaces:
-      lo: 10.0.0.129/32
+      lo: 10.0.0.176/32
   chassis04-lc1-1:
     bgp:
       asn: '64667'
