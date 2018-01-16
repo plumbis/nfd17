@@ -19,7 +19,6 @@
   service:
     name: rsyslog
     state: restarted
-  when: netq_installed.changed
 
 - name: Restart Netqd
   command: "{{ item }}"
@@ -28,7 +27,6 @@
     - systemctl disable netqd.service
     - systemctl enable netqd@mgmt.service
     - systemctl start netqd@mgmt.service
-  when: netqd_vrf.rc == 1
 
 - name: Add netq server IP
   command: netq config add server 192.168.0.253 vrf mgmt
