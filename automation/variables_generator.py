@@ -82,4 +82,5 @@ for chassis in chassis_list:
 
     asn += 1
 
-print yaml.dump(inventory, default_flow_style=False)
+output = {"node": inventory}
+print yaml.dump(output, default_flow_style=False)
