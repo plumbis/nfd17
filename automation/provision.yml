@@ -1,6 +1,7 @@
 ---
 - hosts: linecards
   become: yes
+  gather_facts: no
   tasks:
   roles:
     - network_common
@@ -11,6 +12,7 @@
 
 - hosts: fabriccards
   become: yes
+  gather_facts: no
   roles:
     - network_common
     - fabriccard_common
@@ -20,6 +22,7 @@
 
 - hosts: leafs
   become: yes
+  gather_facts: no
   roles:
     - network_common
     - leaf_common
