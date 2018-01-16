@@ -1,7 +1,7 @@
 # The loopback network interface
 auto lo
 iface lo inet loopback
-   address {{node[ansible_hostname]["interfaces"]["lo"]["ipv4"]}}
+   address {{node[ansible_hostname]["interfaces"]["lo"]}}
 
 
 auto eth0
