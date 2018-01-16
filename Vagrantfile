@@ -18981,7 +18981,7 @@ end
 
     device.vm.provider :libvirt do |v|
       v.nic_model_type = 'e1000'
-      v.memory = 1024
+      v.memory = 8192
       v.cpus = 2
     end
     #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
