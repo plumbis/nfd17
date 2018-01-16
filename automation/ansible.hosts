@@ -1,3 +1,4 @@
+netq-ts
 
 [oob-mgmt-switches]
 oob-mgmt-switch1
@@ -236,5 +237,3 @@ chassis04
 [network:children]
 leafs
 spines
-
-netq-ts
