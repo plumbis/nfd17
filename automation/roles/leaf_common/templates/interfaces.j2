@@ -1,7 +1,7 @@
 # The loopback network interface
 auto lo
 iface lo inet loopback
-   address {{node[ansible_hostname]["interfaces"]["lo"]}}
+   address {{node[inventory_hostname]["interfaces"]["lo"]}}
 
 
 auto eth0
@@ -13,7 +13,7 @@ iface mgmt
   address 127.0.0.1/8
   vrf-table auto
 
-{% for interface in node[ansible_hostname]["bgp"]["peers"] -%}
+{% for interface in node[inventory_hostname]["bgp"]["peers"] -%}
 auto {{interface}}
 iface {{interface}}
 
