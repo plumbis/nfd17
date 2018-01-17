@@ -1,8 +1,8 @@
 graph dc1 {
-"oob-mgmt-switch1" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
-"oob-mgmt-switch2" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
-"oob-mgmt-switch3" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
-"oob-mgmt-switch4" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
+"oob-mgmt-switch1" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="256" config="./helper_scripts/config_oob_switch.sh" ]
+"oob-mgmt-switch2" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="256" config="./helper_scripts/config_oob_switch.sh" ]
+"oob-mgmt-switch3" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="256" config="./helper_scripts/config_oob_switch.sh" ]
+"oob-mgmt-switch4" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="256" config="./helper_scripts/config_oob_switch.sh" ]
 "oob-mgmt-server" [function="oob-server" vagrant="eth0" memory="1024" config="./helper_scripts/config_oob_server.sh" mgmt_ip="192.168.255.254" ]
 "netq-ts" [function="host" os="cumulus/ts" memory="1024" mgmt_ip="192.168.255.253" ]
  "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.2"]
@@ -183,7 +183,15 @@ graph dc1 {
  "chassis04-fc3-1" [function="chassis04-fc"os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.176"]
  "chassis04-fc4-1" [function="chassis04-fc"os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.177"]
 
+"host01" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.178" ]
+"host02" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.179" ]
+"host03" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.180" ]
+"host04" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.181" ]
 
+"host01":"eth1" -- "leaf01":"swp5"
+"host02":"eth1" -- "leaf02":"swp5"
+"host03":"eth1" -- "leaf03":"swp5"
+"host04":"eth1" -- "leaf04":"swp5"
 
  "chassis01-lc1-1":"swp1" -- "leaf01":"swp1"
  "chassis01-lc1-1":"swp2" -- "leaf02":"swp1"
@@ -1394,4 +1402,8 @@ graph dc1 {
 "oob-mgmt-switch4":"swp48" -- "chassis04-fc2-1":"eth0"
 "oob-mgmt-switch4":"swp49" -- "chassis04-fc3-1":"eth0"
 "oob-mgmt-switch4":"swp50" -- "chassis04-fc4-1":"eth0"
+"oob-mgmt-switch4":"swp51" -- "host01":"eth0"
+"oob-mgmt-switch4":"swp52" -- "host02":"eth0"
+"oob-mgmt-switch4":"swp53" -- "host03":"eth0"
+"oob-mgmt-switch4":"swp54" -- "host04":"eth0"
 }

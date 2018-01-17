@@ -7,9 +7,6 @@ function error() {
 }
 trap error ERR
 
-echo "deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.2" >> /etc/apt/sources.list
-apt-get -y update
-apt-get -y install cumulus-netq
 SSH_URL="http://192.168.255.254/authorized_keys"
 #Setup SSH key authentication for Ansible
 mkdir -p /home/cumulus/.ssh
