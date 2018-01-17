@@ -184,14 +184,22 @@ graph dc1 {
  "chassis04-fc4-1" [function="chassis04-fc"os="CumulusCommunity/cumulus-vx" version="3.5.0" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.255.177"]
 
 "host01" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.178" ]
-"host02" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.179" ]
-"host03" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.180" ]
-"host04" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.181" ]
+"host17" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.179" ]
+"host33" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.180" ]
+"host49" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.181" ]
+"host65" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.182" ]
+"host81" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.183" ]
+"host97" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.184" ]
+"host113" [function="host" os="yk0/ubuntu-xenial" memory="512" mgmt_ip="192.168.255.185" ]
 
 "host01":"eth1" -- "leaf01":"swp5"
-"host02":"eth1" -- "leaf02":"swp5"
-"host03":"eth1" -- "leaf03":"swp5"
-"host04":"eth1" -- "leaf04":"swp5"
+"host17":"eth1" -- "leaf17":"swp5"
+"host33":"eth1" -- "leaf33":"swp5"
+"host49":"eth1" -- "leaf49":"swp5"
+"host65":"eth1" -- "leaf65":"swp5"
+"host81":"eth1" -- "leaf81":"swp5"
+"host97":"eth1" -- "leaf97":"swp5"
+"host113":"eth1" -- "leaf113":"swp5"
 
  "chassis01-lc1-1":"swp1" -- "leaf01":"swp1"
  "chassis01-lc1-1":"swp2" -- "leaf02":"swp1"
@@ -1403,7 +1411,11 @@ graph dc1 {
 "oob-mgmt-switch4":"swp49" -- "chassis04-fc3-1":"eth0"
 "oob-mgmt-switch4":"swp50" -- "chassis04-fc4-1":"eth0"
 "oob-mgmt-switch4":"swp51" -- "host01":"eth0"
-"oob-mgmt-switch4":"swp52" -- "host02":"eth0"
-"oob-mgmt-switch4":"swp53" -- "host03":"eth0"
-"oob-mgmt-switch4":"swp54" -- "host04":"eth0"
+"oob-mgmt-switch4":"swp52" -- "host17":"eth0"
+"oob-mgmt-switch4":"swp53" -- "host33":"eth0"
+"oob-mgmt-switch4":"swp54" -- "host49":"eth0"
+"oob-mgmt-switch4":"swp55" -- "host65":"eth0"
+"oob-mgmt-switch4":"swp56" -- "host81":"eth0"
+"oob-mgmt-switch4":"swp57" -- "host97":"eth0"
+"oob-mgmt-switch4":"swp58" -- "host113":"eth0"
 }

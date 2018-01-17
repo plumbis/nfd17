@@ -249,3 +249,13 @@ chassis04
 [network:children]
 leafs
 spines
+
+[hosts]
+host49
+host33
+host113
+host81
+host01
+host97
+host17
+host65

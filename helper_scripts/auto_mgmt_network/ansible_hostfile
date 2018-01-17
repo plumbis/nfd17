@@ -8,9 +8,9 @@
 
 [oob-switch]
 oob-mgmt-switch1 ansible_host=192.168.255.1 ansible_user=cumulus
-oob-mgmt-switch4 ansible_host=192.168.255.182 ansible_user=cumulus
-oob-mgmt-switch3 ansible_host=192.168.255.183 ansible_user=cumulus
-oob-mgmt-switch2 ansible_host=192.168.255.184 ansible_user=cumulus
+oob-mgmt-switch4 ansible_host=192.168.255.186 ansible_user=cumulus
+oob-mgmt-switch3 ansible_host=192.168.255.187 ansible_user=cumulus
+oob-mgmt-switch2 ansible_host=192.168.255.188 ansible_user=cumulus
 
 
 
@@ -40,7 +40,6 @@ leaf47 ansible_host=192.168.255.48 ansible_user=cumulus
 leaf44 ansible_host=192.168.255.45 ansible_user=cumulus
 leaf45 ansible_host=192.168.255.46 ansible_user=cumulus
 leaf87 ansible_host=192.168.255.88 ansible_user=cumulus
-leaf67 ansible_host=192.168.255.68 ansible_user=cumulus
 leaf59 ansible_host=192.168.255.60 ansible_user=cumulus
 leaf58 ansible_host=192.168.255.59 ansible_user=cumulus
 leaf51 ansible_host=192.168.255.52 ansible_user=cumulus
@@ -49,6 +48,7 @@ leaf53 ansible_host=192.168.255.54 ansible_user=cumulus
 leaf52 ansible_host=192.168.255.53 ansible_user=cumulus
 leaf54 ansible_host=192.168.255.55 ansible_user=cumulus
 leaf57 ansible_host=192.168.255.58 ansible_user=cumulus
+leaf55 ansible_host=192.168.255.56 ansible_user=cumulus
 leaf75 ansible_host=192.168.255.76 ansible_user=cumulus
 leaf74 ansible_host=192.168.255.75 ansible_user=cumulus
 leaf79 ansible_host=192.168.255.80 ansible_user=cumulus
@@ -63,12 +63,13 @@ leaf121 ansible_host=192.168.255.122 ansible_user=cumulus
 leaf122 ansible_host=192.168.255.123 ansible_user=cumulus
 leaf123 ansible_host=192.168.255.124 ansible_user=cumulus
 leaf128 ansible_host=192.168.255.129 ansible_user=cumulus
+leaf14 ansible_host=192.168.255.15 ansible_user=cumulus
 leaf65 ansible_host=192.168.255.66 ansible_user=cumulus
 leaf66 ansible_host=192.168.255.67 ansible_user=cumulus
 leaf64 ansible_host=192.168.255.65 ansible_user=cumulus
 leaf110 ansible_host=192.168.255.111 ansible_user=cumulus
 leaf113 ansible_host=192.168.255.114 ansible_user=cumulus
-leaf112 ansible_host=192.168.255.113 ansible_user=cumulus
+leaf67 ansible_host=192.168.255.68 ansible_user=cumulus
 leaf60 ansible_host=192.168.255.61 ansible_user=cumulus
 leaf61 ansible_host=192.168.255.62 ansible_user=cumulus
 leaf62 ansible_host=192.168.255.63 ansible_user=cumulus
@@ -78,14 +79,13 @@ leaf118 ansible_host=192.168.255.119 ansible_user=cumulus
 leaf68 ansible_host=192.168.255.69 ansible_user=cumulus
 leaf69 ansible_host=192.168.255.70 ansible_user=cumulus
 leaf114 ansible_host=192.168.255.115 ansible_user=cumulus
-leaf06 ansible_host=192.168.255.7 ansible_user=cumulus
 leaf07 ansible_host=192.168.255.8 ansible_user=cumulus
 leaf04 ansible_host=192.168.255.5 ansible_user=cumulus
 leaf05 ansible_host=192.168.255.6 ansible_user=cumulus
 leaf02 ansible_host=192.168.255.3 ansible_user=cumulus
 leaf03 ansible_host=192.168.255.4 ansible_user=cumulus
 leaf01 ansible_host=192.168.255.2 ansible_user=cumulus
-leaf55 ansible_host=192.168.255.56 ansible_user=cumulus
+leaf112 ansible_host=192.168.255.113 ansible_user=cumulus
 leaf63 ansible_host=192.168.255.64 ansible_user=cumulus
 leaf08 ansible_host=192.168.255.9 ansible_user=cumulus
 leaf09 ansible_host=192.168.255.10 ansible_user=cumulus
@@ -108,7 +108,7 @@ leaf103 ansible_host=192.168.255.104 ansible_user=cumulus
 leaf100 ansible_host=192.168.255.101 ansible_user=cumulus
 leaf101 ansible_host=192.168.255.102 ansible_user=cumulus
 leaf15 ansible_host=192.168.255.16 ansible_user=cumulus
-leaf14 ansible_host=192.168.255.15 ansible_user=cumulus
+leaf06 ansible_host=192.168.255.7 ansible_user=cumulus
 leaf17 ansible_host=192.168.255.18 ansible_user=cumulus
 leaf16 ansible_host=192.168.255.17 ansible_user=cumulus
 leaf11 ansible_host=192.168.255.12 ansible_user=cumulus
@@ -155,8 +155,12 @@ leaf92 ansible_host=192.168.255.93 ansible_user=cumulus
 
 
 [host]
+host49 ansible_host=192.168.255.181 ansible_user=cumulus
 netq-ts ansible_host=192.168.255.253 ansible_user=cumulus
+host33 ansible_host=192.168.255.180 ansible_user=cumulus
+host113 ansible_host=192.168.255.185 ansible_user=cumulus
+host81 ansible_host=192.168.255.183 ansible_user=cumulus
 host01 ansible_host=192.168.255.178 ansible_user=cumulus
-host02 ansible_host=192.168.255.179 ansible_user=cumulus
-host03 ansible_host=192.168.255.180 ansible_user=cumulus
-host04 ansible_host=192.168.255.181 ansible_user=cumulus
+host97 ansible_host=192.168.255.184 ansible_user=cumulus
+host17 ansible_host=192.168.255.179 ansible_user=cumulus
+host65 ansible_host=192.168.255.182 ansible_user=cumulus
