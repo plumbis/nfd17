@@ -5,7 +5,8 @@ auto eth0
 iface eth0 inet dhcp
 
 auto eth1
-iface eth1 inet manual
+iface eth1 inet static
+  mtu 9000
   address {{node[inventory_hostname]["ip"]}}
   post-up ip route add 10.1.33.0/24 via {{node[inventory_hostname]["gateway"]}}
   post-up ip route add 10.17.49.0/24 via {{node[inventory_hostname]["gateway"]}}
