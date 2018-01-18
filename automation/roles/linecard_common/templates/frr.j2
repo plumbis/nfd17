@@ -32,7 +32,7 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
 !
 address-family l2vpn evpn
  {% for interface in "linecard_backplane" -%}
-  neighbor interface activate
+  neighbor {{interface}} activate
   {% endfor -%}
 exit-address-family
 line vty
