@@ -1,6 +1,5 @@
-linecard_backplane = [fp0, fp1, fp2, fp3, fp4, fp5, fp6, fp7, fp8, fp9, fp10, fp11, fp12, fp13, fp14, fp15]
-
 node:
+ linecard_backplane = [fp0, fp1, fp2, fp3, fp4, fp5, fp6, fp7, fp8, fp9, fp10, fp11, fp12, fp13, fp14, fp15]
   chassis01-fc1-1:
     bgp:
       asn: '64648'
