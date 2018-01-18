@@ -5,6 +5,8 @@
     dest: /etc/network/interfaces
     backup: yes
   notify: reload networking
+  tags:
+    - interfaces
 
 - name: Copy FRR configuration
   template:
@@ -12,3 +14,5 @@
     dest: /etc/frr/frr.conf
     backup: yes
   notify: reload frr
+  tags:
+    - frr
