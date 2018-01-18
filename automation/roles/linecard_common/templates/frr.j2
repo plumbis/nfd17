@@ -31,6 +31,7 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
  exit-address-family
 !
 address-family l2vpn evpn
+  neighbor swp1 activate
  {% for interface in node["linecard_backplane"] -%}
   neighbor {{interface}} activate
   {% endfor -%}
