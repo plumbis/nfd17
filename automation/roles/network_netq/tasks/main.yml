@@ -6,6 +6,8 @@
   shell: "vrf task list | grep ntpd"
   register: ntp_vrf
   failed_when: ntp_vrf.rc >= 2
+  tags:
+    - netq
 
 - name: Configure NTP in management VRF
   command: "{{item}}"
@@ -14,11 +16,15 @@
     - systemctl disable ntp.service
     - systemctl start ntp@mgmt
   when: ntp_vrf.rc != 0
+  tags:
+    - netq
 
 - name: Restart Rsyslog
   service:
     name: rsyslog
     state: restarted
+  tags:
+    - netq
 
 - name: Restart Netqd
   command: "{{ item }}"
@@ -27,10 +33,16 @@
     - systemctl disable netqd.service
     - systemctl enable netqd@mgmt.service
     - systemctl start netqd@mgmt.service
+  tags:
+    - netq
 
 - name: Add netq server IP
   command: netq config add server 192.168.255.253 vrf mgmt
+  tags:
+    - netq
 
 - name: Restart NetQ Agent
   command: netq config restart agent
+  tags:
+    - netq
 
