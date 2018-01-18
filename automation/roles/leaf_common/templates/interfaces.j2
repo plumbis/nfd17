@@ -19,7 +19,7 @@ iface {{interface}}
    mtu 9216
 {% endfor %}
 
-{% if evpn %}
+{% if node[inventory_hostname]["evpn"] is defined %}
 auto swp5
 iface swp5
   mtu 9000
