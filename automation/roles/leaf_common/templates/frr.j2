@@ -29,7 +29,7 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   redistribute connected
   neighbor FABRIC activate
  exit-address-family
-{% if evpn %}
+{% if node[inventory_hostname]["evpn"] is defined %}
  !
  address-family l2vpn evpn
    neighbor FABRIC activate
