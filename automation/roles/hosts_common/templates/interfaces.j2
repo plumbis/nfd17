@@ -6,8 +6,8 @@ iface eth0 inet dhcp
 
 auto eth1
 iface eth1 inet manual
-  address {{[inventory_hostname]["ip"]}}
-  post-up ip route add 10.1.33.0/24 via {{[inventory_hostname]["gateway"]}}
-  post-up ip route add 10.17.49.0/24 via {{[inventory_hostname]["gateway"]}}
-  post-up ip route add 10.65.97.0/24 via {{[inventory_hostname]["gateway"]}}
-  post-up ip route add 10.81.113.0/24 via {{[inventory_hostname]["gateway"]}}
+  address {{node[inventory_hostname]["ip"]}}
+  post-up ip route add 10.1.33.0/24 via {{node[inventory_hostname]["gateway"]}}
+  post-up ip route add 10.17.49.0/24 via {{node[inventory_hostname]["gateway"]}}
+  post-up ip route add 10.65.97.0/24 via {{node[inventory_hostname]["gateway"]}}
+  post-up ip route add 10.81.113.0/24 via {{node[inventory_hostname]["gateway"]}}
