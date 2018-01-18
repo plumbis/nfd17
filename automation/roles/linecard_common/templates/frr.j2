@@ -25,11 +25,6 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor FABRIC activate
- exit-address-family
-!
 address-family l2vpn evpn
   neighbor swp1 activate
  {% for interface in node["linecard_backplane"] -%}
