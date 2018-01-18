@@ -16,5 +16,36 @@ iface mgmt
 {% for interface in node[inventory_hostname]["bgp"]["peers"] -%}
 auto {{interface}}
 iface {{interface}}
-
+   mtu 9216
 {% endfor %}
+
+{% if evpn %}
+auto swp5
+iface swp5
+  mtu 9000
+  bridge-access {{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+
+auto vlan{{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+iface vlan{{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+  address {{node[inventory_hostname]["evpn"]["ip"] }}
+  address-virtual {{node[inventory_hostname]["evpn"]["mac"] }} {{node[inventory_hostname]["evpn"]["anycast"] }}
+  vlan-id {{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+  vlan-raw-device bridge
+
+auto vni{{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+iface vni{{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+  mtu 9000
+  vxlan-id {{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+  vxlan-local-tunnelip {{{{node[inventory_hostname]["interfaces"]["lo"] }}}}
+  bridge-access {{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+  bridge-learning off
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+  bridge-arp-nd-suppress on
+
+auto bridge
+iface bridge
+  bridge-vlan-aware yes
+  bridge-ports swp5 vni{{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+  bridge-vids {{{{node[inventory_hostname]["evpn"]["vlan"] }}}}
+{% endif %}

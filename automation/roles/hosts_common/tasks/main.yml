@@ -1,0 +1,52 @@
+---
+- name: Copy interfaces configuration
+  template:
+    src: interfaces.j2
+    dest: /etc/network/interfaces
+    backup: yes
+  notify: apply networking
+
+- name: Configure Ping Cronjob
+  cron:
+    name: "server ping"
+    job: "ping -c 1 {{[inventory_hostname]['peer']}}"
+  become: yes
+  become_user: cumulus
+
+- name: Add Cumulus Apt Key
+  apt_key:
+    url: "https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey"
+    state: present
+
+- name: Add Cumulus Repo
+  apt_repository:
+    repo: deb https://apps3.cumulusnetworks.com/repos/deb xenial netq-1.2
+    state: present
+    update_cache: no
+
+- name: Install NetQ
+  apt:
+    name: cumulus-netq
+    update_cache: yes
+  register: install-netq
+
+- name: Restart Rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+
+- name: Enable NetQ Service
+  service:
+    name: netqd
+    enabled: yes
+    state: started
+
+- name: Pause to let NetQ service to start
+  pause:
+    seconds: 5
+
+- name: Add netq server IP
+  command: netq config add server 192.168.0.253
+
+- name: Restart NetQ Agent
+  command: netq config restart agent

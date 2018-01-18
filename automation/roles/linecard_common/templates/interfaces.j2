@@ -16,5 +16,6 @@ iface mgmt
 {% for interface in node[inventory_hostname]["bgp"]["peers"] -%}
 auto {{interface}}
 iface {{interface}}
+  mtu 9216
 
 {% endfor %}

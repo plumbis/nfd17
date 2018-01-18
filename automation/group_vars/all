@@ -1,3 +1,5 @@
+linecard_backplane = [fp0, fp1, fp2, fp3, fp4, fp5, fp6, fp7, fp8, fp9, fp10, fp11, fp12, fp13, fp14, fp15]
+
 node:
   chassis01-fc1-1:
     bgp:
@@ -1833,6 +1835,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.1/32
+    evpn:
+      anycast: 10.1.33.1
+      ip: 10.1.33.100/24
+      mac: 44:39:39:ff:01:33
+      vlan: 113
   leaf02:
     bgp:
       asn: '64513'
@@ -2073,6 +2080,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.113/32
+    evpn:
+      anycast: 10.81.113.1
+      ip: 10.81.113.213/24
+      mac: 44:39:39:ff:81:13
+      vlan: 813
   leaf114:
     bgp:
       asn: '64625'
@@ -2283,6 +2295,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.17/32
+    evpn:
+      anycast: 10.17.49.1
+      ip: 10.17.49.117/24
+      mac: 44:39:39:ff:17:49
+      vlan: 749
   leaf18:
     bgp:
       asn: '64529'
@@ -2443,6 +2460,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.33/32
+    evpn:
+      anycast: 10.1.33.1
+      ip: 10.1.33.133/24
+      mac: 44:39:39:ff:01:33
+      vlan: 113
   leaf34:
     bgp:
       asn: '64545'
@@ -2603,6 +2625,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.49/32
+    evpn:
+      anycast: 10.17.49.1
+      ip: 10.17.49.149/24
+      mac: 44:39:39:ff:17:49
+      vlan: 749
   leaf50:
     bgp:
       asn: '64561'
@@ -2763,6 +2790,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.65/32
+    evpn:
+      anycast: 10.65.97.1
+      ip: 10.65.97.165/24
+      mac: 44:39:39:ff:65:97
+      vlan: 697
   leaf66:
     bgp:
       asn: '64577'
@@ -2923,6 +2955,10 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.81/32
+    evpn:
+      anycast: 10.81.113.1
+      ip: 10.81.113.181/24
+      mac: 44:39:39:ff:81:13
   leaf82:
     bgp:
       asn: '64593'
@@ -3083,6 +3119,11 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.97/32
+    evpn:
+      anycast: 10.65.97.1
+      ip: 10.65.97.197/24
+      mac: 44:39:39:ff:65:97
+      vlan: 697
   leaf98:
     bgp:
       asn: '64609'

@@ -16,3 +16,9 @@
   service:
     name: lldpd
     state: restarted
+
+- name: apply networking
+  command: /sbin/shutdown -r +1
+  async: 0
+  poll: 0
+  ignore_errors: true

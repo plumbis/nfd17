@@ -30,5 +30,10 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   neighbor FABRIC activate
  exit-address-family
 !
+address-family l2vpn evpn
+ {% for interface in linecard_backplane -%}
+  neighbor interface activate
+  {% endfor -%}
+exit-address-family
 line vty
 !

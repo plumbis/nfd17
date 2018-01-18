@@ -29,6 +29,13 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   redistribute connected
   neighbor FABRIC activate
  exit-address-family
+{% if evpn %}
+ !
+ address-family l2vpn evpn
+   neighbor FABRIC activate
+   advertise-all-vni
+ exit-address-family
+ {% endif %}
 !
 line vty
 !
