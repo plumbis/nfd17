@@ -1,5 +1,6 @@
 ---
-linecard_backplane:
+node:
+  linecard_backplane:
   - fp0
   - fp1
   - fp2
@@ -16,7 +17,6 @@ linecard_backplane:
   - fp13
   - fp14
   - fp15
-node:
   chassis01-fc1-1:
     bgp:
       asn: '64648'
