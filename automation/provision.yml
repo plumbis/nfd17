@@ -34,6 +34,6 @@
   become: yes
   gather_facts: no
   roles:
-    - host_common
+    - hosts_common
   handlers:
     - include: handlers/main.yml
