@@ -1,7 +1,7 @@
-#Network Field Day 17 Demo
+# Network Field Day 17 Demo
 =====================
 
-This is a large scale Cumulus Vx topology, consisting of 128 leafs and 4 128-port chassis spines.
+This is a large scale Cumulus Vx topology, consisting of 8 servers, 128 leafs and 4 128-port chassis spines.
 
 Each chassis is modeled after the Facebook Backpack. Each line card is actually two independent 32-port switches.
 Each fabric card is 4 independent 32-port switches.
