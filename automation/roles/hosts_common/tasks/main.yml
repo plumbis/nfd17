@@ -9,7 +9,7 @@
 - name: Configure Ping Cronjob
   cron:
     name: "server ping"
-    job: "ping -c 1 {{[inventory_hostname]['peer']}}"
+    job: "ping -c 1 {{node[inventory_hostname]['peer']}}"
   become: yes
   become_user: cumulus
 
