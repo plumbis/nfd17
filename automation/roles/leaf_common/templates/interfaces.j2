@@ -36,7 +36,7 @@ auto vni{{node[inventory_hostname]["evpn"]["vlan"] }}
 iface vni{{node[inventory_hostname]["evpn"]["vlan"] }}
   mtu 9000
   vxlan-id {{node[inventory_hostname]["evpn"]["vlan"] }}
-  vxlan-local-tunnelip {{node[inventory_hostname]["interfaces"]["lo"] }}
+  vxlan-local-tunnelip {{node[inventory_hostname]["interfaces"]["lo"]|replace("/32", "") }}
   bridge-access {{node[inventory_hostname]["evpn"]["vlan"] }}
   bridge-learning off
   mstpctl-bpduguard yes
