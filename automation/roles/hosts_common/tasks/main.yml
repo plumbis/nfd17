@@ -12,7 +12,8 @@
     job: "ping -c 1 {{node[inventory_hostname]['peer']}}"
   become: yes
   become_user: cumulus
-  tag: cron
+  tags:
+    - cron
 
 - name: Add Cumulus Apt Key
   apt_key:
