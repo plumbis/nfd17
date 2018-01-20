@@ -22,7 +22,7 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
 {% endfor -%}
  !
  address-family ipv4 unicast
-  redistribute connected
+  redistribute connected route-map loopbacks
  exit-address-family
  !
 {% if node[inventory_hostname]["evpn"] is defined %}
@@ -32,6 +32,9 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
    advertise-all-vni
  exit-address-family
  {% endif %}
+!
+route-map loopbacks permit 10
+ match interface lo
 !
 line vty
 !
