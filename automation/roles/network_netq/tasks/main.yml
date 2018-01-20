@@ -1,4 +1,15 @@
 ---
+- name: Add Cumulus Repo
+  apt_repository:
+    repo: deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.2
+    state: present
+
+- name: Upgrade NetQ to 1.2.1
+  apt:
+    name: cumulus-netq
+    state: latest
+    update_cache: no
+
 # return code 0 means it's running
 # return code 1 means it's not in the output of grep
 # other return code is unknown
