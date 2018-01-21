@@ -5,8 +5,8 @@ import argparse
 import json
 
 def run_command(host, command):
-    process = subprocess.Popen(
-        "ssh " + host + " " + command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    complete_command = "ssh " + host + " " + command
+    process = subprocess.Popen(complete_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     stdout, stderr = process.communicate()
 
