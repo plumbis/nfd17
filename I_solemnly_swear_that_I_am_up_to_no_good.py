@@ -53,12 +53,14 @@ def get_agents(agent_type):
 
 def get_interfaces(victim):
     """Get a list of a device's interfaces.
-    Excludes special interfaces: ["eth0", "lo", "vagrant", "bridge", "mgmt"]
+    Excludes special interfaces: ["eth0", "lo", "vagrant", "bridge", "mgmt", "swp5"]
     """
     interface_json = json.loads(run_command(
         victim, "netq " + victim + " show interfaces json"))["link"]
 
-    exclude_list = ["eth0", "lo", "vagrant", "bridge", "mgmt"]
+    # swp5 is a host facing interface
+    exclude_list = ["eth0", "lo", "vagrant", "bridge", "mgmt", "swp5"]
+
     interface_list = []
     # Exclude loopback and eth0
     for interface in interface_json:
