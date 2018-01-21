@@ -5,15 +5,17 @@ import argparse
 import json
 
 def run_command(host, command):
-    process = subprocess.Popen("ssh " + host + " " + command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(
+        "ssh " + host + " " + command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     stdout, stderr = process.communicate()
 
     if stderr:
         print "Error running command " + command + " on host " + host + ". Error: " + stderr
+        exit(1)
+        return False
 
-    else:
-        return stdout
+    return stdout
 
 def cli_commands():
     parser = argparse.ArgumentParser(description="A simple chaos-monkey like application using Cumulus NetQ")
@@ -21,7 +23,7 @@ def cli_commands():
     parser.add_argument("-b", "--break", choices=["mtu", "evpn", "bgp", "interface", "routerid"],
                         help="What to break?")
 
-    parser.add_argument("-v", "--victims", help="How many hosts to break?", action="strue_true")
+    parser.add_argument("-v", "--victims", help="How many hosts to break?", action="store_true")
 
     return parser
 
@@ -34,7 +36,6 @@ def get_all_agents():
         hosts.append(agent["hostname"])
 
     return hosts
-
 
 def break_mtu(num_victims):
     print get_all_agents()
