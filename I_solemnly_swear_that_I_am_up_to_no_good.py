@@ -20,7 +20,7 @@ def run_command(host, command):
 def cli_commands():
     parser = argparse.ArgumentParser(description="A simple chaos-monkey like application using Cumulus NetQ")
 
-    parser.add_argument("-b", "break", choices=["mtu", "evpn", "bgp", "interface", "routerid"],
+    parser.add_argument("-b", "--break", choices=["mtu", "evpn", "bgp", "interface", "routerid"],
                         help="What to break?", required=True)
 
     parser.add_argument("-v", "--victims", help="How many hosts to break?", type=int, required=True)
