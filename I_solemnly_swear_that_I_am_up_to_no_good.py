@@ -14,7 +14,7 @@ def cli_commands():
     parser = argparse.ArgumentParser(
         description="A simple chaos-monkey like application using Cumulus NetQ")
 
-    parser.add_argument("-b", "--break", choices=["mtu", "evpn", "bgp", "interface", "routerid"],
+    parser.add_argument("-b", "--break", choices=["mtu", "evpn", "bgp", "interface"],
                         help="What to break?", required=True, dest="breaking")
 
     parser.add_argument("-v", "--victims", help="How many hosts to break?",
@@ -100,12 +100,9 @@ def break_evpn(num_victims):
     victim_list = random.sample(get_agents("evpn"), num_victims)
 
     for victim in victim_list:
-        evpn_peers = json.loads(run_command(
-            str(victim), "net show bgp evpn summary json"))["peers"].keys()
 
-        neighbor = random.sample(evpn_peers, 1)[0]
         misconfig_options = ["net del bgp evpn advertise-all-vni",
-                             "net del bgp evpn neighbor " + neighbor + " activate "]
+                             "net del bgp evpn neighbor FABRIC activate "]
 
         misconfig_line = random.sample(misconfig_options, 1)[0]
         run_command(str(victim), misconfig_line)
@@ -141,6 +138,27 @@ def break_bgp(num_victims):
 
     return True
 
+
+def break_interface(num_victims):
+    """ Shut down a random interface on the target host
+
+    Keyword Arguments:
+    num_victims - The number of devices to change
+    """
+
+    victim_list = random.sample(get_agents("agents"), num_victims)
+
+    for victim in victim_list:
+        choosen_interface = random.sample(get_interfaces(victim), 1)[0].encode("ascii")
+
+        run_command(victim, "sudo ifdown " + choosen_interface)
+
+        print "victim: " + str(victim + " shutdown interface: " + str(choosen_interface))
+
+
+    return True
+
+
 def main():
     """Make it so
     """
@@ -155,6 +173,9 @@ def main():
 
     if cli_args.breaking == "bgp":
         break_bgp(cli_args.num_victims)
+
+    if cli_args.breaking == "interface":
+        break_interface(cli_args.num_victims)
 
     exit(0)
 
