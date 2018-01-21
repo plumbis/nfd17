@@ -82,7 +82,7 @@ def break_mtu(num_victims):
         interfaces = get_interfaces(victim)
         victim_interface = random.sample(interfaces, 1)[0]
 
-        run_command(str(victim), "ip link set dev " +
+        run_command(str(victim), "sudo ip link set dev " +
                     str(victim_interface).encode("ascii") + " mtu 1300")
         print "victim: " + str(victim) + " -- interface: " + str(victim_interface)
 
