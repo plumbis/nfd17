@@ -70,7 +70,7 @@
     - netq
 
 - name: Add netq server IP
-  command: netq config add server 192.168.0.253
+  command: netq config add server 192.168.255.253
   tags:
     - netq
 
