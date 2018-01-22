@@ -8,7 +8,7 @@ auto eth1
 iface eth1 inet static
   mtu 9000
   address {{node[inventory_hostname]["ip"]}}
-  post-up ip route add 10.1.33.0/24 via {{node[inventory_hostname]["gateway"]}}
-  post-up ip route add 10.17.49.0/24 via {{node[inventory_hostname]["gateway"]}}
-  post-up ip route add 10.65.97.0/24 via {{node[inventory_hostname]["gateway"]}}
-  post-up ip route add 10.81.113.0/24 via {{node[inventory_hostname]["gateway"]}}
+  post-up ip route add 10.1.33.0/24 via {{node[inventory_hostname]["gateway"]}} || true
+  post-up ip route add 10.17.49.0/24 via {{node[inventory_hostname]["gateway"]}} || true
+  post-up ip route add 10.65.97.0/24 via {{node[inventory_hostname]["gateway"]}} || true
+  post-up ip route add 10.81.113.0/24 via {{node[inventory_hostname]["gateway"]}} || true
