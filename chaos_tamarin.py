@@ -95,7 +95,7 @@ def break_mtu(num_victims):
                     str(victim_interface).encode("ascii") + " mtu 1300")
         print "victim: " + str(victim) + " -- interface: " + str(victim_interface)
 
-    return True
+    return victim_list
 
 
 def break_evpn(num_victims):
@@ -119,7 +119,7 @@ def break_evpn(num_victims):
 
         print "victim: " + str(victim) + " configured: " + misconfig_line
 
-    return True
+    return victim_list
 
 def break_bgp(num_victims):
     """Break BGP on a number of victims. This is done by randomly picking one of:
@@ -132,8 +132,13 @@ def break_bgp(num_victims):
     victim_list = random.sample(get_agents("bgp"), num_victims)
 
     for victim in victim_list:
-        bgp_peers = json.loads(run_command(
-            str(victim), "net show bgp ipv4 unicast summary json"))["peers"].keys()
+        try:
+            bgp_peers = json.loads(run_command(
+                str(victim), "net show bgp ipv4 unicast summary json"))["peers"].keys()
+        except Exception as e:
+            print "Hey, you found the break_bgp bug " + e
+            print "Victim: " + str(victim)
+            exit(1)
 
         choosen_neighbor = random.sample(bgp_peers, 1)[0]
         misconfig_options = ["net add bgp neighbor " + choosen_neighbor + " shutdown",
@@ -145,7 +150,7 @@ def break_bgp(num_victims):
 
         print "victim: " + str(victim) + " configured: " + misconfig_line
 
-    return True
+    return victim_list
 
 
 def break_interface(num_victims):
@@ -165,7 +170,7 @@ def break_interface(num_victims):
         print "victim: " + str(victim + " shutdown interface: " + str(choosen_interface))
 
 
-    return True
+    return victim_list
 
 
 def main():
@@ -175,17 +180,19 @@ def main():
     cli_args = cli.parse_args()
 
     if cli_args.breaking == "mtu":
-        break_mtu(cli_args.num_victims)
+        victims = break_mtu(cli_args.num_victims)
 
     if cli_args.breaking == "evpn":
-        break_evpn(cli_args.num_victims)
+        victims = break_evpn(cli_args.num_victims)
 
     if cli_args.breaking == "bgp":
-        break_bgp(cli_args.num_victims)
+        victims = break_bgp(cli_args.num_victims)
 
     if cli_args.breaking == "interface":
-        break_interface(cli_args.num_victims)
+        victims = break_interface(cli_args.num_victims)
 
+    print ""
+    print ",".join(victims)
     exit(0)
 
 if __name__ == "__main__":
