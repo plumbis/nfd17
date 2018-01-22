@@ -1,4 +1,12 @@
 ---
+- name: Copy SSH Keys
+  authorized_key:
+    user: cumulus
+    state: present
+    key: "{{ lookup('file', '/home/cumulus/.ssh/id_rsa.pub') }}"
+  tags:
+    - ssh
+
 - name: Copy interfaces configuration
   template:
     src: interfaces.j2
