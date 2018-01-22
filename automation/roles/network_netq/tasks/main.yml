@@ -61,3 +61,7 @@
   tags:
     - netq
 
+- name: Enable NetQL
+  command: netq config add experimental
+  tags:
+    - netq
