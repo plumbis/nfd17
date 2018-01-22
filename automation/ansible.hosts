@@ -150,7 +150,9 @@ leaf128
 leafs1
 leafs2
 leafs3
+leafs3a
 leafs4
+leafs4a
 
 [chassis01-lc]
 chassis01-lc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
