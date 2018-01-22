@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # pylint: disable=C0103
-"""A Cumulus Linux Chaos Monkey built using NetQ
+"""A Cumulus Linux Chaos Monkey built using NetQ.
+The idea for this comes from the Netflix Chaos Monkey engine.
+https://github.com/Netflix/chaosmonkey
+
+However it's not nearly as powerful as their engine, so it's a tiny money.
+A tamarin is a tiny monkey, weighing 200 to 900 grams (1.4 - 2 lbs)
+https://en.wikipedia.org/wiki/Tamarin
 """
+
 import subprocess
 import argparse
 import json
