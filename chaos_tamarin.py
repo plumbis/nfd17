@@ -141,8 +141,8 @@ def break_bgp(num_victims):
             exit(1)
 
         choosen_neighbor = random.sample(bgp_peers, 1)[0]
-        misconfig_options = ["net add bgp neighbor " + choosen_neighbor + " shutdown",
-                             "net add bgp neighbor " + choosen_neighbor + " remote-as internal "]
+        # "net add bgp neighbor " + choosen_neighbor + " remote-as internal "
+        misconfig_options = ["net add bgp neighbor " + choosen_neighbor + " shutdown"]
 
         misconfig_line = random.sample(misconfig_options, 1)[0]
         run_command(str(victim), misconfig_line)
