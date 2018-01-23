@@ -13,7 +13,7 @@ import subprocess
 import argparse
 import json
 import random
-import threading
+
 
 def cli_commands():
     """Build the CLI arguments
@@ -37,6 +37,8 @@ def run_command(host, command):
     host - the device on which the command will be run
     command - the command string to run
     """
+
+    # TODO: Move to Paramiko to utilize threads
     commands = ['ssh', '-t', host, command]
     command_output = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return command_output.stdout.read()
@@ -130,57 +132,29 @@ def break_bgp(num_victims):
     num_victims - The number of devices to change
     """
     victim_list = random.sample(get_agents("bgp"), num_victims)
-    threads = []
+
     for victim in victim_list:
-        t = threading.Thread(target=break_bgp_thread, args=(victim,))
-        threads.append(t)
-        t.start()
-    # for victim in victim_list:
-    #     try:
-    #         bgp_peers = json.loads(run_command(
-    #             str(victim), "net show bgp ipv4 unicast summary json"))["peers"].keys()
-    #     except Exception as e:
-    #         print "Hey, you found the break_bgp bug"
-    #         print str(victim)
-    #         print e
+        try:
+            bgp_peers = json.loads(run_command(
+                str(victim), "net show bgp ipv4 unicast summary json"))["peers"].keys()
+        except Exception as e:
+            print "Hey, you found the break_bgp bug"
+            print str(victim)
+            print e
 
-    #         exit(1)
+            exit(1)
 
-    #     choosen_neighbor = random.sample(bgp_peers, 1)[0]
-    #     # "net add bgp neighbor " + choosen_neighbor + " remote-as internal "
-    #     misconfig_options = ["net add bgp neighbor " + choosen_neighbor + " shutdown"]
+        choosen_neighbor = random.sample(bgp_peers, 1)[0]
+        # "net add bgp neighbor " + choosen_neighbor + " remote-as internal "
+        misconfig_options = ["net add bgp neighbor " + choosen_neighbor + " shutdown"]
 
-    #     misconfig_line = random.sample(misconfig_options, 1)[0]
-    #     run_command(str(victim), misconfig_line)
-    #     run_command(str(victim), "net commit")
+        misconfig_line = random.sample(misconfig_options, 1)[0]
+        run_command(str(victim), misconfig_line)
+        run_command(str(victim), "net commit")
 
-    #     print "victim: " + str(victim) + " configured: " + misconfig_line
+        print "victim: " + str(victim) + " configured: " + misconfig_line
 
     return victim_list
-
-
-def break_bgp_thread(victim):
-    try:
-        bgp_peers = json.loads(run_command(
-            str(victim), "net show bgp ipv4 unicast summary json"))["peers"].keys()
-    except Exception as e:
-        print "Hey, you found the break_bgp bug"
-        print str(victim)
-        print e
-
-        exit(1)
-
-    choosen_neighbor = random.sample(bgp_peers, 1)[0]
-    # "net add bgp neighbor " + choosen_neighbor + " remote-as internal "
-    misconfig_options = ["net add bgp neighbor " + choosen_neighbor + " shutdown"]
-
-    misconfig_line = random.sample(misconfig_options, 1)[0]
-    run_command(str(victim), misconfig_line)
-    run_command(str(victim), "net commit")
-
-    print "victim: " + str(victim) + " configured: " + misconfig_line
-
-    return
 
 
 def break_interface(num_victims):
