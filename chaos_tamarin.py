@@ -136,8 +136,10 @@ def break_bgp(num_victims):
             bgp_peers = json.loads(run_command(
                 str(victim), "net show bgp ipv4 unicast summary json"))["peers"].keys()
         except Exception as e:
-            print "Hey, you found the break_bgp bug " + e
-            print "Victim: " + str(victim)
+            print "Hey, you found the break_bgp bug"
+            print str(victim)
+            print e
+
             exit(1)
 
         choosen_neighbor = random.sample(bgp_peers, 1)[0]
