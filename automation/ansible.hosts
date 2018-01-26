@@ -61,9 +61,9 @@ spine04 ansible_host=192.168.255.37 ansible_user=cumulus
 
 
 [hosts]
-host01 ansible_host=192.168.255.178 ansible_user=cumulus
-host02 ansible_host=192.168.255.179 ansible_user=cumulus
-host03 ansible_host=192.168.255.180 ansible_user=cumulus
-host05 ansible_host=192.168.255.182 ansible_user=cumulus
-host06 ansible_host=192.168.255.183 ansible_user=cumulus
-host04 ansible_host=192.168.255.181 ansible_user=cumulus
+host01 ansible_host=192.168.255.178 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+host02 ansible_host=192.168.255.179 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+host03 ansible_host=192.168.255.180 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+host05 ansible_host=192.168.255.182 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+host06 ansible_host=192.168.255.183 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+host04 ansible_host=192.168.255.181 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
