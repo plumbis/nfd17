@@ -2,7 +2,7 @@
 
 This is a large scale Cumulus Vx topology, consisting of 6 servers, 32 leafs and 4 spines configured in a Clos topology.
 
-![Clos Topology](https://github.com/plumbis/nfd17/blob/master/readme_images/Clos.png "Clos Topology")
+![Clos Topology](https://github.com/plumbis/nfd17/blob/master/readme_images/Clos.jpg "Clos Topology")
 
 Each leaf uses eBGP unnumbered to all four spine connections.
 
