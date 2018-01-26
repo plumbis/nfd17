@@ -55,7 +55,6 @@ def get_agents(agent_type):
     agents = set()
 
     for agent in agent_json:
-        print agent["hostname"]
         if "host" in agent["hostname"]:
             continue
         agents.add(agent["hostname"])
