@@ -1,3 +1,29 @@
+netq check bgp
+netq check evpn
+netq check mtu
+
+netq host02 show inventory os
+netq host02 show lldp
+netq host02 show ip neighbors
+netq show ip addresses 10.1.2.11
+netq show mac 44:38:39:00:00:39
+
+netq trace 44:38:39:00:00:39 from leaf02
+
+netq show docker summary
+netq show docker service
+netq show docker service name apache_web connectivity
+netq leaf05 show docker container adjacent interface swp5
+netq leaf05 show impact docker service apache_web
+
+ssh host03
+sudo docker run --name test hello-world
+netq host03 show docker container changes
+
+sudo docker service scale apache_web=4
+
+netq show docker container service apache_web changes between 1s and
+
 netq query show tables
 netq query show fields BgpSession
 
