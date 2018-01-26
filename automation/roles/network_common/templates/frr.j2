@@ -26,10 +26,12 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   redistribute connected route-map loopbacks
  exit-address-family
  !
+ {% if not node[inventory_hostname]docker_roh is defined %}
  address-family l2vpn evpn
    neighbor FABRIC activate
    advertise-all-vni
  exit-address-family
+ {% endif %}
 !
 route-map loopbacks permit 10
  match interface lo

@@ -1,0 +1,50 @@
+---
+# This section must break out the Docker Swarm Manager (server01)
+# This is required to capture the worker token so it can be loaded as a var
+# and then passed to the other swarm nodes
+- hosts: server03
+  become: yes
+  tasks:
+
+    # This determines if the docker swarm status is "active" or "inactive"
+    # running at command line will likely give a "No swap limit support" warning
+    # which requires a grub change and reboot to fix and doesn't matter for our usecase
+    - name: Determine swarm status
+      shell: >
+        docker info | egrep '^Swarm: ' | cut -d ' ' -f2
+      register: swarm_status
+
+    - name: Configure Server01 as Docker Swarm manager
+      command: docker swarm init --advertise-addr {{ansible_lo.ipv4_secondaries[0].address}}
+      when: '"active" not in swarm_status.stdout_lines'
+
+    - name: Get Worker Token
+      command: docker swarm join-token -q worker
+      register: swarm_manager_output
+
+    - name: Set Worker Token as an Ansible fact
+      set_fact:
+        worker_token: "{{swarm_manager_output.stdout}}"
+
+
+# This play will fail if server03 was not run first
+- hosts: server04,server05,server06
+  become: yes
+  tasks:
+    - name: Determine swarm status
+      shell: >
+        docker info | egrep '^Swarm: ' | cut -d ' ' -f2
+      register: swarm_status
+
+    - name: Join Docker Swarm
+      command: docker swarm join --token {{hostvars['server01']['worker_token']}} --advertise-addr {{ansible_lo.ipv4_secondaries[0].address}} 10.0.0.31
+      when: '"active" not in swarm_status.stdout_lines'
+
+# Kick back to server03 to deploy the services
+# Services can only be deployed from the master
+# This is a little messy as a result of being in a single, flat playbook
+- hosts: server03
+  become: yes
+  tasks:
+    - name: Deploy Apache Containers
+      command: docker service create --name apache_web --replicas 3 --publish 8080:80 php:5.6-apache

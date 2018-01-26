@@ -42,6 +42,7 @@ node:
       - swp5
     interfaces:
       lo: 10.0.0.3/32
+    docker_roh: True
   leaf04:
     bgp:
       asn: '64515'
