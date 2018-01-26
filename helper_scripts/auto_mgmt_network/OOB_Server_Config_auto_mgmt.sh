@@ -170,7 +170,7 @@ echo " ###Making cumulus passwordless sudo ###"
 echo "cumulus ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/10_cumulus
 
 echo ' ### Setting UP NAT and Routing on MGMT server... ### '
-echo -e '#!/bin/bash \n/sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE' > /etc/rc.local
+echo -e '#!/bin/bash \n/sbin/iptables -t nat -A POSTROUTING -o vagrant -j MASQUERADE' > /etc/rc.local
 echo "net.ipv4.ip_forward=1" > /etc/sysctl.d/98-ipforward.conf
 
 
