@@ -23,11 +23,15 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"]}}
 {% endfor -%}
  !
  address-family ipv4 unicast
+   redistribute connected route-map loopbacks
  exit-address-family
  !
  address-family l2vpn evpn
    neighbor FABRIC activate
  exit-address-family
+!
+route-map loopbacks permit 10
+ match interface lo
 !
 line vty
 !
