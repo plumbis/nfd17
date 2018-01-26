@@ -18,14 +18,14 @@ node:
   leaf02:
     bgp:
       asn: '64513'
-      peers:
-      - swp1
-      - swp2
-      - swp3
-      - swp4
     interfaces:
       lo: 10.0.0.2/32
     evpn:
+      peers:
+        - swp1
+        - swp2
+        - swp3
+        - swp4
       anycast: 10.1.2.1
       ip: 10.1.2.200/24
       mac: 44:39:39:ff:01:33
