@@ -9,10 +9,18 @@
   handlers:
     - include: handlers/main.yml
 
-- hosts: hosts
+- hosts: host01,host02
   become: yes
   gather_facts: no
   roles:
-    - hosts_common
+    - vxlan_hosts
+  handlers:
+    - include: handlers/main.yml
+
+- hosts: host03,host04,host05,host06
+  become: yes
+  gather_facts: no
+  roles:
+    - docker_hosts
   handlers:
     - include: handlers/main.yml

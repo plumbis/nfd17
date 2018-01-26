@@ -1,0 +1,177 @@
+---
+- name: Copy SSH Keys
+  authorized_key:
+    user: cumulus
+    state: present
+    key: "{{ lookup('file', '/home/cumulus/.ssh/id_rsa.pub') }}"
+  tags:
+    - ssh
+
+- name: Copy interfaces configuration
+  template:
+    src: interfaces.j2
+    dest: /etc/network/interfaces
+    backup: yes
+  notify: apply networking
+  tags:
+    - interfaces
+
+- name: Install Docker-CE Repo Key
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+  tags:
+    - docker
+
+- name: Add Docker Repo
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+    state: present
+    update_cache: no
+  tags:
+    - docker
+
+- name: Add Cumulus Apt Key
+  apt_key:
+    url: "https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey"
+    state: present
+  tags:
+    - netq
+
+- name: Add Cumulus Repo
+  apt_repository:
+    repo: deb https://apps3.cumulusnetworks.com/repos/deb xenial netq-1.2
+    update_cache: no
+    state: present
+  tags:
+    - netq
+
+- name: Install NetQ, DockerCE, ifupdown2, pip
+  apt:
+    name: "{{item}}"
+    update_cache: yes
+  with_items:
+    - docker-ce
+    - ifupdown2
+    - cumulus-netq
+    - python-pip
+  tags:
+    - docker
+
+- name: Install docker-py module
+  pip:
+    name: docker-py
+  tags:
+    - docker
+
+- name: Enable ifupdown2
+  service:
+    name: networking
+    enabled: yes
+  tags:
+    - docker
+
+- name: Restart Rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+  tags:
+    - netq
+
+- name: Enable NetQ Service
+  service:
+    name: netqd
+    enabled: yes
+    state: started
+  register: netq_started
+  tags:
+    - netq
+
+- name: Add netq server IP
+  command: netq config add server 192.168.255.253
+  tags:
+    - netq
+
+- name: Restart NetQ Agent
+  command: netq config restart agent
+  tags:
+    - netq
+
+- name: Add Docker settings to NetQ
+  blockinfile:
+    block: |
+      docker:
+        enable: true
+        poll_period: 10
+    dest: /etc/netq/netq.yml
+  register: netq_docker
+  tags:
+    - netq
+
+- name: Apply NetQ Docker Settings
+  command: netq config restart agent
+  when: netq_docker.changed
+  tags:
+    - netq
+
+- name: Start Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  tags:
+    - docker
+
+- name: Enable ifupdown2 after reboot
+  lineinfile:
+    dest: "/lib/systemd/system/networking.service"
+    regexp: '^RemainAfterExit'
+    insertafter: '^\[Service\]'
+    line: 'RemainAfterExit=yes'
+  tags:
+    - interfaces
+
+- name: Enable network interfaces
+  command: ifup {{item}}
+  ignore_errors: yes
+  with_items:
+    - eth1
+    - lo
+
+- name: Create Quagga configuration directory
+  file:
+    path: /etc/frr
+    state: directory
+    mode: 0775
+  tags:
+    - frr
+
+- name: Copy FRR daemons file
+  copy:
+    src: daemons
+    dest: /etc/frr/daemons
+    backup: yes
+  tags:
+    - frr
+
+- name: Copy FRR configuration
+  template:
+    src: frr.j2
+    dest: /etc/frr/frr.conf
+    backup: yes
+  tags:
+    - frr
+
+- name: Deploy ROH Container
+  docker_container:
+    name: cumulus-roh
+    privileged: true
+    interactive: true
+    network_mode: host
+    restart_policy: unless-stopped
+    tty: true
+    recreate: yes
+    image: cumulusnetworks/frrouting:latest
+    volumes:
+      - "/etc/frr/daemons:/etc/frr/daemons"
+      - "/etc/frr/frr.conf:/etc/frr/frr.conf"

@@ -39,6 +39,7 @@ node:
       - swp2
       - swp3
       - swp4
+      - swp5
     interfaces:
       lo: 10.0.0.3/32
   leaf04:
@@ -49,6 +50,7 @@ node:
       - swp2
       - swp3
       - swp4
+      - swp5
     interfaces:
       lo: 10.0.0.4/32
   leaf05:
@@ -59,6 +61,7 @@ node:
       - swp2
       - swp3
       - swp4
+      - swp5
     interfaces:
       lo: 10.0.0.5/32
   leaf06:
@@ -69,6 +72,7 @@ node:
       - swp2
       - swp3
       - swp4
+      - swp5
     interfaces:
       lo: 10.0.0.6/32
   leaf07:
@@ -495,21 +499,29 @@ node:
     gateway: 10.1.2.1
 
   host03:
-    ip: 10.3.3.3/24
-    peer: 10.3.3.1
-    gateway: 10.3.3.1
+    lo: 10.3.3.3/24
+    bgp:
+      asn: '64548'
+      peers:
+      - eth1
 
   host04:
-    ip: 10.4.4.4/24
-    peer: 10.4.4.1
-    gateway: 10.4.4.1
+    lo: 10.4.4.4/24
+    bgp:
+      asn: '64549'
+      peers:
+      - eth1
 
   host05:
-    ip: 10.5.5.5/24
-    peer: 10.5.5.1
-    gateway: 10.5.5.1
+    lo: 10.5.5.5/24
+    bgp:
+      asn: '64550'
+      peers:
+      - eth1
 
   host06:
-    ip: 10.6.6.6/24
-    peer: 10.6.6.1
-    gateway: 10.6.6.1
+    lo: 10.6.6.6/24
+    bgp:
+      asn: '64551'
+      peers:
+      - eth1

@@ -1,0 +1,30 @@
+frr version 3.1+cl3u3
+frr defaults datacenter
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+log syslog informational
+!
+{% for interface in node[inventory_hostname]["bgp"]["peers"] -%}
+interface {{interface}}
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+{% endfor %}
+router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
+ bgp router-id {{ node[inventory_hostname]["interfaces"]["lo"]|replace("/32", "")}}
+{% for interface in node[inventory_hostname]["bgp"]["peers"] -%}
+ neighbor {{interface}} interface remote-as external
+{% endfor -%}
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map loopbacks
+ exit-address-family
+ !
+!
+route-map loopbacks permit 10
+ match interface lo
+!
+line vty
+!
