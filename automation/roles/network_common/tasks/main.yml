@@ -5,3 +5,21 @@
     dest: /etc/frr/daemons
     backup: yes
   notify: restart frr
+
+- name: Copy interfaces configuration
+  template:
+    src: interfaces.j2
+    dest: /etc/network/interfaces
+    backup: yes
+  notify: reload networking
+  tags:
+    - interfaces
+
+- name: Copy FRR configuration
+  template:
+    src: frr.j2
+    dest: /etc/frr/frr.conf
+    backup: yes
+  notify: reload frr
+  tags:
+    - frr
