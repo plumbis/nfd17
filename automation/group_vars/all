@@ -17,6 +17,11 @@ node:
 
   leaf02:
     bgp:
+      peers:
+        - swp1
+        - swp2
+        - swp3
+        - swp4
       asn: '64513'
     interfaces:
       lo: 10.0.0.2/32
