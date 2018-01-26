@@ -1,267 +1,69 @@
-netq-ts
+# Created by Topology-Converter v4.6.5
+#    Template Revision: v4.6.5
+#    https://github.com/cumulusnetworks/topology_converter
+#    using topology data from: topology.dot
 
-[oob-mgmt-switches]
-oob-mgmt-switch1
-oob-mgmt-switch4
-oob-mgmt-switch3
-oob-mgmt-switch2
 
-[leafs1]
-leaf01
-leaf02
-leaf03
-leaf04
-leaf05
-leaf06
-leaf07
-leaf08
-leaf09
-leaf10
-leaf11
-leaf12
-leaf13
-leaf14
-leaf15
-leaf16
-leaf17
-leaf18
-leaf19
-leaf20
-leaf21
-leaf22
-leaf23
-leaf24
-leaf25
-leaf26
-leaf27
-leaf28
-leaf29
-leaf30
-leaf31
-leaf32
 
-[leafs2]
-leaf33
-leaf34
-leaf35
-leaf36
-leaf37
-leaf38
-leaf39
-leaf40
-leaf41
-leaf42
-leaf43
-leaf44
-leaf45
-leaf46
-leaf47
-leaf48
-leaf49
-leaf50
-leaf51
-leaf52
-leaf53
-leaf54
-leaf55
-leaf56
-leaf57
-leaf58
-leaf59
-leaf60
-leaf61
-leaf62
-leaf63
-leaf64
 
-[leafs3]
-leaf65
-leaf66
-leaf67
-leaf68
-leaf69
-leaf70
-leaf71
-leaf72
-leaf73
-leaf74
-leaf75
-leaf76
-leaf77
-leaf78
+[oob-switch]
+oob-mgmt-switch ansible_host=192.168.255.1 ansible_user=cumulus
 
-[leafs3a]
-leaf79
-leaf80
-leaf81
-leaf82
-leaf83
-leaf84
-leaf85
-leaf86
-leaf87
-leaf88
-leaf89
-leaf90
-leaf91
-leaf92
-leaf93
-leaf94
-leaf95
-leaf96
 
-[leafs4]
-leaf97
-leaf98
-leaf99
-leaf100
-leaf101
-leaf102
-leaf103
-leaf104
-leaf105
-leaf106
-leaf107
-leaf108
-leaf109
-leaf110
-leaf111
-leaf112
-leaf113
 
-[leafs4a]
-leaf114
-leaf115
-leaf116
-leaf117
-leaf118
-leaf119
-leaf120
-leaf121
-leaf122
-leaf123
-leaf124
-leaf125
-leaf126
-leaf127
-leaf128
 
-[leafs:children]
-leafs1
-leafs2
-leafs3
-leafs3a
-leafs4
-leafs4a
 
-[chassis01-lc]
-chassis01-lc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc1-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc2-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc3-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-lc4-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
 
-[chassis01-fc]
-chassis01-fc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-fc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-fc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis01-fc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
 
-[chassis01:children]
-chassis01-fc
-chassis01-lc
+[leafs]
+leaf15 ansible_host=192.168.255.16 ansible_user=cumulus
+leaf14 ansible_host=192.168.255.15 ansible_user=cumulus
+leaf17 ansible_host=192.168.255.18 ansible_user=cumulus
+leaf16 ansible_host=192.168.255.17 ansible_user=cumulus
+leaf11 ansible_host=192.168.255.12 ansible_user=cumulus
+leaf10 ansible_host=192.168.255.11 ansible_user=cumulus
+leaf13 ansible_host=192.168.255.14 ansible_user=cumulus
+leaf07 ansible_host=192.168.255.8 ansible_user=cumulus
+leaf19 ansible_host=192.168.255.20 ansible_user=cumulus
+leaf18 ansible_host=192.168.255.19 ansible_user=cumulus
+leaf31 ansible_host=192.168.255.32 ansible_user=cumulus
+leaf30 ansible_host=192.168.255.31 ansible_user=cumulus
+leaf23 ansible_host=192.168.255.24 ansible_user=cumulus
+leaf24 ansible_host=192.168.255.25 ansible_user=cumulus
+leaf03 ansible_host=192.168.255.4 ansible_user=cumulus
+leaf20 ansible_host=192.168.255.21 ansible_user=cumulus
+leaf01 ansible_host=192.168.255.2 ansible_user=cumulus
+leaf32 ansible_host=192.168.255.33 ansible_user=cumulus
+leaf06 ansible_host=192.168.255.7 ansible_user=cumulus
+leaf21 ansible_host=192.168.255.22 ansible_user=cumulus
+leaf04 ansible_host=192.168.255.5 ansible_user=cumulus
+leaf05 ansible_host=192.168.255.6 ansible_user=cumulus
+leaf02 ansible_host=192.168.255.3 ansible_user=cumulus
+leaf25 ansible_host=192.168.255.26 ansible_user=cumulus
+leaf26 ansible_host=192.168.255.27 ansible_user=cumulus
+leaf27 ansible_host=192.168.255.28 ansible_user=cumulus
+leaf28 ansible_host=192.168.255.29 ansible_user=cumulus
+leaf29 ansible_host=192.168.255.30 ansible_user=cumulus
+leaf08 ansible_host=192.168.255.9 ansible_user=cumulus
+leaf09 ansible_host=192.168.255.10 ansible_user=cumulus
+leaf22 ansible_host=192.168.255.23 ansible_user=cumulus
+leaf12 ansible_host=192.168.255.13 ansible_user=cumulus
 
-[chassis02-lc]
-chassis02-lc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc1-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc2-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc3-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-lc4-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
 
-[chassis02-fc]
-chassis02-fc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-fc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-fc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis02-fc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+[spines]
+spine02 ansible_host=192.168.255.35 ansible_user=cumulus
+spine03 ansible_host=192.168.255.36 ansible_user=cumulus
+spine01 ansible_host=192.168.255.34 ansible_user=cumulus
+spine04 ansible_host=192.168.255.37 ansible_user=cumulus
 
-[chassis02:children]
-chassis02-fc
-chassis02-lc
 
-[chassis03-lc]
-chassis03-lc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc1-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc2-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc3-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-lc4-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
 
-[chassis03-fc]
-chassis03-fc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-fc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-fc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis03-fc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
 
-[chassis03:children]
-chassis03-fc
-chassis03-lc
-
-[chassis04-lc]
-chassis04-lc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc1-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc2-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc3-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-lc4-2 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-
-[chassis04-fc]
-chassis04-fc1-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-fc2-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-fc3-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-chassis04-fc4-1 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-
-[chassis04:children]
-chassis04-fc
-chassis04-lc
-
-[linecards:children]
-chassis01-lc
-chassis02-lc
-chassis03-lc
-chassis04-lc
-
-[fabriccards:children]
-chassis01-fc
-chassis02-fc
-chassis03-fc
-chassis04-fc
-
-[spines:children]
-chassis01
-chassis02
-chassis03
-chassis04
-
-[network:children]
-leafs
-spines
 
 [hosts]
-host49 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host33 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host113 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host81 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host01 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host97 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host17 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
-host65 ansible_user=cumulus ansible_ssh_pass=CumulusLinux! ansible_become_pass=CumulusLinux!
+host01 ansible_host=192.168.255.178 ansible_user=cumulus
+host02 ansible_host=192.168.255.179 ansible_user=cumulus
+host03 ansible_host=192.168.255.180 ansible_user=cumulus
+host05 ansible_host=192.168.255.182 ansible_user=cumulus
+host06 ansible_host=192.168.255.183 ansible_user=cumulus
+host04 ansible_host=192.168.255.181 ansible_user=cumulus
