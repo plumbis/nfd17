@@ -619,9 +619,9 @@ end
       device.vm.network "private_network",
             :mac => "44:38:39:00:00:73",
             :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.0.0.1',
+            :libvirt__tunnel_local_ip => '10.13.0.1',
             :libvirt__tunnel_local_port => '8058',
-            :libvirt__tunnel_ip => '127.0.0.1',
+            :libvirt__tunnel_ip => '10.14.0.1',
             :libvirt__tunnel_port => '10058',
             :libvirt__iface_name => 'swp44',
             auto_config: false
