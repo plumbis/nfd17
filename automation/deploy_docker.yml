@@ -2,7 +2,7 @@
 # This section must break out the Docker Swarm Manager (server01)
 # This is required to capture the worker token so it can be loaded as a var
 # and then passed to the other swarm nodes
-- hosts: server03
+- hosts: host03
   become: yes
   tasks:
 
@@ -14,7 +14,7 @@
         docker info | egrep '^Swarm: ' | cut -d ' ' -f2
       register: swarm_status
 
-    - name: Configure Server01 as Docker Swarm manager
+    - name: Configure host03 as Docker Swarm manager
       command: docker swarm init --advertise-addr {{ansible_lo.ipv4_secondaries[0].address}}
       when: '"active" not in swarm_status.stdout_lines'
 
@@ -28,7 +28,7 @@
 
 
 # This play will fail if server03 was not run first
-- hosts: server04,server05,server06
+- hosts: host04,host05,host06
   become: yes
   tasks:
     - name: Determine swarm status
@@ -37,13 +37,13 @@
       register: swarm_status
 
     - name: Join Docker Swarm
-      command: docker swarm join --token {{hostvars['server01']['worker_token']}} --advertise-addr {{ansible_lo.ipv4_secondaries[0].address}} 10.0.0.31
+      command: docker swarm join --token {{hostvars['host03']['worker_token']}} --advertise-addr {{ansible_lo.ipv4_secondaries[0].address}} 10.3.3.3
       when: '"active" not in swarm_status.stdout_lines'
 
 # Kick back to server03 to deploy the services
 # Services can only be deployed from the master
 # This is a little messy as a result of being in a single, flat playbook
-- hosts: server03
+- hosts: host03
   become: yes
   tasks:
     - name: Deploy Apache Containers
