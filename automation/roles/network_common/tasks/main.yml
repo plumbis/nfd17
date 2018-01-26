@@ -1,5 +1,5 @@
 ---
-- name: Copy Quagga daemons file
+- name: Copy FRR daemons file
   copy:
     src: daemons
     dest: /etc/frr/daemons

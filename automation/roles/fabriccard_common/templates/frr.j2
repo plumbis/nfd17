@@ -14,6 +14,7 @@ interface {{interface}}
 {% endfor %}
 router bgp {{ node[inventory_hostname]["bgp"]["asn"]}}
  bgp router-id {{ node[inventory_hostname]["interfaces"]["lo"]|replace("/32", "")}}
+ bgp bestpath as-path multipath-relax
  neighbor FABRIC peer-group
  neighbor FABRIC remote-as external
  neighbor FABRIC timers 60 240
