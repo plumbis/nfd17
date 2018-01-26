@@ -39,7 +39,7 @@ def run_command(host, command):
     """
 
     # TODO: Move to Paramiko to utilize threads
-    commands = ['ssh', '-t', host, command]
+    commands = ['ssh', '-t', '-o StrictHostKeyChecking=no', host, command]
     command_output = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return command_output.stdout.read()
 
