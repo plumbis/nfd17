@@ -26,13 +26,13 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   redistribute connected route-map loopbacks
  exit-address-family
  !
- {% if "leaf01" in node[inventory_hostname] or "leaf02" in node[inventory_hostname] %}
+ {% if node[inventory_hostname]["evpn"] is defined %}
  address-family l2vpn evpn
    neighbor FABRIC activate
    advertise-all-vni
  exit-address-family
 {% endif %}
- {% if "spine" in node[inventory_hostname] %}
+{% if node[inventory_hostname]["spine"] is defined %}
  address-family l2vpn evpn
    neighbor swp1 activate
    neighbor swp2 activate

@@ -337,6 +337,7 @@ node:
     interfaces:
       lo: 10.0.0.32/32
   spine01:
+    spine: True
     bgp:
       asn: '64544'
       peers:
@@ -375,6 +376,7 @@ node:
     interfaces:
       lo: 10.255.255.1/32
   spine02:
+    spine: True
     bgp:
       asn: '64545'
       peers:
@@ -413,6 +415,7 @@ node:
     interfaces:
       lo: 10.255.255.2/32
   spine03:
+    spine: True
     bgp:
       asn: '64546'
       peers:
@@ -451,6 +454,7 @@ node:
     interfaces:
       lo: 10.255.255.3/32
   spine04:
+    spine: True
     bgp:
       asn: '64547'
       peers:
