@@ -499,28 +499,32 @@ node:
     gateway: 10.1.2.1
 
   host03:
-    lo: 10.3.3.3/24
+    interfaces:
+      lo: 10.3.3.3/24
     bgp:
       asn: '64548'
       peers:
       - eth1
 
   host04:
-    lo: 10.4.4.4/24
+    interfaces:
+      lo: 10.4.4.4/24
     bgp:
       asn: '64549'
       peers:
       - eth1
 
   host05:
-    lo: 10.5.5.5/24
+    interfaces:
+      lo: 10.5.5.5/24
     bgp:
       asn: '64550'
       peers:
       - eth1
 
   host06:
-    lo: 10.6.6.6/24
+    interfaces:
+      lo: 10.6.6.6/24
     bgp:
       asn: '64551'
       peers:
