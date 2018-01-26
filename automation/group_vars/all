@@ -9,6 +9,12 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.1/32
+    evpn:
+      anycast: 10.1.2.1
+      ip: 10.1.2.100/24
+      mac: 44:39:39:ff:01:33
+      vlan: 12
+
   leaf02:
     bgp:
       asn: '64513'
@@ -19,6 +25,12 @@ node:
       - swp4
     interfaces:
       lo: 10.0.0.2/32
+    evpn:
+      anycast: 10.1.2.1
+      ip: 10.1.2.200/24
+      mac: 44:39:39:ff:01:33
+      vlan: 12
+
   leaf03:
     bgp:
       asn: '64514'
@@ -472,3 +484,32 @@ node:
     interfaces:
       lo: 10.255.255.4/32
 
+  host01:
+      ip: 10.1.2.11/24
+      peer: 10.1.2.22
+      gateway: 10.1.2.1
+
+  host02:
+    ip: 10.1.2.22/24
+    peer: 10.1.2.11
+    gateway: 10.1.2.1
+
+  host03:
+    ip: 10.3.3.3/24
+    peer: 10.3.3.1
+    gateway: 10.3.3.1
+
+  host04:
+    ip: 10.4.4.4/24
+    peer: 10.4.4.1
+    gateway: 10.4.4.1
+
+  host05:
+    ip: 10.5.5.5/24
+    peer: 10.5.5.1
+    gateway: 10.5.5.1
+
+  host06:
+    ip: 10.6.6.6/24
+    peer: 10.6.6.1
+    gateway: 10.6.6.1
