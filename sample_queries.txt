@@ -1,0 +1,23 @@
+netq query show tables
+netq query show fields BgpSession
+
+# View uptime of all devices, sorted by uptime
+netq query select hostname,sys_uptime from Node order by sys_uptime
+
+# View everyone running Ubuntu 16.04
+netq query 'select hostname, name, version from OS where version_id="16.04"'
+
+# See how long it takes to install a route in the fabric
+netq query 'select hostname,prefix,timestamp from Route where prefix="10.0.0.3/32" order by timestamp'
+
+# How many BGP peers does every node have?
+netq query 'select hostname,count(peer_name) from BgpSession group by hostname order by count(peer_name)'
+
+# How many MACs on each node?
+netq query 'select hostname,count(mac_address) from MacFdb group by hostname order by count(mac_address)'
+
+
+Long running:
+# Get a route count from every node, ordered highest to lowest. 45 seconds.
+netq query 'select hostname,count(prefix) from Route where is_ipv6=0 group by hostname order by count(prefix)'
+
