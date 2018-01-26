@@ -26,7 +26,7 @@ router bgp {{ node[inventory_hostname]["bgp"]["asn"] }}
   redistribute connected route-map loopbacks
  exit-address-family
  !
- {% if node[inventory_hostname] is "leaf01" or node[inventory_hostname] is "leaf02" %}
+ {% if "leaf01" in node[inventory_hostname] or "leaf02" in node[inventory_hostname] %}
  address-family l2vpn evpn
    neighbor FABRIC activate
    advertise-all-vni
