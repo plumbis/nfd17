@@ -7492,7 +7492,7 @@ end
 
     device.vm.box = "cumulus/ts"
 
-    ddevice.vm.provider :libvirt do |v|
+    device.vm.provider :libvirt do |v|
       v.nic_model_type = 'e1000'
       v.memory = 1024*16
 -     v.cpus = 4
