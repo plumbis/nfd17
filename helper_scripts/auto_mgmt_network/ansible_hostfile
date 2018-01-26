@@ -15,7 +15,7 @@ oob-mgmt-switch ansible_host=192.168.255.1 ansible_user=cumulus
 
 
 
-[leafs]
+[leaf]
 leaf15 ansible_host=192.168.255.16 ansible_user=cumulus
 leaf14 ansible_host=192.168.255.15 ansible_user=cumulus
 leaf17 ansible_host=192.168.255.18 ansible_user=cumulus
@@ -50,7 +50,8 @@ leaf22 ansible_host=192.168.255.23 ansible_user=cumulus
 leaf12 ansible_host=192.168.255.13 ansible_user=cumulus
 
 
-[spines]
+
+[spine]
 spine02 ansible_host=192.168.255.35 ansible_user=cumulus
 spine03 ansible_host=192.168.255.36 ansible_user=cumulus
 spine01 ansible_host=192.168.255.34 ansible_user=cumulus
@@ -60,10 +61,11 @@ spine04 ansible_host=192.168.255.37 ansible_user=cumulus
 
 
 
-[hosts]
+[host]
 host01 ansible_host=192.168.255.178 ansible_user=cumulus
 host02 ansible_host=192.168.255.179 ansible_user=cumulus
 host03 ansible_host=192.168.255.180 ansible_user=cumulus
 host05 ansible_host=192.168.255.182 ansible_user=cumulus
 host06 ansible_host=192.168.255.183 ansible_user=cumulus
 host04 ansible_host=192.168.255.181 ansible_user=cumulus
+netq-ts ansible_host=192.168.255.253 ansible_user=cumulus

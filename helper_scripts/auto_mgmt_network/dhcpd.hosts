@@ -13,19 +13,27 @@ group {
   option default-url = "http://192.168.255.254/onie-installer";
 
 
-host oob-mgmt-switch {hardware ethernet 44:38:39:00:00:74; fixed-address 192.168.255.1; option host-name "oob-mgmt-switch"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host oob-mgmt-switch {hardware ethernet 44:38:39:00:00:76; fixed-address 192.168.255.1; option host-name "oob-mgmt-switch"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+
+host spine02 {hardware ethernet 44:38:39:00:00:4c; fixed-address 192.168.255.35; option host-name "spine02"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+
+host spine03 {hardware ethernet 44:38:39:00:00:f6; fixed-address 192.168.255.36; option host-name "spine03"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+
+host spine01 {hardware ethernet 44:38:39:00:00:56; fixed-address 192.168.255.34; option host-name "spine01"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+
+host spine04 {hardware ethernet 44:38:39:00:01:30; fixed-address 192.168.255.37; option host-name "spine04"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf15 {hardware ethernet 44:38:39:00:01:42; fixed-address 192.168.255.16; option host-name "leaf15"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf14 {hardware ethernet 44:38:39:00:00:e6; fixed-address 192.168.255.15; option host-name "leaf14"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf17 {hardware ethernet 44:38:39:00:00:a2; fixed-address 192.168.255.18; option host-name "leaf17"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf17 {hardware ethernet 44:38:39:00:00:a4; fixed-address 192.168.255.18; option host-name "leaf17"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf16 {hardware ethernet 44:38:39:00:00:50; fixed-address 192.168.255.17; option host-name "leaf16"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf11 {hardware ethernet 44:38:39:00:01:52; fixed-address 192.168.255.12; option host-name "leaf11"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf10 {hardware ethernet 44:38:39:00:00:c4; fixed-address 192.168.255.11; option host-name "leaf10"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf10 {hardware ethernet 44:38:39:00:00:c6; fixed-address 192.168.255.11; option host-name "leaf10"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf13 {hardware ethernet 44:38:39:00:00:f2; fixed-address 192.168.255.14; option host-name "leaf13"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
@@ -33,11 +41,11 @@ host leaf07 {hardware ethernet 44:38:39:00:01:2c; fixed-address 192.168.255.8; o
 
 host leaf19 {hardware ethernet 44:38:39:00:00:f8; fixed-address 192.168.255.20; option host-name "leaf19"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf18 {hardware ethernet 44:38:39:00:00:a0; fixed-address 192.168.255.19; option host-name "leaf18"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf18 {hardware ethernet 44:38:39:00:00:a2; fixed-address 192.168.255.19; option host-name "leaf18"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf31 {hardware ethernet 44:38:39:00:00:ae; fixed-address 192.168.255.32; option host-name "leaf31"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf31 {hardware ethernet 44:38:39:00:00:b0; fixed-address 192.168.255.32; option host-name "leaf31"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf30 {hardware ethernet 44:38:39:00:00:88; fixed-address 192.168.255.31; option host-name "leaf30"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf30 {hardware ethernet 44:38:39:00:00:8a; fixed-address 192.168.255.31; option host-name "leaf30"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf23 {hardware ethernet 44:38:39:00:00:10; fixed-address 192.168.255.24; option host-name "leaf23"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
@@ -49,7 +57,7 @@ host leaf20 {hardware ethernet 44:38:39:00:01:18; fixed-address 192.168.255.21; 
 
 host leaf01 {hardware ethernet 44:38:39:00:01:22; fixed-address 192.168.255.2; option host-name "leaf01"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf32 {hardware ethernet 44:38:39:00:00:9c; fixed-address 192.168.255.33; option host-name "leaf32"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf32 {hardware ethernet 44:38:39:00:00:9e; fixed-address 192.168.255.33; option host-name "leaf32"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf06 {hardware ethernet 44:38:39:00:00:60; fixed-address 192.168.255.7; option host-name "leaf06"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
@@ -57,7 +65,7 @@ host leaf21 {hardware ethernet 44:38:39:00:00:04; fixed-address 192.168.255.22; 
 
 host leaf04 {hardware ethernet 44:38:39:00:00:f4; fixed-address 192.168.255.5; option host-name "leaf04"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host leaf05 {hardware ethernet 44:38:39:00:00:82; fixed-address 192.168.255.6; option host-name "leaf05"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
+host leaf05 {hardware ethernet 44:38:39:00:00:84; fixed-address 192.168.255.6; option host-name "leaf05"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf02 {hardware ethernet 44:38:39:00:01:34; fixed-address 192.168.255.3; option host-name "leaf02"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
@@ -75,14 +83,6 @@ host leaf08 {hardware ethernet 44:38:39:00:00:6a; fixed-address 192.168.255.9; o
 
 host leaf09 {hardware ethernet 44:38:39:00:00:fe; fixed-address 192.168.255.10; option host-name "leaf09"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
-host spine02 {hardware ethernet 44:38:39:00:00:4c; fixed-address 192.168.255.35; option host-name "spine02"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
-
-host spine03 {hardware ethernet 44:38:39:00:00:f6; fixed-address 192.168.255.36; option host-name "spine03"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
-
-host spine01 {hardware ethernet 44:38:39:00:00:56; fixed-address 192.168.255.34; option host-name "spine01"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
-
-host spine04 {hardware ethernet 44:38:39:00:01:30; fixed-address 192.168.255.37; option host-name "spine04"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
-
 host leaf22 {hardware ethernet 44:38:39:00:00:28; fixed-address 192.168.255.23; option host-name "leaf22"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
 
 host leaf12 {hardware ethernet 44:38:39:00:00:70; fixed-address 192.168.255.13; option host-name "leaf12"; option cumulus-provision-url "http://192.168.255.254/ztp_oob.sh";  } 
@@ -91,14 +91,14 @@ host host01 {hardware ethernet 44:38:39:00:00:5e; fixed-address 192.168.255.178;
 
 host host02 {hardware ethernet 44:38:39:00:00:0e; fixed-address 192.168.255.179; option host-name "host02"; } 
 
-host host03 {hardware ethernet 44:38:39:00:00:8a; fixed-address 192.168.255.180; option host-name "host03"; } 
+host host03 {hardware ethernet 44:38:39:00:00:8c; fixed-address 192.168.255.180; option host-name "host03"; } 
 
 host host05 {hardware ethernet 44:38:39:00:00:2e; fixed-address 192.168.255.182; option host-name "host05"; } 
 
 host host06 {hardware ethernet 44:38:39:00:00:0a; fixed-address 192.168.255.183; option host-name "host06"; } 
 
-host host04 {hardware ethernet 44:38:39:00:00:98; fixed-address 192.168.255.181; option host-name "host04"; } 
+host host04 {hardware ethernet 44:38:39:00:00:9a; fixed-address 192.168.255.181; option host-name "host04"; } 
 
-host netq-ts {hardware ethernet 44:38:39:00:00:e4; fixed-address 192.168.255.253; option host-name "netq-ts"; } 
+host netq-ts {hardware ethernet 44:38:39:00:00:74; fixed-address 192.168.255.253; option host-name "netq-ts"; } 
 }#End of static host group
 
