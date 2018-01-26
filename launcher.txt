@@ -1,0 +1,6 @@
+vagrant up oob-mgmt-server oob-mgmt-switch && \
+vagrant up host01 host02 host03 host04 host05 host06 && \
+vagrant up spine01 spine02 spine03 spine04 && \
+vagrant up leaf01 leaf02 leaf03 leaf04 leaf05 leaf06 leaf07 leaf08 leaf09 leaf10 && \
+vagrant up leaf11 leaf12 leaf13 leaf14 leaf15 leaf16 leaf17 leaf18 leaf19 leaf20 && \
+vagrant up leaf21 leaf22 leaf23 leaf24 leaf25 leaf26 leaf27 leaf28 leaf29 leaf30 leaf31 leaf32
